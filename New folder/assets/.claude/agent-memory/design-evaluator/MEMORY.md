@@ -1,0 +1,1 @@
+- [Karan Enterprises site context](project_karan_enterprises.md) — brand tokens, file locations, section map, recurring issues, score history (v0=7.4, v001=8.1, v002=8.5, v003=8.7, v004=9.0)

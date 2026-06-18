@@ -1,0 +1,1023 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>M/s Karan Enterprises — Field notes &amp; insights</title>
+  <meta name="description" content="Notes from the field: infrastructure execution, railway works, slope protection and the long road of building reliable infrastructure across India.">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="shortcut icon" type="image/png" href="assets/logo.png">
+  <link rel="apple-touch-icon" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f5f3ec;
+      --paper-2: #ebe7dd;
+      --ink: #0c0c0c;
+      --ink-2: #1c1c1c;
+      --ink-3: #3a3a3a;
+      --rule: rgba(12, 12, 12, .12);
+      --rule-2: rgba(12, 12, 12, .06);
+      --mute: #403e38;
+      --yellow: #f0ce21;
+      --yellow-2: #ffd60a;
+      --yellow-soft: #fff2a8;
+      --display: 'Archivo', sans-serif;
+      --serif: 'IBM Plex Serif', 'Source Serif Pro', Georgia, serif;
+      --sans: 'Archivo', sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+
+      --pad: clamp(20px, 3vw, 48px);
+      --max: 1680px;
+      --sec-y: clamp(56px, 6vw, 88px);
+
+      --t-hero: clamp(48px, 8.5vw, 128px);
+      --t-h2: clamp(36px, 4.6vw, 72px);
+      --t-h3: clamp(26px, 3vw, 44px);
+      --t-h4: clamp(20px, 2vw, 28px);
+      --t-lede: clamp(17px, 1.5vw, 21px);
+      --t-body: 15px;
+      --t-cap: 13px;
+      --t-mono: 11px;
+      --t-micro: 10.5px;
+
+      --ease: cubic-bezier(.7, 0, .15, 1);
+      --ease-spring: cubic-bezier(.34, 1.4, .64, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0 }
+
+    html, body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      font-feature-settings: "ss01", "ss02", "cv01"
+    }
+
+    a { color: inherit; text-decoration: none }
+    img { max-width: 100%; display: block }
+    button { font: inherit; border: 0; background: 0; color: inherit }
+
+    ::selection { background: var(--yellow); color: var(--ink) }
+
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--yellow);
+      outline-offset: 2px;
+      border-radius: 2px
+    }
+
+    /* progress */
+    .progress {
+      position: fixed; top: 0; left: 0; height: 2px;
+      background: var(--yellow); z-index: 9997; width: 0;
+      transition: width .1s linear; box-shadow: 0 0 0 1px rgba(0,0,0,.04)
+    }
+
+    /* noise */
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none;
+      z-index: 9000; opacity: .04; mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")
+    }
+
+    /* nav */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: grid; grid-template-columns: auto 1fr auto auto;
+      align-items: center; gap: 24px; padding: 16px var(--pad);
+      transition: padding .3s var(--ease), background .3s var(--ease), box-shadow .3s var(--ease);
+      background: rgba(245,243,236,.82);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      color: var(--ink); height: 64px;
+      border-bottom: 1px solid var(--rule)
+    }
+    .nav.scrolled {
+      padding: 10px var(--pad);
+      background: rgba(12,12,12,.92);
+      color: var(--paper);
+      box-shadow: 0 1px 0 rgba(255,255,255,.06);
+      height: 56px
+    }
+
+    .brand { display: inline-flex; align-items: center; gap: 12px; line-height: 1 }
+    .brand .mark { width: 36px; height: 36px; flex-shrink: 0; display: grid; place-items: center; transition: transform .5s var(--ease-spring) }
+    .brand .mark img { width: 100%; height: auto; display: block }
+
+    .wm { display: inline-flex; flex-direction: column; line-height: .95; font-family: var(--display); text-transform: uppercase }
+    .wm .wm-1 { font-weight: 800; font-size: 15px; letter-spacing: -.02em }
+    .wm .wm-2 { font-weight: 500; font-size: 9.5px; letter-spacing: .34em; margin-top: 3px; opacity: .8 }
+
+    .wm-lg { display: inline-flex; flex-direction: column; line-height: .88; font-family: var(--display); text-transform: uppercase }
+    .wm-lg .wm-1 { font-weight: 800; font-size: clamp(56px,9vw,140px); letter-spacing: -.045em }
+    .wm-lg .wm-2 { font-weight: 500; font-size: clamp(11px,1.1vw,15px); letter-spacing: .42em; margin-top: 14px; opacity: .7; padding-left: .4em; padding-right: .42em }
+    .wm-lg .wm-1 em { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--yellow); text-transform: lowercase }
+
+    .nav-lnks {
+      display: flex; gap: 4px; justify-self: center;
+      background: rgba(12,12,12,.06); padding: 4px; border-radius: 999px;
+      border: 1px solid var(--rule); position: relative
+    }
+    .nav.scrolled .nav-lnks { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.08) }
+    .nav-lnks a {
+      position: relative; padding: 8px 16px;
+      font-family: var(--mono); font-size: 11px; letter-spacing: .08em;
+      text-transform: uppercase; border-radius: 999px;
+      transition: color .3s var(--ease); z-index: 1;
+      display: inline-flex; align-items: center; gap: 6px
+    }
+    .nav-lnks a.active { color: var(--ink) }
+    .nav-lnks .pill {
+      position: absolute; top: 4px; left: 4px;
+      height: calc(100% - 8px); background: var(--yellow);
+      border-radius: 999px; transition: transform .5s var(--ease-spring), width .5s var(--ease-spring); z-index: 0
+    }
+
+    .cta-mini {
+      font-family: var(--mono); font-size: 11px; letter-spacing: .08em;
+      text-transform: uppercase; background: var(--yellow); color: var(--ink);
+      padding: 9px 16px 9px 14px; border-radius: 999px;
+      display: inline-flex; align-items: center; gap: 8px;
+      font-weight: 500; transition: gap .35s var(--ease-spring)
+    }
+    .cta-mini i {
+      width: 6px; height: 6px; background: var(--ink); border-radius: 50%;
+      display: inline-block; animation: pulse 1.6s ease-in-out infinite
+    }
+    .cta-mini:hover { gap: 14px }
+    @keyframes pulse {
+      0%,100%{transform:scale(1);opacity:1}
+      50%{transform:scale(.4);opacity:.4}
+    }
+
+    /* hero */
+    .hero {
+      position: relative; padding: 110px var(--pad) clamp(32px,4vw,64px);
+      border-bottom: 1px solid var(--rule);
+      overflow: hidden
+    }
+    .hero-top {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;
+      font-family: var(--mono); font-size: var(--t-micro);
+      letter-spacing: .12em; text-transform: uppercase; color: var(--mute);
+      margin-bottom: clamp(32px,4vw,72px)
+    }
+    .hero-top .c { display: flex; align-items: center; gap: 8px }
+    .hero-top .c span b { color: var(--ink); font-weight: 500 }
+    .hero-top .c i { width: 5px; height: 5px; background: var(--yellow); border-radius: 50% }
+    .hero-top .c.right { justify-content: flex-end }
+    .hero-top .c.center { justify-content: center }
+
+    .hero-title {
+      font-family: var(--display); font-weight: 700;
+      font-size: clamp(40px, 7vw, 112px); line-height: .9;
+      letter-spacing: -.04em; max-width: 22ch
+    }
+    .hero-title em {
+      font-family: var(--serif); font-style: italic; font-weight: 400;
+      color: var(--ink); position: relative; padding: 0 .12em
+    }
+    .hero-title em::before {
+      content: ""; position: absolute; inset: .22em -.04em .15em -.04em;
+      background: var(--yellow); z-index: -1
+    }
+    .hero-lede {
+      font-family: var(--serif); font-style: italic;
+      font-size: clamp(18px,1.6vw,24px); line-height: 1.4;
+      max-width: 56ch; margin-top: 28px; color: var(--ink-2)
+    }
+
+    /* blog index */
+    .blog-index {
+      padding: clamp(28px,3vw,52px) var(--pad);
+      border-bottom: 1px solid var(--rule);
+      background: var(--paper-2)
+    }
+    .blog-index-head {
+      display: grid; grid-template-columns: 1fr auto; gap: 32px;
+      align-items: end; margin-bottom: 28px
+    }
+    .section-tag {
+      font-family: var(--mono); font-size: 10.5px; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--ink);
+      display: inline-flex; align-items: center; gap: 10px
+    }
+    .section-tag::before {
+      content: ""; width: 8px; height: 8px; background: var(--yellow);
+      border-radius: 50%; display: inline-block; box-shadow: 0 0 0 1px var(--ink)
+    }
+    .section-tag .cat {
+      color: var(--ink); font-weight: 600; font-family: var(--display);
+      font-size: .92em; letter-spacing: .04em; margin-right: 14px;
+      padding: 3px 9px; background: var(--yellow); border-radius: 3px;
+      line-height: 1
+    }
+
+    .blog-index h2 {
+      font-family: var(--display); font-weight: 700;
+      font-size: var(--t-h2); line-height: .98;
+      letter-spacing: -.035em; margin-top: 14px; max-width: 18ch
+    }
+    .blog-index h2 em {
+      font-family: var(--serif); font-style: italic; font-weight: 400;
+      position: relative; padding: 0 .1em; display: inline-block
+    }
+    .blog-index h2 em::before {
+      content: ""; position: absolute; inset: .22em -.04em .15em -.04em;
+      background: var(--yellow); z-index: -1
+    }
+    .blog-index-count {
+      font-family: var(--mono); font-size: var(--t-micro);
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--mute); padding: 8px 14px;
+      border: 1px solid var(--ink); border-radius: 999px
+    }
+
+    .bi-list {
+      display: grid; grid-template-columns: 1fr; gap: 0;
+      border-top: 1px solid var(--ink);
+      counter-reset: bi
+    }
+    .bi-item {
+      counter-increment: bi;
+      display: grid; grid-template-columns: 80px 1fr 180px 60px;
+      gap: 24px; align-items: center;
+      padding: 22px 0; border-bottom: 1px solid var(--rule);
+      transition: padding .4s var(--ease), background .4s;
+      position: relative; overflow: hidden
+    }
+    .bi-item::before {
+      content: ""; position: absolute; inset: 0;
+      background: var(--yellow); transform: translateY(101%);
+      transition: transform .55s var(--ease); z-index: 0
+    }
+    .bi-item:hover::before, .bi-item:active::before { transform: translateY(0) }
+    .bi-item > * { position: relative; z-index: 1 }
+    .bi-item:hover { padding-left: 18px; padding-right: 18px }
+    .bi-num {
+      font-family: var(--mono); font-size: var(--t-micro);
+      letter-spacing: .12em; color: var(--mute);
+      transition: color .3s
+    }
+    .bi-num::before { content: "0" counter(bi) }
+    .bi-item:hover .bi-num { color: var(--ink) }
+
+    .bi-title {
+      font-family: var(--display); font-weight: 600;
+      font-size: clamp(20px,2.2vw,32px); line-height: 1.1;
+      letter-spacing: -.025em
+    }
+    .bi-title em {
+      font-family: var(--serif); font-style: italic; font-weight: 400
+    }
+    .bi-meta {
+      font-family: var(--mono); font-size: var(--t-micro);
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--mute); text-align: right; line-height: 1.6;
+      transition: color .3s
+    }
+    .bi-item:hover .bi-meta { color: var(--ink) }
+    .bi-arrow {
+      width: 44px; height: 44px; border-radius: 50%;
+      display: grid; place-items: center;
+      background: var(--ink); color: var(--paper);
+      font-size: 16px; transition: transform .45s var(--ease-spring), background .35s
+    }
+    .bi-item:hover .bi-arrow { transform: rotate(-45deg) scale(1.08) }
+
+    @media(max-width:900px){
+      .bi-item { grid-template-columns: 50px 1fr 50px; gap: 14px }
+      .bi-meta { grid-column: 2; text-align: left; order: 3 }
+    }
+
+    /* article */
+    .article {
+      padding: clamp(48px,6vw,96px) var(--pad) clamp(48px,5vw,72px);
+      border-bottom: 1px solid var(--rule);
+      position: relative; scroll-margin-top: 80px
+    }
+    .article.dark {
+      background: var(--ink); color: var(--paper);
+      border-bottom-color: var(--ink-2)
+    }
+    .article-grid {
+      display: grid; grid-template-columns: .35fr 1fr;
+      gap: clamp(28px,4vw,72px);
+      max-width: var(--max); margin: 0 auto
+    }
+    @media(max-width:900px){ .article-grid { grid-template-columns: 1fr } }
+
+    .article-side {
+      position: sticky; top: 84px; align-self: start;
+      display: flex; flex-direction: column; gap: 20px;
+      padding-top: 4px
+    }
+    @media(max-width:900px){ .article-side { position: static } }
+
+    .article-num {
+      font-family: var(--serif); font-style: italic;
+      font-size: clamp(48px,5.6vw,88px); line-height: .9;
+      letter-spacing: -.02em; color: var(--ink)
+    }
+    .article.dark .article-num { color: var(--paper) }
+    .article-num em { color: var(--yellow); font-style: italic }
+
+    .article-tag {
+      font-family: var(--mono); font-size: 10.5px;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--mute); display: inline-flex; align-items: center; gap: 10px
+    }
+    .article.dark .article-tag { color: #bdbab2 }
+    .article-tag::before {
+      content: ""; width: 8px; height: 8px; background: var(--yellow);
+      border-radius: 50%; display: inline-block;
+      box-shadow: 0 0 0 1px currentColor
+    }
+
+    .article-meta-list {
+      list-style: none; display: flex; flex-direction: column;
+      gap: 4px; padding-top: 14px;
+      border-top: 1px solid var(--rule);
+      font-family: var(--mono); font-size: 10.5px;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--mute)
+    }
+    .article.dark .article-meta-list { border-top-color: rgba(255,255,255,.15); color: #bdbab2 }
+    .article-meta-list b {
+      color: var(--ink); font-weight: 500; font-size: 11.5px
+    }
+    .article.dark .article-meta-list b { color: var(--paper) }
+
+    .article-body {
+      display: flex; flex-direction: column; gap: 24px;
+      max-width: 72ch
+    }
+
+    .article-cover {
+      width: 100%; aspect-ratio: 16/8; object-fit: cover;
+      border-bottom: 3px solid var(--yellow); margin-bottom: 12px
+    }
+
+    .article h1.article-title {
+      font-family: var(--display); font-weight: 700;
+      font-size: clamp(32px,3.6vw,56px); line-height: 1.02;
+      letter-spacing: -.03em
+    }
+    .article h1.article-title em {
+      font-family: var(--serif); font-style: italic; font-weight: 400;
+      position: relative; padding: 0 .1em; display: inline-block
+    }
+    .article h1.article-title em::before {
+      content: ""; position: absolute; inset: .22em -.04em .15em -.04em;
+      background: var(--yellow); z-index: -1
+    }
+    .article.dark h1.article-title em::before { background: var(--yellow) }
+    .article.dark h1.article-title em { color: var(--ink) }
+
+    .article-lede {
+      font-family: var(--serif); font-style: italic;
+      font-size: clamp(19px,1.7vw,24px); line-height: 1.5;
+      color: var(--ink-2); margin: 4px 0 12px
+    }
+    .article.dark .article-lede { color: #d6d2c6 }
+
+    .article h2 {
+      font-family: var(--display); font-weight: 700;
+      font-size: clamp(22px,2.2vw,32px); line-height: 1.15;
+      letter-spacing: -.025em; margin-top: 20px
+    }
+    .article h2::before {
+      content: ""; display: block; width: 36px; height: 2px;
+      background: var(--yellow); margin-bottom: 14px
+    }
+    .article h3 {
+      font-family: var(--display); font-weight: 600;
+      font-size: clamp(18px,1.5vw,22px); line-height: 1.25;
+      letter-spacing: -.015em; margin-top: 12px;
+      color: var(--ink)
+    }
+    .article.dark h3 { color: var(--yellow) }
+    .article p {
+      font-size: clamp(15px,1.05vw,16.5px); line-height: 1.7;
+      color: var(--ink-2)
+    }
+    .article.dark p { color: #d6d2c6 }
+    .article ul {
+      list-style: none; padding-left: 0;
+      display: flex; flex-direction: column; gap: 8px;
+      margin-top: 4px
+    }
+    .article li {
+      font-size: clamp(15px,1.05vw,16.5px); line-height: 1.55;
+      color: var(--ink-2); padding-left: 24px; position: relative
+    }
+    .article.dark li { color: #d6d2c6 }
+    .article li::before {
+      content: ""; position: absolute; left: 0; top: 10px;
+      width: 12px; height: 2px; background: var(--yellow)
+    }
+
+    .article-sig {
+      margin-top: 32px; padding-top: 24px;
+      border-top: 1px solid var(--rule);
+      font-family: var(--serif); font-style: italic;
+      font-size: clamp(15px,1.2vw,18px); line-height: 1.5; color: var(--ink-3)
+    }
+    .article.dark .article-sig {
+      border-top-color: rgba(255,255,255,.15); color: #bdbab2
+    }
+    .article-sig b {
+      display: block; font-family: var(--display); font-style: normal;
+      font-weight: 700; color: var(--ink); font-size: 1.1em;
+      letter-spacing: -.01em; margin-bottom: 2px
+    }
+    .article.dark .article-sig b { color: var(--paper) }
+
+    /* CTA */
+    .cta {
+      padding: clamp(48px,6vw,96px) var(--pad);
+      background: var(--paper-2); border-bottom: 1px solid var(--rule)
+    }
+    .cta-inner {
+      max-width: var(--max); margin: 0 auto;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 24px; align-items: center
+    }
+    @media(max-width:720px){ .cta-inner { grid-template-columns: 1fr } }
+    .cta h2 {
+      font-family: var(--display); font-weight: 700;
+      font-size: clamp(28px,3.4vw,52px); line-height: 1;
+      letter-spacing: -.025em; max-width: 18ch
+    }
+    .cta h2 em {
+      font-family: var(--serif); font-style: italic; font-weight: 400
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 18px 28px; background: var(--ink); color: var(--paper);
+      font-family: var(--mono); font-size: 12px; letter-spacing: .14em;
+      text-transform: uppercase; border-radius: 999px;
+      transition: gap .35s var(--ease-spring)
+    }
+    .btn:hover { gap: 18px }
+
+    /* footer */
+    footer {
+      background: var(--ink); color: var(--paper);
+      padding: clamp(48px,5vw,72px) var(--pad) clamp(24px,2vw,32px)
+    }
+    .foot-grid {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      gap: 32px; padding-bottom: 32px;
+      border-bottom: 1px solid rgba(255,255,255,.15)
+    }
+    @media(max-width:980px){ .foot-grid { grid-template-columns: repeat(2,1fr) } }
+    @media(max-width:560px){ .foot-grid { grid-template-columns: 1fr } }
+    .foot-grid h4 {
+      font-family: var(--mono); font-size: 10.5px;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--yellow); margin-bottom: 14px
+    }
+    .foot-grid ul { list-style: none }
+    .foot-grid li {
+      font-family: var(--display); font-size: 14px;
+      line-height: 1.7; color: #bdbab2
+    }
+    .foot-grid a { color: #bdbab2; transition: color .25s }
+    .foot-grid a:hover { color: var(--yellow) }
+
+    .foot-brand {
+      display: flex; align-items: center; gap: 28px;
+      margin: 32px 0 24px; flex-wrap: wrap
+    }
+    .foot-logo {
+      width: 64px; height: auto; opacity: .9;
+      transition: transform .4s var(--ease-spring)
+    }
+    .foot-brand:hover .foot-logo { transform: rotate(-6deg) }
+
+    .foot-bottom {
+      display: flex; justify-content: space-between;
+      align-items: center; gap: 16px; flex-wrap: wrap;
+      font-family: var(--mono); font-size: 10px;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: #888; padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,.15)
+    }
+
+    /* contain on wide screens */
+    @media(min-width:1760px){
+      .hero, .blog-index, .cta, footer {
+        padding-left: calc(50vw - var(--max)/2 + var(--pad));
+        padding-right: calc(50vw - var(--max)/2 + var(--pad))
+      }
+    }
+
+    /* reveal animation */
+    .reveal {
+      clip-path: inset(0 0 100% 0); opacity: 0;
+      transition: clip-path 1s var(--ease), opacity .5s, transform 1s var(--ease);
+      transform: translateY(16px); will-change: clip-path
+    }
+    .reveal.in {
+      clip-path: inset(0); opacity: 1; transform: none
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { clip-path: none !important; opacity: 1 !important; transform: none !important; transition: none !important }
+    }
+
+    /* ============================================================
+       2026 CLIENT FEEDBACK — TYPOGRAPHY REFRESH (propagated)
+       Single strong sans; italic-serif accents → upright sans;
+       yellow becomes an underline, not a background behind text.
+       Preloader removed from inner pages (home-only).
+       ============================================================ */
+    :root { --serif: 'Archivo', sans-serif; }
+
+    /* inner pages: no preloader */
+    .pre { display: none !important; }
+
+    /* block-level italic-serif copy → upright sans */
+    .hero-bot .lede, .hero-lede, .chapter .ch-num, .about-lede, .mv-quote,
+    .svc .t small, .gal-desc, .gal-grid-head .ggh-r, .pm-scope,
+    .article-lede, .article-num {
+      font-family: var(--display) !important;
+      font-style: normal !important;
+    }
+
+    em, .em {
+      font-family: var(--display) !important;
+      font-style: normal !important;
+      font-weight: 800 !important;
+      text-transform: none !important;
+      color: var(--ink) !important;
+      background: transparent !important;
+      box-shadow: inset 0 -0.10em 0 var(--yellow);
+      padding: 0 0.03em;
+      border-radius: 0;
+    }
+
+    em::before, .em::before, .hero-title .em::before { display: none !important; }
+
+    .pre-mid .num em, .wm-lg .wm-1 em, .ticker-track span em, .chapter .ch-num em,
+    .cl-strip-track span:nth-child(even) {
+      color: var(--yellow) !important;
+      box-shadow: none !important;
+      background: transparent !important;
+      padding: 0;
+      font-family: var(--display) !important;
+      font-style: normal !important;
+    }
+
+    /* logo wordmark: logo bigger · "Karan" smaller · "Enterprises" larger */
+    .brand .mark { width: 48px !important; height: 48px !important; }
+    .wm .wm-1 { font-size: 13px !important; }
+    .wm .wm-2 { font-size: 11px !important; font-weight: 600 !important; letter-spacing: .26em !important; opacity: .92 !important; padding-right: .26em !important; }
+    .wm-lg .wm-1 { font-size: clamp(42px, 6.6vw, 104px) !important; }
+    .wm-lg .wm-2 { font-size: clamp(15px, 1.7vw, 24px) !important; font-weight: 600 !important; letter-spacing: .3em !important; opacity: .85 !important; }
+  </style>
+</head>
+
+<body>
+  <span class="progress" id="progress"></span>
+
+  <header class="nav" id="nav">
+    <a href="index.html" class="brand">
+      <span class="mark"><img src="assets/logo.png" alt="M/s Karan Enterprises"></span>
+      <span class="wm"><span class="wm-1">Karan</span><span class="wm-2">Enterprises</span></span>
+    </a>
+    <nav class="nav-lnks" id="navLnks">
+      <span class="pill" id="navPill"></span>
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="blogs.html" class="active">Blogs</a>
+      <a href="contact.html">Contact us</a>
+    </nav>
+    <a href="contact.html" class="cta-mini" data-label="Get in touch"><i></i>Contact us</a>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-top">
+      <div class="c"><i></i><span><b>M/s Karan Enterprises</b> · Field notes &amp; insights</span></div>
+      <div class="c center"><span>New railway formation &amp; existing track maintenance · <b>as per RDSO guidelines</b></span></div>
+      <div class="c right"><span><b>Ranchi · Jharkhand</b></span></div>
+    </div>
+
+    <h1 class="hero-title">
+      Notes from the <em>field.</em>
+    </h1>
+    <p class="hero-lede">
+      Reflections on building infrastructure that lasts — railway track works, slope protection, civil construction
+      and the long road of delivering quality across India since 2013.
+    </p>
+  </section>
+
+  <!-- BLOG INDEX -->
+  <section class="blog-index">
+    <div class="blog-index-head">
+      <div>
+        <span class="section-tag reveal"><span class="cat">B.01</span>Index</span>
+        <h2 class="reveal">Three reads, one <em>standard.</em></h2>
+      </div>
+      <span class="blog-index-count">03 published</span>
+    </div>
+
+    <div class="bi-list">
+      <a class="bi-item" href="#post-1" data-label="Read →">
+        <span class="bi-num"></span>
+        <span class="bi-title">Building strong infrastructure — the <em>journey</em> of M/s Karan Enterprises</span>
+        <span class="bi-meta">Featured essay<br>8 min read</span>
+        <span class="bi-arrow">→</span>
+      </a>
+      <a class="bi-item" href="#post-2" data-label="Read →">
+        <span class="bi-num"></span>
+        <span class="bi-title">Why <em>quality infrastructure</em> matters more than ever</span>
+        <span class="bi-meta">Perspective<br>3 min read</span>
+        <span class="bi-arrow">→</span>
+      </a>
+      <a class="bi-item" href="#post-3" data-label="Read →">
+        <span class="bi-num"></span>
+        <span class="bi-title">Expanding towards a <em>stronger future</em></span>
+        <span class="bi-meta">Vision<br>3 min read</span>
+        <span class="bi-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ARTICLE 01 — Featured -->
+  <article class="article" id="post-1">
+    <div class="article-grid">
+      <aside class="article-side">
+        <span class="article-num">N<em>o.</em> 01</span>
+        <span class="article-tag">Featured · Long read</span>
+        <ul class="article-meta-list">
+          <li><b>Published</b><span>2026 · Field journal</span></li>
+          <li><b>Read time</b><span>~ 8 minutes</span></li>
+          <li><b>Topic</b><span>Identity · Capabilities</span></li>
+          <li><b>Author</b><span>M/s Karan Enterprises</span></li>
+        </ul>
+      </aside>
+
+      <div class="article-body">
+        <img class="article-cover" src="assets/ppt/image91.jpeg" alt="Railway formation works with excavator and crew">
+
+        <h1 class="article-title">Building strong infrastructure — the <em>journey</em> of M/s Karan Enterprises</h1>
+        <p class="article-lede">
+          In today's fast-moving infrastructure and construction landscape, quality, reliability and innovation are
+          the pillars that define long-term success. At M/s Karan Enterprises, these values are not just words — they are
+          the foundation of every project we undertake.
+        </p>
+
+        <h2>Who we are</h2>
+        <p>
+          M/s Karan Enterprises is a trusted name in the field of railway infrastructure development, civil construction,
+          track-related works, slope protection work, and infrastructure solutions. With a commitment to excellence
+          and a vision to contribute towards nation-building, we continuously strive to deliver projects that meet the
+          highest standards of safety, durability and efficiency.
+        </p>
+        <p>
+          Our expertise lies in understanding project requirements with precision and executing them with
+          professionalism, technical knowledge and a dedicated workforce.
+        </p>
+
+        <h2>Our core expertise</h2>
+
+        <h3>Railway infrastructure &amp; track works — our core strength</h3>
+        <p>
+          Railway infrastructure is one of the most critical components of national development and connectivity. At
+          M/s Karan Enterprises, railway-related projects remain our strongest area of expertise, supported by years of
+          practical execution experience, technical understanding and operational efficiency.
+        </p>
+        <p>
+          We specialize in supporting railway construction and development activities through quality execution,
+          proper planning and timely project delivery. Along with railway works, we also undertake broader
+          infrastructure, civil construction and slope protection projects across different sectors.
+        </p>
+        <p>
+          Our team understands the importance of safety, technical accuracy, durability and operational reliability in
+          every project we execute. From groundwork preparation to execution support, every stage of our work is
+          handled with strict quality control and professional supervision.
+        </p>
+
+        <h3>Slope protection &amp; rehabilitation work for railway projects</h3>
+        <p>
+          Slope stabilization and protection play a critical role in ensuring safety and structural integrity in
+          challenging terrains. Our team brings specialized expertise in slope protection solutions designed to
+          minimize erosion risks, improve long-term stability and support safe railway operations in difficult
+          terrains.
+        </p>
+        <p>
+          We focus on practical, effective and sustainable engineering methods that align with project requirements
+          and environmental conditions.
+        </p>
+
+        <h3>Civil construction services</h3>
+        <p>
+          M/s Karan Enterprises provides comprehensive civil construction services across multiple sectors. Our team works
+          closely with clients to ensure timely project delivery while maintaining superior workmanship and safety
+          standards.
+        </p>
+        <p>
+          With strong project management capabilities and experienced professionals, we aim to deliver solutions that
+          create lasting value.
+        </p>
+
+        <h2>Commitment to quality &amp; safety</h2>
+        <p>
+          At M/s Karan Enterprises, quality and safety are at the center of every operation. We believe that successful
+          project execution depends not only on technical expertise but also on maintaining strict safety protocols
+          and operational discipline.
+        </p>
+        <p>Our approach includes:</p>
+        <ul>
+          <li>High-quality construction standards</li>
+          <li>Timely project execution</li>
+          <li>Skilled workforce and technical supervision</li>
+          <li>Efficient project coordination</li>
+          <li>Strong focus on workplace safety</li>
+          <li>Client-centric project management</li>
+        </ul>
+
+        <h2>Supporting the growth of modern infrastructure</h2>
+        <p>
+          The construction and infrastructure industry is evolving rapidly, and M/s Karan Enterprises is committed to
+          growing alongside it. We continuously explore modern techniques, better project execution methods and
+          innovative engineering practices to improve efficiency and deliver enhanced results.
+        </p>
+        <p>
+          Our goal is to become a reliable long-term partner for organizations seeking dependable railway
+          infrastructure, civil construction and infrastructure development solutions.
+        </p>
+
+        <h2>Building long-term partnerships</h2>
+        <p>
+          We believe strong business relationships are built on trust, transparency and performance. Whether working
+          with private clients, contractors or large infrastructure organizations, M/s Karan Enterprises focuses on
+          building partnerships that create mutual growth and long-term success.
+        </p>
+        <p>
+          As we move forward, we remain committed to expanding our capabilities, taking on new challenges and
+          contributing meaningfully to the development of infrastructure across the country.
+        </p>
+
+        <h2>Conclusion</h2>
+        <p>
+          M/s Karan Enterprises stands for dedication, quality and engineering excellence. Every project we undertake
+          reflects our commitment to delivering reliable infrastructure solutions that make a lasting impact.
+        </p>
+        <p>
+          With a growing portfolio, experienced team and strong vision for the future, we continue to contribute
+          towards railway development, civil construction and modern infrastructure growth — while building trust,
+          reliability and long-term progress.
+        </p>
+
+        <div class="article-sig">
+          <b>M/s Karan Enterprises</b>
+          Building Infrastructure. Delivering Excellence.
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ARTICLE 02 — Perspective -->
+  <article class="article dark" id="post-2">
+    <div class="article-grid">
+      <aside class="article-side">
+        <span class="article-num">N<em>o.</em> 02</span>
+        <span class="article-tag">Perspective</span>
+        <ul class="article-meta-list">
+          <li><b>Published</b><span>2026 · Field journal</span></li>
+          <li><b>Read time</b><span>~ 3 minutes</span></li>
+          <li><b>Topic</b><span>Quality · Standards</span></li>
+          <li><b>Author</b><span>M/s Karan Enterprises</span></li>
+        </ul>
+      </aside>
+
+      <div class="article-body">
+        <img class="article-cover" src="assets/ppt/image94.jpeg" alt="Railway ballast spreading and track-bed completion">
+
+        <h1 class="article-title">Why <em>quality infrastructure</em> matters more than ever</h1>
+        <p class="article-lede">
+          Infrastructure is the foundation of development, connectivity and economic growth. From railway projects to
+          civil construction and slope protection work, every structure plays a crucial role in supporting safer and
+          more efficient operations.
+        </p>
+
+        <p>
+          At M/s Karan Enterprises, we believe that successful infrastructure development depends on three key factors —
+          quality execution, technical expertise and timely delivery. Our team works with a strong commitment to
+          maintaining high construction standards while ensuring safety and operational reliability across every
+          project.
+        </p>
+        <p>
+          Railway infrastructure remains one of our core strengths, alongside broader civil and infrastructure
+          solutions. With growing industry demands and modern development requirements, we continue to focus on
+          delivering dependable engineering solutions that create long-term value.
+        </p>
+        <p>
+          Through dedication, professionalism and continuous improvement, M/s Karan Enterprises aims to contribute towards
+          building stronger infrastructure for the future.
+        </p>
+
+        <div class="article-sig">
+          <b>M/s Karan Enterprises</b>
+          Building Infrastructure. Delivering Excellence.
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ARTICLE 03 — Vision -->
+  <article class="article" id="post-3">
+    <div class="article-grid">
+      <aside class="article-side">
+        <span class="article-num">N<em>o.</em> 03</span>
+        <span class="article-tag">Vision</span>
+        <ul class="article-meta-list">
+          <li><b>Published</b><span>2026 · Field journal</span></li>
+          <li><b>Read time</b><span>~ 3 minutes</span></li>
+          <li><b>Topic</b><span>Growth · Partnership</span></li>
+          <li><b>Author</b><span>M/s Karan Enterprises</span></li>
+        </ul>
+      </aside>
+
+      <div class="article-body">
+        <img class="article-cover" src="assets/ppt/image69.png" alt="Completed Rail Over Bridge approach and siding">
+
+        <h1 class="article-title">Expanding towards a <em>stronger future</em></h1>
+        <p class="article-lede">
+          At M/s Karan Enterprises, growth is not just about increasing the number of projects — it is about building
+          long-term relationships, expanding capabilities and creating a stronger presence in the infrastructure
+          industry.
+        </p>
+
+        <p>
+          As we move forward, our vision is to work with more clients across railway infrastructure, civil
+          construction, slope protection and development projects. We aim to become a trusted execution partner known
+          for reliability, quality work and professional project management.
+        </p>
+        <p>
+          Scalability remains one of our key future goals. By strengthening our workforce, improving operational
+          efficiency and adopting modern execution practices, we are continuously preparing ourselves to take on
+          larger and more challenging projects.
+        </p>
+        <p>
+          We believe that every successful project builds trust, and every client relationship creates new
+          opportunities for growth. With dedication, consistency and a clear long-term vision, M/s Karan Enterprises is
+          committed to expanding its reach and contributing to the development of modern infrastructure across the
+          country.
+        </p>
+
+        <div class="article-sig">
+          <b>M/s Karan Enterprises</b>
+          Building Infrastructure. Delivering Excellence.
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="cta-inner">
+      <h2>Have a <em>project</em> in mind?</h2>
+      <a href="contact.html" class="btn" data-label="Begin →">Begin a project →</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="foot-grid">
+      <div>
+        <h4>— Compliance</h4>
+        <ul>
+          <li>GSTIN · 20AANFK1113F1Z1</li>
+          <li>RDSO/2020/GE: IRS-0004</li>
+          <li>Indian Railways CM compliant</li>
+          <li>Maccaferri Geocell Authorised</li>
+        </ul>
+      </div>
+      <div>
+        <h4>— Capabilities</h4>
+        <ul>
+          <li><a href="services.html#services">Railway tracks &amp; bridges</a></li>
+          <li><a href="services.html#services">Roads &amp; drains</a></li>
+          <li><a href="services.html#services">Slope protection</a></li>
+          <li><a href="services.html#services">Ash transportation</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>— Clients</h4>
+        <ul>
+          <li><a href="index.html#clients">RWD Jharkhand</a></li>
+          <li><a href="index.html#clients">IPRCL</a></li>
+          <li><a href="index.html#clients">RCD Jharkhand</a></li>
+          <li><a href="index.html#clients">East Central Railway</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>— Contact</h4>
+        <ul>
+          <li><a href="tel:+918092167690">+91 80921 67690</a></li>
+          <li><a href="mailto:admin@karanenterprises.co">admin@karanenterprises.co</a></li>
+          <li><a href="mailto:info@karanenterprises.co">info@karanenterprises.co</a></li>
+          <li><a href="https://www.linkedin.com/company/118114147/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+          <li>Ranchi · Jharkhand</li>
+        </ul>
+      </div>
+      <div>
+        <h4>— Careers</h4>
+        <ul>
+          <li><a href="careers.html">Open roles</a></li>
+          <li><a href="careers.html">Apprenticeships</a></li>
+          <li><a href="careers.html">Site engineer track</a></li>
+          <li><a href="mailto:info@karanenterprises.co?subject=Career%20enquiry">Send a CV</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Slide 1 commitments band -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(255,255,255,.15);border-bottom:1px solid rgba(255,255,255,.15);margin:24px 0;">
+      <div style="padding:18px 16px;border-right:1px solid rgba(255,255,255,.15);display:flex;align-items:center;gap:10px;"><span style="width:8px;height:8px;background:var(--yellow);border-radius:50%;flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#bdbab2;">Safety First</span></div>
+      <div style="padding:18px 16px;border-right:1px solid rgba(255,255,255,.15);display:flex;align-items:center;gap:10px;"><span style="width:8px;height:8px;background:var(--yellow);border-radius:50%;flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#bdbab2;">Quality Assured</span></div>
+      <div style="padding:18px 16px;border-right:1px solid rgba(255,255,255,.15);display:flex;align-items:center;gap:10px;"><span style="width:8px;height:8px;background:var(--yellow);border-radius:50%;flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#bdbab2;">Commitment Delivered</span></div>
+      <div style="padding:18px 16px;display:flex;align-items:center;gap:10px;"><span style="width:8px;height:8px;background:var(--yellow);border-radius:50%;flex-shrink:0;"></span><span style="font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#bdbab2;">Building Tomorrow</span></div>
+    </div>
+
+    <div class="foot-brand">
+      <img src="assets/logo.png" alt="" class="foot-logo">
+      <a href="index.html" class="mark"><span class="wm-lg"><span class="wm-1">Karan</span><span class="wm-2">Enterprises</span></span></a>
+    </div>
+
+    <div class="foot-bottom">
+      <span>© 2013–2026 M/s Karan Enterprises. Infrastructure excellence across India.</span>
+      <span>Ranchi · Jharkhand</span>
+    </div>
+  </footer>
+
+  <script>
+    /* scroll progress + nav scrolled state */
+    (function () {
+      const bar = document.getElementById('progress'), nav = document.getElementById('nav');
+      function tick() {
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        const p = Math.min(100, Math.max(0, (window.scrollY / h) * 100));
+        bar.style.width = p + '%';
+        nav.classList.toggle('scrolled', window.scrollY > 40);
+      }
+      tick(); window.addEventListener('scroll', tick, { passive: true });
+    })();
+
+    /* nav pill indicator */
+    (function () {
+      const wrap = document.getElementById('navLnks'), pill = document.getElementById('navPill');
+      if (!wrap) return;
+      const lnks = wrap.querySelectorAll('a');
+      function move(a) {
+        const r = a.getBoundingClientRect(), w = wrap.getBoundingClientRect();
+        pill.style.width = r.width + 'px';
+        pill.style.transform = `translateX(${r.left - w.left - 4}px)`;
+      }
+      let cur = wrap.querySelector('a.active');
+      requestAnimationFrame(() => move(cur));
+      lnks.forEach(a => {
+        a.addEventListener('mouseenter', () => move(a));
+        a.addEventListener('mouseleave', () => move(cur));
+      });
+      window.addEventListener('resize', () => move(cur));
+    })();
+
+    /* reveal on scroll */
+    (function () {
+      const els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) { els.forEach(el => el.classList.add('in')); return; }
+      const io = new IntersectionObserver(es => {
+        es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
+      els.forEach(el => io.observe(el));
+    })();
+
+    /* smooth anchor scroll */
+    (function () {
+      document.querySelectorAll('a[href^="#post-"]').forEach(a => {
+        a.addEventListener('click', e => {
+          const id = a.getAttribute('href').slice(1);
+          const target = document.getElementById(id);
+          if (!target) return;
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          history.pushState(null, '', '#' + id);
+        });
+      });
+    })();
+  </script>
+</body>
+
+</html>
