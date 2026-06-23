@@ -28,15 +28,27 @@ export default function Preloader() {
     <AnimatePresence>
       {show && (
         <motion.div
-          className="preloader"
+          className="fixed inset-0 z-[9999] grid place-items-center bg-surface text-ink dark:bg-[#08090f] dark:text-white"
           initial={{ opacity: 1 }}
           exit={{ y: '-100%' }}
           transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
         >
-          <div className="pl-inner">
-            <img className="pl-logo" src="/assets/logo.png" alt="M/s Karan Enterprises" />
-            <div className="pl-word">M/s Karan Enterprises</div>
-            <div className="pl-bar"><motion.i animate={{ width: `${pct}%` }} transition={{ ease: 'linear' }} /></div>
+          <div className="flex flex-col items-center gap-[26px]">
+            <img
+              className="h-auto w-24 drop-shadow-[0_6px_14px_rgba(0,0,0,0.12)]"
+              src="/assets/logo.png"
+              alt="M/s Karan Enterprises"
+            />
+            <div className="font-display text-sm font-extrabold uppercase tracking-[0.02em] text-steel">
+              M/s Karan Enterprises
+            </div>
+            <div className="h-[3px] w-[220px] overflow-hidden rounded-[2px] bg-line-2 dark:bg-white/10">
+              <motion.i
+                className="block h-full w-0 bg-yellow dark:shadow-[0_0_16px_rgba(255,214,10,0.9)]"
+                animate={{ width: `${pct}%` }}
+                transition={{ ease: 'linear' }}
+              />
+            </div>
           </div>
         </motion.div>
       )}

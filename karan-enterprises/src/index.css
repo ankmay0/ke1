@@ -1,0 +1,154 @@
+/* =====================================================================
+   M/s KARAN ENTERPRISES — Tailwind entry
+   Only design tokens, the base reset and the page atmosphere live here.
+   Every component is styled with Tailwind utilities in the markup (composed
+   via src/cx.js for the repeated primitives). There are no hand-written
+   component classes — nothing in @layer components.
+
+   Dark mode is the existing pre-paint <html data-theme="dark"> toggle; the
+   colour tokens are CSS variables that invert under [data-theme="dark"], so
+   utilities like bg-paper / text-ink switch automatically.
+   ===================================================================== */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* ---- base tokens (light editorial system) ---- */
+  :root {
+    --paper: #ffffff;
+    --bg: #f5f6f8;
+    --bg-2: #eef0f3;
+    --dark: #0e1217;
+    --dark-2: #161b22;
+
+    --ink: #0e1217;
+    --ink-2: #1d242d;
+    --steel: #59626f;
+    --steel-2: #8a93a0;
+    --on-dark: #f3f5f7;
+    --on-dark-mute: #9aa3b0;
+
+    --line: #e2e5ea;
+    --line-2: #d2d6dd;
+    --line-dark: rgba(255, 255, 255, 0.1);
+
+    --yellow: #ffcd00;
+    --yellow-deep: #e6b800;
+    --yellow-soft: #fff3bf;
+
+    --display: 'Montserrat', system-ui, sans-serif;
+    --body: 'Inter', system-ui, sans-serif;
+    --cond: 'Oswald', 'Montserrat', sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+    --max: 1400px;
+    --pad: clamp(20px, 5vw, 72px);
+    --sec: clamp(38px, 4.2vw, 68px);
+    --radius: 0px;
+    --rule: #131720;
+    --rule-soft: #e2e5ea;
+
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---- trendy 2026 token overrides (apply to both modes) ---- */
+  :root {
+    --radius: 18px;
+    --r-sm: 12px;
+    --on-accent: #0a0d14;
+    --yellow: #ffd60a;
+    --yellow-deep: #ffe14d;
+  }
+
+  /* ---- dark token set ---- */
+  html[data-theme="dark"] {
+    --paper: #0d1119;
+    --bg: #08090f;
+    --bg-2: #10141d;
+    --dark: #0a0d14;
+    --dark-2: #11161f;
+
+    --text: #eef1f6;
+    --ink-2: #c7cedb;
+    --steel: #99a2b3;
+    --steel-2: #767f92;
+    --on-dark: #eef1f6;
+    --on-dark-mute: #9aa3b4;
+
+    --line: rgba(255, 255, 255, 0.08);
+    --line-2: rgba(255, 255, 255, 0.16);
+    --line-dark: rgba(255, 255, 255, 0.10);
+    --rule: rgba(255, 255, 255, 0.55);
+    --rule-soft: rgba(255, 255, 255, 0.10);
+
+    --yellow-soft: rgba(255, 214, 10, 0.16);
+    --glass: rgba(255, 255, 255, 0.045);
+    --glass-2: rgba(255, 255, 255, 0.07);
+    --glass-brd: rgba(255, 255, 255, 0.10);
+    --glow-soft: 0 30px 80px -40px rgba(0, 0, 0, 0.8);
+    --glow-y: 0 0 60px -12px rgba(255, 214, 10, 0.45);
+    --kh-bg: #07080d;
+
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---- light token set (adds the tokens the hero/glass need) ---- */
+  html[data-theme="light"] {
+    --text: #0e1217;
+    --yellow-soft: #fff3bf;
+    --glass: rgba(255, 255, 255, 0.62);
+    --glass-2: rgba(255, 255, 255, 0.85);
+    --glass-brd: rgba(15, 18, 23, 0.10);
+    --glow-soft: 0 30px 70px -38px rgba(15, 18, 23, 0.30);
+    --glow-y: 0 0 50px -16px rgba(255, 205, 0, 0.5);
+    --kh-bg: #eef1f6;
+  }
+
+  /* ---- reset + base typography ---- */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--body);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; color: inherit; border: 0; background: none; cursor: pointer; }
+  ::selection { background: var(--yellow); color: var(--on-accent); }
+
+  /* ---- page atmosphere (per theme) ---- */
+  html[data-theme="dark"] body { background: #08090f; color: var(--text); }
+  html[data-theme="dark"] body::before {
+    content: ""; position: fixed; inset: 0; z-index: -2; pointer-events: none;
+    background:
+      radial-gradient(60% 50% at 78% 8%, rgba(255, 214, 10, 0.10), transparent 60%),
+      radial-gradient(55% 45% at 8% 32%, rgba(255, 176, 10, 0.06), transparent 60%),
+      radial-gradient(70% 60% at 50% 108%, rgba(255, 214, 10, 0.07), transparent 62%),
+      #08090f;
+  }
+  html[data-theme="dark"] body::after {
+    content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background-image: var(--grain); background-size: 200px 200px;
+    opacity: 0.04; mix-blend-mode: overlay;
+  }
+  html[data-theme="light"] body {
+    background:
+      radial-gradient(60% 45% at 82% 4%, rgba(255, 205, 0, 0.10), transparent 60%),
+      linear-gradient(180deg, #ffffff 0%, #f4f6f9 30%, #ffffff 56%, #f3f5f8 82%, #ffffff 100%);
+  }
+
+  /* ---- global scroll behaviour ---- */
+  @media (min-width: 880px) and (prefers-reduced-motion: no-preference) {
+    html { scroll-snap-type: y proximity; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { scroll-behavior: auto; }
+  }
+}

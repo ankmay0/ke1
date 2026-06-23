@@ -7,6 +7,17 @@
     <meta name="description" content="M/s Karan Enterprises — a trusted railway and roadway infrastructure contractor delivering high-quality projects with precision, safety, innovation and sustainability. RDSO-grade formation works since 2013." />
     <title>M/s Karan Enterprises — Building the Foundations of Tomorrow</title>
     <!-- fonts are self-hosted locally (see src/fonts.css + public/fonts) — no external dependency -->
+    <!-- set the colour scheme before paint to avoid a flash; defaults to the dark reinvention -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('ke_theme');
+          document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
