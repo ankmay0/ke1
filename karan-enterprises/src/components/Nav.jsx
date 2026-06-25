@@ -5,7 +5,7 @@ import { WRAP, BTN_PRIMARY } from '../cx'
 
 function Brand({ scrolled }) {
   return (
-    <a href="#home" className="inline-flex items-center gap-[14px]" aria-label="M/s Karan Enterprises home">
+    <a href="/" className="inline-flex items-center gap-[14px]" aria-label="M/s Karan Enterprises home">
       <img
         src="/assets/logo.png"
         alt="M/s Karan Enterprises logo"
@@ -73,7 +73,7 @@ export default function Nav() {
               <span className="block text-[10px] font-semibold tracking-[0.14em] text-steel">Call us</span>{COMPANY.phone}
             </a>
             <ThemeToggle />
-            <a className={`${BTN_PRIMARY} max-[760px]:hidden`} href="#quote">Get a Quote {Icon.arrow}</a>
+            <a className={`${BTN_PRIMARY} max-[760px]:hidden`} href="/#quote">Get a Quote {Icon.arrow}</a>
             <button
               className="hidden flex-col gap-[5px] p-2 max-[760px]:flex"
               aria-label="Menu"

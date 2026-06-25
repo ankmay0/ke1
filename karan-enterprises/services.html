@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/assets/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Services & delivery — M/s Karan Enterprises. RDSO-grade railway formation, track maintenance, Maccaferri reinforced soil walls, erosion control, culvert and bridge protection, plus a four-phase project-execution framework with safety and quality assurance." />
+    <title>Services & Delivery — M/s Karan Enterprises</title>
+    <!-- fonts are self-hosted locally (see src/fonts.css + public/fonts) — no external dependency -->
+    <!-- set the colour scheme before paint to avoid a flash; defaults to the dark reinvention -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('ke_theme');
+          document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/services-main.jsx"></script>
+  </body>
+</html>

@@ -16,14 +16,16 @@ export const COMPANY = {
   rdso: 'RDSO/2020/GE: IRS-0004',
 }
 
-// Gallery & Blogs become their own pages in the next build phase; until then
-// the nav only links to sections that actually exist on the home page.
+// Multi-page site: the home page is index.html, Services is its own page
+// (services.html). Hashes are kept absolute (`/#about`) so a link works from
+// either page — on the home page it simply scrolls, from Services it navigates
+// home and then scrolls to the section.
 export const NAV_LINKS = [
-  { label: 'Home', href: '#home', n: '01' },
-  { label: 'About', href: '#about', n: '02' },
-  { label: 'Services', href: '#services', n: '03' },
-  { label: 'Projects', href: '#projects', n: '04' },
-  { label: 'Contact', href: '#quote', n: '05' },
+  { label: 'Home', href: '/', n: '01' },
+  { label: 'About', href: '/#about', n: '02' },
+  { label: 'Services', href: '/services.html', n: '03' },
+  { label: 'Projects', href: '/#projects', n: '04' },
+  { label: 'Contact', href: '/#quote', n: '05' },
 ]
 
 export const HERO_STATS = [
@@ -164,4 +166,76 @@ export const COMPLIANCE = [
   COMPANY.rdso,
   'Indian Railways Construction Manual',
   'Maccaferri Geocell Authorised',
+]
+
+// =====================================================================
+//  Services page (services.html) — content
+// =====================================================================
+
+// III.01 — eight core competencies (editorial numbered list).
+// `em` is the accent fragment of the title; it is rendered with a yellow
+// brand underline.
+export const SERVICES_FULL = [
+  { n: '01', title: 'Railway', em: 'formation', short: 'Railway formation', desc: 'New broad-gauge railway formation — earthwork, drainage, compaction, ballast and final track-bed to RDSO grade.', tags: ['RDSO', 'Earthwork', 'Track bed'], img: '/assets/photo1.jpg' },
+  { n: '02', title: 'Track maintenance', em: '& ground improvement', short: 'Track maintenance', desc: 'Rehabilitation of existing tracks with Maccaferri geocell ground improvement and formation strengthening.', tags: ['Rehabilitation', 'Maccaferri geocell', 'Block-time'], img: '/assets/photo9.jpg' },
+  { n: '03', title: 'Maccaferri', em: 'reinforced soil wall', short: 'Reinforced soil walls', desc: 'Maccaferri reinforced-soil and gabion retaining structures for embankments and water-fronts.', tags: ['Maccaferri', 'Retaining', 'Embankment'], img: '/assets/photo3.jpg' },
+  { n: '04', title: 'Erosion', em: 'control mats', short: 'Erosion control', desc: 'Innovative Maccaferri polymeric and biodegradable mats for slope and surface erosion control.', tags: ['Maccaferri mats', 'Slope', 'Erosion'], img: '/assets/photo6.jpg' },
+  { n: '05', title: 'Geocell &', em: 'geogrid', short: 'Geocell & geogrid', desc: 'Maccaferri geocell and geogrid systems for soil stabilisation, load support and ground reinforcement.', tags: ['Maccaferri', 'Soil stabilisation', 'Reinforcement'], img: '/assets/photo4.jpg' },
+  { n: '06', title: 'Culvert', em: 'formation', short: 'Culvert formation', desc: 'Construction of culverts, approaches and aprons with allied drainage and protection works.', tags: ['Culvert', 'Drainage', 'Approaches'], img: '/assets/photo7.jpg' },
+  { n: '07', title: 'Bridge abutment', em: 'protection', short: 'Bridge protection', desc: 'Bridge abutment and approach protection — retaining, gabion and reinforced-soil systems.', tags: ['Bridge', 'Abutment', 'Protection'], img: '/assets/photo5.jpg' },
+  { n: '08', title: 'Civil &', em: 'roadway works', short: 'Civil & roadway', desc: 'Civil and architectural works, roads, RCC drains and pavement construction.', tags: ['Civil', 'Roads', 'RCC drains'], img: '/assets/photo10.jpg' },
+]
+
+// III.02 — field strip + the six-stage formation/rehabilitation sequence.
+export const RF_FIELD_STRIP = [
+  { img: '/assets/photo4.jpg', alt: 'Track dismantling — existing rails and sleepers being removed' },
+  { img: '/assets/photo9.jpg', alt: 'Ballast and subgrade excavation with heavy equipment' },
+  { img: '/assets/photo6.jpg', alt: 'Ground improvement — geocell laid over freshly cut formation' },
+  { img: '/assets/photo1.jpg', alt: 'Ballast spreading and track-bed preparation' },
+]
+
+export const RF_SEQUENCE = [
+  { n: '01', title: 'Track dismantling', desc: 'Systematic removal of existing railway tracks, rails and sleepers with proper handling and safe material management.' },
+  { n: '02', title: 'Ballast & subgrade excavation', desc: 'Excavation and removal of ballast, gravel and weak subgrade materials using specialised heavy equipment and controlled methods.' },
+  { n: '03', title: 'Ground improvement', desc: 'Soil stabilisation and embankment strengthening using geocell, geogrid and engineered compaction for improved load-bearing capacity.' },
+  { n: '04', title: 'Formation construction', desc: 'Execution of new railway formations with layer-by-layer filling, drainage provision and compaction as per RDSO guidelines.' },
+  { n: '05', title: 'Ballast spreading', desc: 'Spreading and profiling of ballast layers along the prepared formation for stable track support.' },
+  { n: '06', title: 'Track-bed & P-way', desc: 'Sleeper laying, rail linking, track alignment, packing and final track-bed completion works.' },
+]
+
+// III.03 — critical railway infrastructure works.
+export const CRITICAL_BANNER = [
+  { img: '/assets/photo3.jpg', alt: 'Rail Over Bridge with retaining structures and approach — critical railway infrastructure' },
+  { img: '/assets/photo11.jpg', alt: 'Completed twin railway tracks with ballast — block-time delivery' },
+]
+
+export const CRITICAL_WORKS = [
+  { n: '01', title: '500-m bridge rehabilitation · 72-hour block', desc: 'Time-bound railway block works — ground improvement, embankment protection and formation strengthening — with rapid machinery and manpower deployment across 500-metre stretches.', tag: 'Block-time · Bridge rehab' },
+  { n: '02', title: 'Gabion wall construction', desc: 'Gabion walls near water structures for erosion control, slope stabilisation and embankment protection — engineered for high-flow zones and culvert approaches.', tag: 'Erosion · Slope · Embankment' },
+  { n: '03', title: 'Water-front reinforced soil walls', desc: 'Reinforced-soil and water-front protection structures for embankment stability, retaining systems and high-strength railway formations.', tag: 'Retaining · Reinforced soil' },
+  { n: '04', title: 'Bridge & ROB expertise', desc: 'Specialised experience in Rail Over Bridge (ROB) works, bridge protection, approach and retaining structures — delivered to client and IR-zonal specifications.', tag: 'ROB · Bridge protection' },
+]
+
+// IV.01 — four planning phases (with gates) and five execution stages.
+export const DELIVERY_PHASES = [
+  { n: '01', title: 'Planning & engineering', desc: 'A streamlined execution approach that ensures safety, quality and seamless coordination at every stage.', checks: ['Detailed site survey & technical assessment', 'Design coordination & quantity estimation', 'Project scheduling & milestone planning', 'Resource allocation & risk assessment'] },
+  { n: '02', title: 'Procurement & resource management', desc: 'Strategic deployment of manpower, machinery and materials — every vendor and logistics path verified against spec.', checks: ['Strategic manpower deployment & supervision', 'Machinery mobilisation & logistics planning', 'Material procurement & vendor coordination', 'Quality assurance & compliance verification'] },
+  { n: '03', title: 'Execution & construction', desc: 'Earthwork through formation, P-way, civil structures and protection systems — continuously monitored for safety and quality.', checks: ['Earthwork, excavation & formation development', 'Railway P-way, roadway & civil construction', 'Geocell, geogrid, gabion & slope protection', 'Continuous monitoring for safety & quality control'] },
+  { n: '04', title: 'Inspection & project delivery', desc: 'Final inspection, testing and timely handover with post-execution operational readiness support.', checks: ['Final quality inspection & testing procedures', 'Compliance with client & industry standards', 'Timely project completion & handover', 'Post-execution support & operational readiness'] },
+]
+
+export const EXEC_STAGES = [
+  { n: '01', title: 'Site preparation', desc: 'Site survey and project planning, resource mobilisation and approvals, equipment and manpower deployment.', tag: 'Survey · Mobilisation · Deployment' },
+  { n: '02', title: 'Foundation & groundwork', desc: 'Excavation and base preparation, soil stabilisation using geocell/geogrid, formation and drainage development.', tag: 'Geocell · Geogrid · Drainage' },
+  { n: '03', title: 'Construction execution', desc: 'Railway P-way and roadway works, civil structures and protection systems, continuous quality-controlled execution.', tag: 'P-way · Civil · Protection' },
+  { n: '04', title: 'Quality & safety control', desc: 'Material testing and inspection, safety compliance monitoring, RDSO and client specification checks.', tag: 'Material testing · Safety · RDSO' },
+  { n: '05', title: 'Project completion', desc: 'Final inspection and commissioning, documentation and project handover, post-completion support services.', tag: 'Commissioning · Handover · Support' },
+]
+
+// IV.02 — safety & quality assurance standards.
+export const SAFETY_STANDARDS = [
+  { n: '01', title: 'RDSO compliance', desc: 'All railway formation and rehabilitation activities are executed in strict compliance with RDSO specifications and Indian Railways Construction Manual guidelines — ensuring operational safety, structural integrity and regulatory adherence.' },
+  { n: '02', title: 'Safety management protocol', desc: 'Comprehensive safety measures across all project phases — proper site signalling, workforce safety training, certified personal protective equipment (PPE) and emergency-response preparedness during block and operational activities.' },
+  { n: '03', title: 'Quality control & assurance', desc: 'A multi-level quality-assurance system runs through every stage of construction — material testing, compaction verification, dimensional inspections and detailed documentation for high engineering standards and long-term durability.' },
+  { n: '04', title: 'Environmental & regulatory compliance', desc: 'Work is carried out with a strong commitment to environmental sustainability — effective dust suppression, noise management, responsible waste disposal and protection of surrounding ecological systems per applicable regulations.' },
 ]
