@@ -212,10 +212,11 @@ export function Geotech() {
 }
 
 /* ------------------------------------------------------------- PROJECTS */
+// Flat editorial project card — image on top (grayscale → colour on hover),
+// contract detail on a solid caption plate below. No gradient scrim.
 const PH_CARD =
-  'relative isolate flex w-[clamp(290px,32vw,440px)] shrink-0 grow-0 items-end overflow-hidden rounded text-white [scroll-snap-align:start] group ' +
-  "after:absolute after:inset-0 after:-z-[1] after:transition-[background] after:duration-[400ms] after:content-[''] after:[background:linear-gradient(0deg,rgba(14,18,23,0.93)_12%,rgba(14,18,23,0.45)_54%,rgba(14,18,23,0.05)_100%)] " +
-  'hover:after:[background:linear-gradient(0deg,rgba(14,18,23,0.96)_18%,rgba(20,40,30,0.5)_74%)] dark:shadow-glow-soft dark:[outline:1px_solid_var(--glass-brd)] dark:[outline-offset:-1px]'
+  'group relative flex w-[clamp(320px,34vw,460px)] shrink-0 grow-0 flex-col overflow-hidden border border-line bg-paper text-ink [scroll-snap-align:start] transition-colors duration-300 ' +
+  'hover:border-ink dark:border-glass-brd dark:bg-white/[0.02] dark:text-text dark:hover:border-[rgba(255,214,10,0.5)]'
 
 export function Projects() {
   const pin = useRef(null)
@@ -268,9 +269,9 @@ export function Projects() {
           Delivered, certified, signed off
         </SectionHead>
         <Reveal delay={0.1}>
-          <p className={`${LEAD} mt-0 max-w-[44ch] self-end`}>
-            A selection of railway, roadway, ash-handling and civil works executed for PSU and
-            government clients across India.
+          <p className={`${LEAD} mt-0 max-w-[46ch] self-end`}>
+            Railway sidings, formation, slope protection, roadways and civil works — executed for PSU
+            and government clients across Jharkhand, Bihar and Chhattisgarh.
           </p>
         </Reveal>
         <span className="col-span-full inline-flex items-center gap-2.5 font-display text-[12px] font-bold uppercase tracking-[0.16em] text-steel" aria-hidden="true">
@@ -283,16 +284,30 @@ export function Projects() {
         <div className="flex w-max gap-[22px] px-[var(--pad)]" ref={track}>
           {PROJECTS.map((p, i) => (
             <article className={`${PH_CARD} ${cardH}`} key={p.title}>
-              <img className="absolute inset-0 -z-[2] h-full w-full object-cover transition-transform duration-[900ms] group-hover:scale-[1.07]" src={p.img} alt={p.title} loading="lazy" />
-              <span className="absolute left-[18px] top-[18px] z-[1] rounded-[3px] bg-yellow px-[11px] py-[5px] font-cond text-[15px] font-semibold tracking-[0.06em] text-ink">{String(i + 1).padStart(2, '0')}</span>
-              <div className="w-full p-7">
-                <span className="inline-block rounded-[3px] bg-yellow px-2.5 py-[5px] font-display text-[11px] font-bold uppercase tracking-[0.12em] text-ink">{p.cat}</span>
-                <h3 className="mt-3.5 font-display text-[clamp(19px,1.6vw,24px)] font-bold">{p.title}</h3>
-                <span className="mt-2 flex items-center gap-2 text-[13px] text-white/[0.82] [&_i]:h-[5px] [&_i]:w-[5px] [&_i]:rounded-full [&_i]:bg-yellow"><i />{p.scope}</span>
+              {/* image — desaturated at rest, full colour on hover */}
+              <div className="relative min-h-0 flex-1 overflow-hidden">
+                <img className="h-full w-full object-cover grayscale contrast-[1.03] transition-[transform,filter] duration-[900ms] ease-smooth group-hover:scale-[1.05] group-hover:grayscale-0" src={p.img} alt={p.title} loading="lazy" />
+                <span className="absolute left-0 top-0 grid h-9 w-11 place-items-center bg-yellow font-cond text-[15px] font-semibold leading-none text-on-accent">{String(i + 1).padStart(2, '0')}</span>
+                <span className="absolute right-3 top-3 border border-white/60 bg-black/35 px-2.5 py-[5px] font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-white [backdrop-filter:blur(4px)]">{p.cat}</span>
+              </div>
+              {/* caption plate — contract record */}
+              <div className="flex flex-col gap-3 p-[clamp(20px,1.5vw,26px)]">
+                <h3 className="font-display text-[clamp(17px,1.35vw,21px)] font-bold leading-[1.16] dark:text-text">{p.title}</h3>
+                <p className="text-[13px] leading-[1.5] text-steel">{p.scope}</p>
+                <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 border-t border-line pt-3 font-mono text-[11px] leading-[1.35] dark:border-glass-brd">
+                  <dt className="uppercase tracking-[0.08em] text-steel-2">Client</dt><dd className="text-ink dark:text-text">{p.client}</dd>
+                  <dt className="uppercase tracking-[0.08em] text-steel-2">Location</dt><dd className="text-steel">{p.location}</dd>
+                  {p.duration && (<><dt className="uppercase tracking-[0.08em] text-steel-2">Duration</dt><dd className="text-steel">{p.duration}</dd></>)}
+                </dl>
+                <div className="mt-auto flex flex-wrap gap-1.5 pt-1">
+                  {p.tags.map((t) => (
+                    <span key={t} className="border border-line px-2 py-[3px] font-mono text-[9px] uppercase tracking-[0.06em] text-steel dark:border-glass-brd">{t}</span>
+                  ))}
+                </div>
               </div>
             </article>
           ))}
-          <a className={`group relative flex w-[clamp(260px,24vw,350px)] shrink-0 grow-0 items-center justify-start overflow-hidden rounded bg-dark text-white [scroll-snap-align:start] dark:border dark:border-glass-brd ${cardH}`} href="#quote">
+          <a className={`group relative flex w-[clamp(260px,24vw,350px)] shrink-0 grow-0 items-center justify-start overflow-hidden border border-glass-brd bg-dark text-white [scroll-snap-align:start] ${cardH}`} href="#quote">
             <span className="flex flex-col gap-3 p-8">
               <span className="font-body text-[13px] font-semibold uppercase tracking-[0.08em] text-on-dark-mute">Have a similar project?</span>
               <span className="inline-flex items-center gap-3 font-display text-[clamp(24px,2.4vw,34px)] font-extrabold leading-[1.06] text-white [&_.arr]:transition-transform [&_.arr]:duration-300 [&_.arr]:ease-smooth group-hover:[&_.arr]:translate-x-1.5">Let's talk {Icon.arrow}</span>

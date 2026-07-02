@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/assets/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Project record — M/s Karan Enterprises. Selected railway sidings, formation, slope protection, roadway and civil works delivered for Indian Railways, IPRCL, NTPC, RVNL and government departments across Jharkhand, Bihar and Chhattisgarh." />
+    <title>Projects & Contract Record — M/s Karan Enterprises</title>
+    <!-- fonts are self-hosted locally (see src/fonts.css + public/fonts) — no external dependency -->
+    <!-- set the colour scheme before paint to avoid a flash; defaults to the dark reinvention -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('ke_theme');
+          document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/projects-main.jsx"></script>
+  </body>
+</html>
