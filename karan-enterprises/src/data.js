@@ -24,7 +24,59 @@ export const NAV_LINKS = [
   { label: 'Home', href: '/', n: '01' },
   { label: 'Services', href: '/services.html', n: '02' },
   { label: 'Projects', href: '/projects.html', n: '03' },
-  { label: 'Contact', href: '/#quote', n: '04' },
+  { label: 'Blogs', href: '/blogs.html', n: '04' },
+  { label: 'Contact', href: '/#quote', n: '05' },
+]
+
+// Blog index metadata — the article prose lives inline in BlogsPage.jsx;
+// these rows drive the index list and each article's shared meta (number,
+// category, read time, cover image, anchor).
+export const BLOG_POSTS = [
+  {
+    id: 'post-1',
+    n: '01',
+    kicker: 'Featured · Long read',
+    category: 'Company',
+    read: '8 min read',
+    readLong: '~ 8 minutes',
+    topic: 'Identity · Capabilities',
+    date: 'Mar 2026',
+    cover: '/assets/photo1.jpg',
+    coverAlt: 'Railway formation works with excavator and crew',
+    title: 'Building strong infrastructure — the journey of M/s Karan Enterprises',
+    excerpt:
+      'Where quality, reliability and innovation are not just words — they are the foundation of every railway, civil and slope-protection project we undertake.',
+  },
+  {
+    id: 'post-2',
+    n: '02',
+    kicker: 'Perspective',
+    category: 'Perspective',
+    read: '3 min read',
+    readLong: '~ 3 minutes',
+    topic: 'Quality · Standards',
+    date: 'Feb 2026',
+    cover: '/assets/photo4.jpg',
+    coverAlt: 'Railway ballast spreading and track-bed completion',
+    title: 'Why quality infrastructure matters more than ever',
+    excerpt:
+      'Infrastructure is the foundation of development and growth — and why quality execution, technical expertise and timely delivery matter now more than ever.',
+  },
+  {
+    id: 'post-3',
+    n: '03',
+    kicker: 'Vision',
+    category: 'Vision',
+    read: '3 min read',
+    readLong: '~ 3 minutes',
+    topic: 'Growth · Partnership',
+    date: 'Jan 2026',
+    cover: '/assets/proj-barh-bridge.jpg',
+    coverAlt: 'Completed Rail Over Bridge approach and siding',
+    title: 'Expanding towards a stronger future',
+    excerpt:
+      'Growth is not just more projects — it is building long-term relationships, expanding capabilities and a stronger presence in the infrastructure industry.',
+  },
 ]
 
 export const HERO_STATS = [

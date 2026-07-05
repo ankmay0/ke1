@@ -1,7 +1,7 @@
 import { SHOT, CountUp, Icon, RevealText } from '../ui'
 import { useParallax } from '../motion'
 import { Magnetic } from './Chrome'
-import { Aurora, SpotlightCard, ScrambleText } from '../fx'
+import { Aurora, SpotlightCard } from '../fx'
 import { HERO_STATS } from '../data'
 import { WRAP, BTN_PRIMARY, BTN_GHOST_HERO } from '../cx'
 
@@ -41,11 +41,9 @@ export default function Hero() {
         </div>
 
         <div className="mt-auto max-w-[min(760px,100%)] pt-[clamp(22px,3vw,44px)] max-[900px]:max-w-full">
-          <ScrambleText
-            as="span"
-            className="mb-[clamp(12px,1.4vw,18px)] inline-block min-h-[1em] font-mono text-[11.5px] uppercase tracking-[0.12em] text-yellow-deep [text-shadow:0_2px_20px_rgba(0,0,0,0.5)]"
-            text="( 01 )  RAILWAY & ROADWAY INFRASTRUCTURE"
-          />
+          <span className="mb-[clamp(12px,1.4vw,18px)] inline-block min-h-[1em] font-mono text-[11.5px] uppercase tracking-[0.12em] text-yellow-deep [text-shadow:0_2px_20px_rgba(0,0,0,0.5)]">
+            ( 01 )  RAILWAY & ROADWAY INFRASTRUCTURE
+          </span>
           <RevealText
             as="h1"
             className="whitespace-nowrap font-display text-[clamp(29px,4.8vw,66px)] font-black uppercase leading-[0.94] tracking-[-0.04em] text-white [text-shadow:0_8px_50px_rgba(0,0,0,0.5)]"

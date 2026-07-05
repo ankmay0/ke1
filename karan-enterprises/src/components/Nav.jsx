@@ -38,16 +38,6 @@ export default function Nav() {
 
   return (
     <>
-      <div className="bg-dark text-[12.5px] tracking-[0.02em] text-on-dark-mute dark:border-b dark:border-line dark:bg-[#05060a] max-[760px]:hidden">
-        <div className={`${WRAP} flex h-[38px] items-center justify-between gap-5`}>
-          <span><span className="text-yellow">●</span> Infrastructure excellence since {COMPANY.since}</span>
-          <span className="flex items-center gap-[22px]">
-            <a href={`tel:${COMPANY.phoneRaw}`} className="hover:text-white"><b className="font-semibold text-white">{COMPANY.phone}</b></a>
-            <a href={`mailto:${COMPANY.emails[0]}`} className="hover:text-white">{COMPANY.emails[0]}</a>
-          </span>
-        </div>
-      </div>
-
       <header
         className={`sticky top-0 z-[200] border-b border-line bg-white/[0.86] backdrop-blur-[14px] transition-[box-shadow,padding] duration-300 dark:border-line dark:bg-[rgba(8,9,15,0.62)] dark:[backdrop-filter:blur(18px)_saturate(140%)] ${
           scrolled

@@ -13,6 +13,7 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         services: resolve(__dirname, 'services.html'),
         projects: resolve(__dirname, 'projects.html'),
+        blogs: resolve(__dirname, 'blogs.html'),
       },
     },
   },
