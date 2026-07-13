@@ -71,6 +71,13 @@ export default {
           '100%': { boxShadow: '0 0 0 12px rgba(255,214,10,0)' },
         },
         phHint: { '0%,100%': { transform: 'translateX(0)' }, '50%': { transform: 'translateX(6px)' } },
+        scrollWheel: {
+          '0%': { transform: 'translateY(0)', opacity: '0' },
+          '25%': { opacity: '1' },
+          '75%': { opacity: '1' },
+          '100%': { transform: 'translateY(9px)', opacity: '0' },
+        },
+        scrollNudge: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(4px)' } },
         aur1: {
           from: { transform: 'translate(0,0) scale(1)' },
           to: { transform: 'translate(-6%,8%) scale(1.18)' },
@@ -89,6 +96,8 @@ export default {
         khDrop: 'khDrop 1.8s ease-in-out infinite',
         khPulse: 'khPulse 2s ease-out infinite',
         phHint: 'phHint 1.4s ease-in-out infinite',
+        scrollWheel: 'scrollWheel 1.6s ease-in-out infinite',
+        scrollNudge: 'scrollNudge 1.6s ease-in-out infinite',
         aur1: 'aur1 18s ease-in-out infinite alternate',
         aur2: 'aur2 22s ease-in-out infinite alternate',
         aur3: 'aur3 26s ease-in-out infinite alternate',

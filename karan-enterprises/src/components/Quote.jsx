@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { COMPANY } from '../data'
-import { Reveal, Icon } from '../ui'
-import { SECTION, SECTION_DARK, WRAP, SEC_EYEBROW, KICKER, LEAD, U, BTN_PRIMARY, BTN_DARK } from '../cx'
+import { COMPANY } from '../lib/data'
+import { Reveal, Icon } from '../ui/ui'
+import { SECTION, SECTION_DARK, WRAP, SEC_EYEBROW, KICKER, LEAD, U, BTN_PRIMARY, BTN_DARK } from '../lib/cx'
 
 const PROJECT_TYPES = [
   'Railway Formation', 'Track Maintenance', 'Roadway / Highway',

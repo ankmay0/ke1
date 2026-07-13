@@ -1,7 +1,7 @@
-import { useParallax } from '../motion'
+import { useParallax } from '../lib/motion'
 import { Magnetic } from './Chrome'
-import { Reveal, Icon } from '../ui'
-import { WRAP, BTN_PRIMARY } from '../cx'
+import { Reveal, Icon } from '../ui/ui'
+import { WRAP, BTN_PRIMARY } from '../lib/cx'
 
 /* Full-bleed cinematic statement band with scroll-linked parallax —
    a second photographic "moment" mid-page that breaks the stacked-panel rhythm.

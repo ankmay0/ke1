@@ -1,5 +1,5 @@
 import { motion, useScroll, useSpring } from 'framer-motion'
-import { useMagnetic } from '../motion'
+import { useMagnetic } from '../lib/motion'
 
 /* Thin reading-progress bar pinned to the very top of the viewport. */
 export function ScrollProgress() {

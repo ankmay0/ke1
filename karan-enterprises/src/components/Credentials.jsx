@@ -1,10 +1,10 @@
-import { COMPANY } from '../data'
-import { Reveal } from '../ui'
-import { SECTION, WRAP, SEC_EYEBROW, KICKER, CARD, ICON_CHIP } from '../cx'
+import { COMPANY } from '../lib/data'
+import { Reveal } from '../ui/ui'
+import { WRAP, ICON_CHIP } from '../lib/cx'
 
-/* Trust & Authority "proof" band — verifiable credentials shown as badges.
-   Per UI/UX Pro Max: enterprise/government products lead with prominent
-   trust signals (certifications, registrations, authorisations). */
+/* Trust & Authority strip — verifiable credentials as a slim, unified band that
+   sits quietly in the page flow between About and Services (rather than a tall
+   boxed card section). Hairline dividers echo the site's other split-grid bands. */
 const CERTS = [
   {
     icon: (
@@ -38,29 +38,24 @@ const CERTS = [
 
 export default function Credentials() {
   return (
-    <section className={SECTION} id="credentials" aria-label="Credentials and compliance">
+    <section className="relative isolate z-[3] py-[clamp(6px,1vw,14px)] mb-[calc(-1*clamp(26px,3.4vw,56px))]" id="credentials" aria-label="Credentials and compliance">
       <div className={WRAP}>
-        <div className="mb-[38px] flex flex-wrap items-baseline justify-between gap-x-10 gap-y-[14px]">
-          <div className={`${SEC_EYEBROW} border-rule`}>
-            <span className="pr-[14px] font-mono text-[13px] font-bold tracking-[0.04em] text-yellow-deep">★</span><span className={KICKER}>Credentials You Can Verify</span>
-          </div>
-          <p className="max-w-[44ch] text-[clamp(15px,1.4vw,18px)] text-steel">Registered, compliant and authorised — every project executed to standard.</p>
-        </div>
-
-        <div className="grid grid-cols-4 gap-[18px] max-[1024px]:grid-cols-2 max-[480px]:grid-cols-1">
-          {CERTS.map((c, i) => (
-            <Reveal as="article" variant="scale" key={c.value} delay={i * 0.08} className={`${CARD} flex items-center gap-4 p-[22px] hover:-translate-y-1`}>
-              <span className={`${ICON_CHIP} h-[52px] w-[52px] shrink-0 [&_svg]:h-[26px] [&_svg]:w-[26px]`}>{c.icon}</span>
-              <div className="flex min-w-0 flex-col gap-1">
-                <b className="font-display text-[15.5px] font-bold leading-[1.2] text-ink dark:text-white">{c.value}</b>
-                <span className="break-words text-xs leading-[1.35] text-steel">{c.label}</span>
+        <Reveal>
+          <div className="grid grid-cols-4 gap-px overflow-hidden rounded border border-line bg-line max-[880px]:grid-cols-2 max-[480px]:grid-cols-1 dark:border-glass-brd dark:bg-glass-brd">
+            {CERTS.map((c) => (
+              <div
+                key={c.value}
+                className="group flex items-center gap-3.5 bg-paper px-[clamp(18px,2vw,28px)] py-[clamp(15px,1.6vw,22px)] transition-colors duration-300 hover:bg-surface dark:hover:bg-glass-2"
+              >
+                <span className={`${ICON_CHIP} h-[42px] w-[42px] shrink-0 [&_svg]:h-[21px] [&_svg]:w-[21px]`}>{c.icon}</span>
+                <div className="min-w-0">
+                  <b className="block font-display text-[14px] font-bold leading-[1.15] text-ink dark:text-white">{c.value}</b>
+                  <span className="block truncate text-[11.5px] leading-[1.3] text-steel">{c.label}</span>
+                </div>
               </div>
-              <span className="absolute right-3.5 top-3.5 grid h-[18px] w-[18px] place-items-center text-yellow-deep dark:text-yellow [&_svg]:h-3.5 [&_svg]:w-3.5" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
-              </span>
-            </Reveal>
-          ))}
-        </div>
+            ))}
+          </div>
+        </Reveal>
       </div>
     </section>
   )

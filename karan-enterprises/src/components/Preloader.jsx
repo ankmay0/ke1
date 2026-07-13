@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { SHOT } from '../ui'
+import { SHOT } from '../ui/ui'
 
 /* Light preloader. Home only, once per browser session.
    (Replaces the heavy black PPT-style loader that showed on every page.) */

@@ -2,15 +2,16 @@ import Preloader from './components/Preloader'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import {
-  About, Services, RailwayFormation, Geotech, Projects, Stats, Clients, Testimonials,
-} from './components/Sections'
+  About, MissionVision, Services, RailwayFormation, Geotech, Projects, Stats, Clients, Testimonials, ClientMarquee,
+} from './components/sections'
 import Quote from './components/Quote'
 import Footer from './components/Footer'
 import Banner from './components/Banner'
 import Credentials from './components/Credentials'
 import { ScrollProgress } from './components/Chrome'
-import { Marquee, Icon } from './ui'
-import { TICKER, COMPANY } from './data'
+import { Marquee, Icon } from './ui/ui'
+import { WRAP } from './lib/cx'
+import { TICKER, COMPANY } from './lib/data'
 
 export default function App() {
   return (
@@ -34,14 +35,23 @@ export default function App() {
         />
 
         <About />
+        {/* <MissionVision /> */}
         <Credentials />
-        <Services />
-        <RailwayFormation />
         <Geotech />
-        <Banner />
-        <Projects />
-        <Stats />
+
         <Clients />
+
+        <Projects />
+
+        {/* <Services /> */}
+        {/* <RailwayFormation /> */}
+
+        {/* <Banner /> */}
+
+        <Stats />
+        <ClientMarquee />
+
+
         <Testimonials />
         <Quote />
       </main>

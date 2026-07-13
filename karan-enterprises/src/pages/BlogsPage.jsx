@@ -2,9 +2,9 @@ import Preloader from '../components/Preloader'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import { ScrollProgress, Magnetic } from '../components/Chrome'
-import { Reveal, Icon } from '../ui'
-import { WRAP, BTN_PRIMARY, CARD, U, DOT } from '../cx'
-import { COMPANY, BLOG_POSTS } from '../data'
+import { Reveal, Icon } from '../ui/ui'
+import { WRAP, BTN_PRIMARY, CARD, U, DOT } from '../lib/cx'
+import { COMPANY, BLOG_POSTS } from '../lib/data'
 
 /* =====================================================================
    Blogs — a conventional blog: a listing feed (featured post card + a card

@@ -1,9 +1,9 @@
-import { SHOT, CountUp, Icon, RevealText } from '../ui'
-import { useParallax } from '../motion'
+import { SHOT, CountUp, Icon, RevealText } from '../ui/ui'
+import { useParallax } from '../lib/motion'
 import { Magnetic } from './Chrome'
-import { Aurora, SpotlightCard } from '../fx'
-import { HERO_STATS } from '../data'
-import { WRAP, BTN_PRIMARY, BTN_GHOST_HERO } from '../cx'
+import { Aurora, SpotlightCard } from '../ui/fx'
+import { HERO_STATS } from '../lib/data'
+import { WRAP, BTN_PRIMARY, BTN_GHOST_HERO } from '../lib/cx'
 
 /* Full-bleed cinematic hero — a single immersive railway photograph under a
    dark scrim + electric aurora, with the headline anchored bottom-left and a
@@ -14,7 +14,7 @@ export default function Hero() {
   const bg = useParallax({ amount: 70, from: -35, start: 'top top', end: 'bottom top' })
   return (
     <section
-      className="relative isolate flex min-h-[clamp(520px,70vh,680px)] items-stretch overflow-hidden bg-[#05060a] pb-[clamp(22px,2.4vw,36px)] pt-[clamp(20px,2.4vw,34px)] text-white max-[900px]:min-h-[88vh]"
+      className="relative isolate flex min-h-[clamp(360px,43vh,450px)] items-stretch overflow-hidden bg-[#05060a] pb-[clamp(10px,1.2vw,18px)] pt-[clamp(9px,1.2vw,16px)] text-white max-[900px]:min-h-[62vh]"
       id="home"
     >
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -32,7 +32,7 @@ export default function Hero() {
       <Aurora />
 
       <div className={`${WRAP} relative z-[2] flex w-full flex-col`}>
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.14] pb-[18px] font-mono text-[11.5px] uppercase tracking-[0.14em] text-white/[0.62]">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.14] pb-[10px] font-mono text-[11.5px] uppercase tracking-[0.14em] text-white/[0.62]">
           <span className="inline-flex items-center gap-2.5 text-white">
             <i className={`h-2 w-2 rounded-full bg-yellow shadow-[0_0_0_0_rgba(255,214,10,0.7)] motion-reduce:animate-none ${SHOT ? '' : 'animate-khPulse'}`} />
             M/S&nbsp;KARAN&nbsp;ENTERPRISES
@@ -40,8 +40,8 @@ export default function Hero() {
           <span className="max-[480px]:hidden">EST.&nbsp;2013 &nbsp;—&nbsp; RANCHI · JHARKHAND · IN</span>
         </div>
 
-        <div className="mt-auto max-w-[min(760px,100%)] pt-[clamp(22px,3vw,44px)] max-[900px]:max-w-full">
-          <span className="mb-[clamp(12px,1.4vw,18px)] inline-block min-h-[1em] font-mono text-[11.5px] uppercase tracking-[0.12em] text-yellow-deep [text-shadow:0_2px_20px_rgba(0,0,0,0.5)]">
+        <div className="mt-auto max-w-[min(760px,100%)] pt-[clamp(8px,1.1vw,15px)] max-[900px]:max-w-full">
+          <span className="mb-[clamp(6px,0.8vw,10px)] inline-block min-h-[1em] font-mono text-[11.5px] uppercase tracking-[0.12em] text-yellow-deep [text-shadow:0_2px_20px_rgba(0,0,0,0.5)]">
             ( 01 )  RAILWAY & ROADWAY INFRASTRUCTURE
           </span>
           <RevealText
@@ -58,40 +58,49 @@ export default function Hero() {
               </span>,
             ]}
           />
-          <p className="mt-[clamp(18px,2vw,26px)] max-w-[52ch] text-[clamp(15px,1.15vw,18.5px)] leading-[1.62] text-white/[0.84] [&_b]:font-bold [&_b]:text-white">
+          <p className="mt-[clamp(9px,1.1vw,14px)] max-w-[52ch] text-[clamp(14.5px,1.1vw,17.5px)] leading-[1.5] text-white/[0.84] [&_b]:font-bold [&_b]:text-white">
             RDSO-grade formation, track and civil works for
             <b> government &amp; PSU clients</b> across India — engineered with
             precision, safety and on-schedule execution.
           </p>
-          <div className="mt-[clamp(24px,2.8vw,34px)] flex flex-wrap gap-[14px]">
+          <div className="mt-[clamp(11px,1.4vw,18px)] flex flex-wrap gap-[12px]">
             <Magnetic><a href="#services" className={BTN_PRIMARY}>Explore capabilities {Icon.arrow}</a></Magnetic>
             <Magnetic strength={0.25}><a href="#quote" className={BTN_GHOST_HERO}>Get a quote {Icon.arrow}</a></Magnetic>
           </div>
         </div>
 
-        <div className="mt-[clamp(28px,3.4vw,48px)] grid grid-cols-4 overflow-hidden rounded border border-white/[0.12] bg-white/[0.06] shadow-[0_30px_80px_-40px_rgba(0,0,0,0.9)] [backdrop-filter:blur(16px)_saturate(130%)] max-[900px]:grid-cols-2 max-[480px]:rounded-sm">
+        <div className="mt-[clamp(10px,1.3vw,18px)] grid grid-cols-4 overflow-hidden rounded border border-white/[0.12] bg-white/[0.06] shadow-[0_30px_80px_-40px_rgba(0,0,0,0.9)] [backdrop-filter:blur(16px)_saturate(130%)] max-[900px]:grid-cols-2 max-[480px]:rounded-sm">
           {HERO_STATS.map((s, i) => {
             const b = ['', 'border-l', 'border-l max-[900px]:border-l-0 max-[900px]:border-t', 'border-l max-[900px]:border-t'][i]
             return (
-              <SpotlightCard className={`overflow-hidden border-white/10 p-[clamp(18px,1.8vw,26px)_clamp(16px,1.6vw,26px)] ${b}`} key={s.label}>
-                <span className="relative z-[1] mb-3 block font-mono text-[11px] tracking-[0.04em] text-yellow-deep">/{String(i + 1).padStart(2, '0')}</span>
+              <SpotlightCard className={`overflow-hidden border-white/10 p-[clamp(12px,1.3vw,17px)_clamp(16px,1.6vw,24px)] ${b}`} key={s.label}>
+                <span className="relative z-[1] mb-2 block font-mono text-[11px] tracking-[0.04em] text-yellow-deep">/{String(i + 1).padStart(2, '0')}</span>
                 <b className="relative z-[1] flex items-baseline font-cond text-[clamp(32px,3.4vw,52px)] font-semibold leading-[0.9] text-white">
                   <CountUp to={parseInt(s.num, 10)} />{s.sup && <em className="ml-[3px] text-[0.5em] not-italic text-yellow">{s.sup}</em>}
                 </b>
-                <span className="relative z-[1] mt-2.5 block font-mono text-[10.5px] uppercase leading-[1.45] tracking-[0.04em] text-white/[0.62]">{s.label}</span>
+                <span className="relative z-[1] mt-2 block font-mono text-[10.5px] uppercase leading-[1.4] tracking-[0.04em] text-white/[0.62]">{s.label}</span>
               </SpotlightCard>
             )
           })}
         </div>
       </div>
 
-      <div
-        className="absolute right-[var(--pad)] top-1/2 z-[3] flex -translate-y-1/2 flex-col items-center gap-3 font-mono text-[10px] tracking-[0.2em] text-white/60 [writing-mode:vertical-rl] max-[900px]:hidden"
-        aria-hidden="true"
+      <a
+        href="#about"
+        aria-label="Scroll to explore"
+        className="group absolute right-[var(--pad)] top-1/2 z-[3] flex -translate-y-1/2 flex-col items-center gap-3 text-white/70 transition-colors duration-300 hover:text-white max-[900px]:hidden"
       >
-        <span>SCROLL</span>
-        <i className={`relative block h-[46px] w-px overflow-hidden bg-white/25 after:absolute after:inset-x-0 after:top-0 after:h-1/2 after:bg-yellow after:content-[''] motion-reduce:after:animate-none ${SHOT ? '' : 'after:animate-khDrop'}`} />
-      </div>
+        <span className="font-mono text-[10px] tracking-[0.24em] text-white/60 transition-colors duration-300 [writing-mode:vertical-rl] group-hover:text-white/85">SCROLL</span>
+        <span className="flex h-[34px] w-[21px] justify-center rounded-full border border-white/35 pt-[6px] transition-colors duration-300 group-hover:border-yellow">
+          <span className={`h-[6px] w-[3px] rounded-full bg-yellow motion-reduce:animate-none ${SHOT ? '' : 'animate-scrollWheel'}`} />
+        </span>
+        <svg
+          className={`h-3.5 w-3.5 motion-reduce:animate-none ${SHOT ? '' : 'animate-scrollNudge'}`}
+          viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"
+        >
+          <path d="M6 9l6 6 6-6" />
+        </svg>
+      </a>
     </section>
   )
 }
