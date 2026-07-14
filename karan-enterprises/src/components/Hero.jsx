@@ -22,7 +22,7 @@ const HERO_SLIDES = [
    transform-scaled by (viewport / DESIGN_W) below MOBILE_BP; above it, the
    canvas is 100% wide and behaves exactly like the desktop hero.
    DESIGN_W is the knob — larger ⇒ smaller mobile hero. */
-const DESIGN_W = 1280
+const DESIGN_W = 600
 const MOBILE_BP = 900
 
 /* Full-bleed cinematic hero — the headline over a slow cross-fading carousel of
@@ -109,7 +109,7 @@ export default function Hero() {
           canvas always renders the desktop layout regardless of viewport. */}
       <div
         ref={canvasRef}
-        className="relative isolate flex min-h-[clamp(360px,43vh,450px)] w-full items-stretch overflow-hidden pb-[clamp(10px,1.2vw,18px)] pt-[clamp(9px,1.2vw,16px)] max-[900px]:min-h-[450px] max-[900px]:pb-[18px] max-[900px]:pt-[16px] max-[900px]:[--pad:64px]"
+        className="relative isolate flex min-h-[clamp(360px,43vh,450px)] w-full items-stretch overflow-hidden pb-[clamp(10px,1.2vw,18px)] pt-[clamp(9px,1.2vw,16px)] max-[900px]:min-h-[450px] max-[900px]:pb-[18px] max-[900px]:pt-[16px] max-[900px]:[--pad:24px]"
       >
         <div className="absolute inset-0 z-0 overflow-hidden">
           <div ref={bg} className="absolute left-0 top-[-9%] h-[118%] w-full will-change-transform">
@@ -135,7 +135,7 @@ export default function Hero() {
         <Aurora />
 
         <div className={`${WRAP} relative z-[2] flex w-full flex-col`}>
-          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.14] pb-[10px] font-mono text-[11.5px] uppercase tracking-[0.14em] text-white/[0.62]">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.14] pb-[10px] font-mono text-[11.5px] max-[900px]:text-[15px] uppercase tracking-[0.14em] text-white/[0.62]">
             <span className="inline-flex items-center gap-2.5 text-white">
               <i className={`h-2 w-2 rounded-full bg-yellow shadow-[0_0_0_0_rgba(255,214,10,0.7)] motion-reduce:animate-none ${SHOT ? '' : 'animate-khPulse'}`} />
               M/S&nbsp;KARAN&nbsp;ENTERPRISES
@@ -144,12 +144,9 @@ export default function Hero() {
           </div>
 
           <div className="mt-auto max-w-[min(760px,100%)] pt-[clamp(8px,1.1vw,15px)]">
-            <span className="mb-[clamp(6px,0.8vw,10px)] max-[900px]:mb-[10px] inline-block min-h-[1em] font-mono text-[11.5px] uppercase tracking-[0.12em] text-yellow-deep [text-shadow:0_2px_20px_rgba(0,0,0,0.5)]">
-              ( 01 )  RAILWAY & ROADWAY INFRASTRUCTURE
-            </span>
             <RevealText
               as="h1"
-              className="whitespace-nowrap font-display text-[clamp(31px,7.4vw,66px)] max-[900px]:text-[66px] font-black uppercase leading-[0.98] tracking-[-0.04em] text-white [text-shadow:0_8px_50px_rgba(0,0,0,0.5)]"
+              className="whitespace-nowrap font-display text-[clamp(31px,7.4vw,66px)] max-[900px]:text-[40px] font-black uppercase leading-[0.98] tracking-[-0.04em] text-white [text-shadow:0_8px_50px_rgba(0,0,0,0.5)]"
               lines={[
                 'Railway & Road',
                 'Infrastructure,',
@@ -161,14 +158,14 @@ export default function Hero() {
                 </span>,
               ]}
             />
-            <p className="mt-[clamp(9px,1.1vw,14px)] max-[900px]:mt-[14px] max-w-[52ch] text-[clamp(14.5px,1.1vw,17.5px)] max-[900px]:text-[17.5px] leading-[1.5] text-white/[0.84] [&_b]:font-bold [&_b]:text-white">
+            <p className="mt-[clamp(9px,1.1vw,14px)] max-[900px]:mt-[14px] max-w-[52ch] text-[clamp(14.5px,1.1vw,17.5px)] max-[900px]:text-[24px] leading-[1.5] text-white/[0.84] [&_b]:font-bold [&_b]:text-white">
               RDSO-grade formation, track and civil works for
               <b> government &amp; PSU clients</b> across India — engineered with
               precision, safety and on-schedule execution.
             </p>
             <div className="mt-[clamp(11px,1.4vw,18px)] max-[900px]:mt-[18px] flex flex-wrap gap-[12px]">
-              <Magnetic><a href="#services" className={BTN_PRIMARY}>Explore capabilities {Icon.arrow}</a></Magnetic>
-              <Magnetic strength={0.25}><a href="#quote" className={BTN_GHOST_HERO}>Get a quote {Icon.arrow}</a></Magnetic>
+              <Magnetic><a href="#services" className={`${BTN_PRIMARY} max-[900px]:px-8 max-[900px]:py-[18px] max-[900px]:text-[17px]`}>Explore capabilities {Icon.arrow}</a></Magnetic>
+              <Magnetic strength={0.25}><a href="#quote" className={`${BTN_GHOST_HERO} max-[900px]:px-8 max-[900px]:py-[18px] max-[900px]:text-[17px]`}>Get a quote {Icon.arrow}</a></Magnetic>
             </div>
           </div>
 
@@ -177,11 +174,11 @@ export default function Hero() {
               const b = ['', 'border-l', 'border-l', 'border-l'][i]
               return (
                 <SpotlightCard className={`overflow-hidden border-white/10 p-[clamp(12px,1.3vw,17px)_clamp(16px,1.6vw,24px)] max-[900px]:p-[17px_24px] ${b}`} key={s.label}>
-                  <span className="relative z-[1] mb-2 block font-mono text-[11px] tracking-[0.04em] text-yellow-deep">/{String(i + 1).padStart(2, '0')}</span>
+                  <span className="relative z-[1] mb-2 block font-mono text-[11px] max-[900px]:text-[15px] tracking-[0.04em] text-yellow-deep">/{String(i + 1).padStart(2, '0')}</span>
                   <b className="relative z-[1] flex items-baseline font-cond text-[clamp(32px,3.4vw,52px)] max-[900px]:text-[52px] font-semibold leading-[0.9] text-white">
                     <CountUp to={parseInt(s.num, 10)} />{s.sup && <em className="ml-[3px] text-[0.5em] not-italic text-yellow">{s.sup}</em>}
                   </b>
-                  <span className="relative z-[1] mt-2 block font-mono text-[10.5px] uppercase leading-[1.4] tracking-[0.04em] text-white/[0.62]">{s.label}</span>
+                  <span className="relative z-[1] mt-2 block font-mono text-[10.5px] max-[900px]:text-[14px] uppercase leading-[1.4] tracking-[0.04em] text-white/[0.62]">{s.label}</span>
                 </SpotlightCard>
               )
             })}
