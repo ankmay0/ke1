@@ -28,8 +28,8 @@ export default function Banner() {
             Our Commitment
           </span>
           <h2 className="mt-5 max-w-[20ch] font-display text-[clamp(28px,4.2vw,56px)] font-black uppercase leading-[1.0] tracking-[-0.03em] [text-shadow:0_4px_40px_rgba(0,0,0,0.4)]">
-            Railway-grade execution.<br />
-            <span className="relative after:absolute after:inset-x-0 after:bottom-[0.02em] after:h-[0.09em] after:bg-yellow after:content-['']">Every project, every time.</span>
+            Railway-grade execution<br />
+            <span className="relative after:absolute after:inset-x-0 after:bottom-[0.02em] after:h-[0.09em] after:bg-yellow after:content-['']">Every project, every time</span>
           </h2>
           <p className="mt-[22px] max-w-[56ch] font-body text-[clamp(15px,1.4vw,19px)] leading-[1.6] text-white/[0.82]">
             From earthwork to commissioning, we hold every site to RDSO standards and the

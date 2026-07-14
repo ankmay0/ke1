@@ -55,7 +55,7 @@ export default function Quote() {
             <span className={`${KICKER} text-on-dark-mute`}>Have a project requirement?</span>
           </div>
           <h2 className="mt-5 font-display text-[clamp(28px,4.2vw,54px)] font-black uppercase leading-[0.98] tracking-[-0.03em]">
-            Tell us what <br />you're <span className={U}>building.</span>
+            Tell us what <br />you're <span className={U}>building</span>
           </h2>
           <p className={`${LEAD} text-on-dark-mute`}>
             From railway formation to track maintenance and civil infrastructure, we deliver reliable

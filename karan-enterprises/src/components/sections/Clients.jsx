@@ -109,7 +109,7 @@ export function Clients() {
     <section className={`${SECTION} pt-[clamp(12px,1.6vw,24px)]`} id="clients">
       <div className={WRAP}>
         <SectionHead idx="07" kicker="Major Clients · Trusted Partners">
-          Relied upon by government &amp; PSU bodies<em className={DOT}>.</em>
+          Relied upon by government &amp; PSU bodies
         </SectionHead>
 
         {/* Spotify-style adaptive card wall — each card extracts the dominant

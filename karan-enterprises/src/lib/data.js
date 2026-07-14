@@ -368,7 +368,7 @@ export const TESTIMONIALS = [
   },
   {
     quote: 'Reliable execution, proper documentation, and a team that understands railway safety norms without being reminded.',
-    name: 'Project Authority',
+    name: 'Hansraj Meena',
     role: 'Tori–Shivpur Railway Line',
   },
 ]

@@ -54,7 +54,7 @@ export default function Hero() {
                 key="g"
                 className="bg-clip-text text-transparent [background-image:linear-gradient(92deg,#ffe14d_0%,var(--yellow)_42%,#ffb20a_100%)] [-webkit-background-clip:text] [-webkit-text-fill-color:transparent]"
               >
-                Built to Last.
+                Built to Last
               </span>,
             ]}
           />

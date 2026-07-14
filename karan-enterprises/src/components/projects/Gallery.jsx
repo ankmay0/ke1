@@ -8,7 +8,7 @@ export function Gallery() {
     <section className={`${SECTION} bg-surface dark:bg-transparent`} id="gallery">
       <div className={WRAP}>
         <SectionHead idx="03" kicker="From the field">
-          On site<em className={DOT}>.</em>
+          On site
         </SectionHead>
         <Reveal delay={0.05}>
           <p className={LEAD}>Authentic imagery from our railway, slope-protection and roadway sites.</p>

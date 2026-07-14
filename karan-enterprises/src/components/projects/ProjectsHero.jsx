@@ -45,7 +45,7 @@ export function ProjectsHero() {
             </Reveal>
             <Reveal delay={0.06}>
               <h1 className="mt-4 font-display text-[clamp(46px,7vw,104px)] font-black uppercase leading-[0.84] tracking-[-0.045em] text-white">
-                Selected<br />works<em className="not-italic text-yellow">.</em>
+                Selected<br />works
               </h1>
             </Reveal>
             <Reveal delay={0.12}>

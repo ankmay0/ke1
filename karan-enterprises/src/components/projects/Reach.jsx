@@ -16,7 +16,7 @@ export function Reach() {
       <div className={WRAP}>
         <div className="grid grid-cols-[0.9fr_1.1fr] items-end gap-x-[clamp(32px,5vw,72px)] gap-y-8 max-[860px]:grid-cols-1">
           <SectionHead idx="02" kicker="Delivered wherever the work is" dark>
-            Rail<em className={DOT}>.</em> Road. Every terrain in between.
+            Rail<em className={DOT}>.</em> Road. Every terrain in between
           </SectionHead>
           <Reveal delay={0.06}>
             <p className="text-[clamp(15px,1.4vw,18px)] leading-[1.62] text-on-dark">

@@ -133,7 +133,7 @@ export function Projects() {
             </span>
             <span className="flex flex-col gap-2">
               <span className="font-body text-[12.5px] font-semibold uppercase tracking-[0.08em] text-on-dark-mute">Have a similar project?</span>
-              <span className="font-display text-[clamp(26px,2.6vw,38px)] font-extrabold leading-[1.04] text-white">Let&apos;s talk.</span>
+              <span className="font-display text-[clamp(26px,2.6vw,38px)] font-extrabold leading-[1.04] text-white">Let&apos;s talk</span>
             </span>
           </a>
         </div>

@@ -23,7 +23,7 @@ export function ProofBand() {
       <div className={WRAP}>
         <div className="max-w-[720px]">
           <SectionHead idx="—" kicker="Track record · Proven in the field">
-            Every claim, backed on the ground<em className={DOT}>.</em>
+            Every claim, backed on the ground
           </SectionHead>
         </div>
 

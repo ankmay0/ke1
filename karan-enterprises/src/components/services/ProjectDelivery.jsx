@@ -17,7 +17,7 @@ export function ProjectDelivery() {
           />
           <div className="relative max-w-[940px]">
             <SectionHead idx="04" kicker="Project execution framework" dark>
-              Efficient planning. Expert execution. <span className={U}>Delivered with excellence</span><em className={DOT}>.</em>
+              Efficient planning. Expert execution. <span className={U}>Delivered with excellence</span>
             </SectionHead>
             <Reveal delay={0.1}>
               <p className="mt-[18px] max-w-[64ch] text-[clamp(15px,1.4vw,18px)] leading-[1.6] text-on-dark-mute">

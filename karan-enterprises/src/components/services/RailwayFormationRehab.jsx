@@ -10,7 +10,7 @@ export function RailwayFormationRehab() {
       <div className={WRAP}>
         <div className="max-w-[820px]">
           <SectionHead idx="02" kicker="Railway formation & rehabilitation">
-            RDSO-grade formation works, end to end<em className={DOT}>.</em>
+            RDSO-grade formation works, end to end
           </SectionHead>
           <p className={LEAD}>
             End-to-end execution of railway formation construction and rehabilitation works in accordance

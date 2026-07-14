@@ -10,7 +10,7 @@ export function Testimonials() {
     <section className={SECTION} id="testimonials">
       <div className={WRAP}>
         <SectionHead idx="08" kicker="In their words" className="mb-[52px]">
-          Trusted on the ground<em className={DOT}>.</em>
+          Trusted on the ground
         </SectionHead>
         <div className="grid grid-cols-3 gap-5 max-[1024px]:grid-cols-1">
           {TESTIMONIALS.map((t, i) => (

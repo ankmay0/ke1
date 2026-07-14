@@ -11,7 +11,7 @@ export function SafetyQuality() {
       <div className={WRAP}>
         <div className="max-w-[760px]">
           <SectionHead idx="05" kicker="Safety & quality assurance">
-            Safety. Quality. Compliance<em className={DOT}>.</em>
+            Safety. Quality. Compliance
           </SectionHead>
           <p className={LEAD}>
             Engineering infrastructure that meets the highest operational and regulatory standards — at

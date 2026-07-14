@@ -45,7 +45,7 @@ function CritPanel({ c }) {
         <div data-crit-info>
           <span className="font-mono text-[13px] font-bold tracking-[0.04em] text-steel-2">{c.n} / {String(CRITICAL_WORKS.length).padStart(2, '0')}</span>
           <h3 className="mt-3 font-display text-[clamp(21px,2.5vw,38px)] font-black uppercase leading-[1.02] tracking-[-0.03em] dark:text-text">
-            {c.title}<em className={DOT}>.</em>
+            {c.title}
           </h3>
         </div>
         <p className="text-[clamp(14px,1.3vw,17px)] leading-[1.6] text-steel">{c.desc}</p>
@@ -187,7 +187,7 @@ export function CriticalInfra() {
       <div className={WRAP}>
         <div className="grid grid-cols-[1fr_0.78fr] items-end gap-x-[clamp(32px,5vw,80px)] gap-y-7 max-[900px]:grid-cols-1">
           <SectionHead idx="04" kicker="Flagship &amp; critical works">
-            Complex works, delivered under <span className={U}>time-bound blocks</span><em className={DOT}>.</em>
+            Complex works, delivered under <span className={U}>time-bound blocks</span>
           </SectionHead>
           <Reveal delay={0.1}>
             <p className={`${LEAD} mt-0`}>

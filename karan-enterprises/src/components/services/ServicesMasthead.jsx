@@ -10,7 +10,7 @@ import { WRAP, DOT } from '../../lib/cx'
    fires above the fold. Renders static in SHOT / reduced-motion. */
 const TITLE_LINES = [
   <span key="t1">From Rail to Road:</span>,
-  <span key="t2">Engineering Every Journey<em className={DOT}>.</em></span>,
+  <span key="t2">Engineering Every Journey</span>,
 ]
 const TITLE_CLASS =
   'font-display text-[clamp(24px,3.8vw,52px)] font-black uppercase leading-[0.9] tracking-[-0.04em] text-ink dark:text-text'

@@ -217,7 +217,7 @@ export function Ledger() {
     <section className={`${SECTION} bg-surface dark:bg-transparent`} id="ledger">
       <div className={WRAP}>
         <SectionHead idx="01" kicker="The contract ledger">
-          Every contract<em className={DOT}>,</em> on record.
+          Every contract<em className={DOT}>,</em> on record
         </SectionHead>
         <Reveal delay={0.05}>
           <p className={LEAD}>Filter the record by discipline, then open any contract for its full scope, activities and site imagery.</p>

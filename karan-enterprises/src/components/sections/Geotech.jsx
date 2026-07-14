@@ -10,7 +10,7 @@ export function Geotech() {
           <div className={`${SEC_EYEBROW} border-rule`}>
             <span className={IDX}>04</span><span className={KICKER}>Specialised Capability</span>
           </div>
-          <h2 className={H_SEC}>Advanced Geotechnical Solutions<em className={DOT}>.</em></h2>
+          <h2 className={H_SEC}>Advanced Geotechnical Solutions</h2>
           <p className={LEAD}>
             Leveraging globally recognised geotechnical technologies and high-performance materials to
             deliver durable, sustainable and engineered solutions for complex infrastructure projects.

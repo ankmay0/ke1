@@ -17,7 +17,7 @@ export function Capabilities() {
           <div className={`${SEC_EYEBROW} border-rule`}>
             <span className={IDX}>01</span><span className={KICKER}>Core competencies</span>
           </div>
-          <h2 className={H_SEC}>Eight core disciplines<em className={DOT}>.</em></h2>
+          <h2 className={H_SEC}>Eight core disciplines</h2>
           <p className={LEAD}>
             Each capability is delivered to specification — the same engineering discipline, safety
             culture and documentation our government and PSU clients rely on.

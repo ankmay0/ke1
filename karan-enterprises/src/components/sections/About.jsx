@@ -18,7 +18,7 @@ export function About() {
           <div className={`${SEC_EYEBROW} border-rule`}>
             <span className={IDX}>01</span><span className={KICKER}>About M/s Karan Enterprises</span>
           </div>
-          <h2 className={H_SEC}>Integrated infrastructure,<br />delivered end to end<em className={DOT}>.</em></h2>
+          <h2 className={H_SEC}>Integrated infrastructure,<br />delivered end to end</h2>
           <p className={LEAD}>
             Since 2013, M/s Karan Enterprises has executed railway formation, roadway and civil
             infrastructure for government bodies and PSUs — combining RDSO-grade engineering, a
