@@ -1,29 +1,80 @@
+import { useLayoutEffect, useRef } from 'react'
 import { SHOT, CountUp, Icon, RevealText } from '../ui/ui'
-import { useParallax } from '../lib/motion'
+import { useParallax, gsap, MOTION_OFF } from '../lib/motion'
 import { Magnetic } from './Chrome'
 import { Aurora, SpotlightCard } from '../ui/fx'
 import { HERO_STATS } from '../lib/data'
 import { WRAP, BTN_PRIMARY, BTN_GHOST_HERO } from '../lib/cx'
 
-/* Full-bleed cinematic hero — a single immersive railway photograph under a
-   dark scrim + electric aurora, with the headline anchored bottom-left and a
-   floating glass stat bar. Intentionally dark in both themes, so its colours
-   are fixed; every animation degrades to a clean static state in SHOT /
-   reduced-motion. */
+/* Relevant site imagery cycled behind the hero — formation crew, twin tracks,
+   ROB / retaining structures, slope protection and ballast works. */
+const HERO_SLIDES = [
+  { src: '/assets/photo1.jpg', alt: 'M/s Karan Enterprises crew executing RDSO-grade railway formation and track-laying' },
+  { src: '/assets/photo11.jpg', alt: 'Completed twin railway tracks with ballast — block-time delivery' },
+  { src: '/assets/photo3.jpg', alt: 'Rail Over Bridge with retaining structures and approach' },
+  { src: '/assets/photo6.jpg', alt: 'Geocell slope protection and ground improvement on a railway embankment' },
+  { src: '/assets/photo4.jpg', alt: 'Ballast spreading and track-bed completion on a rail corridor' },
+]
+
+/* Full-bleed cinematic hero — the headline over a slow cross-fading carousel of
+   railway & road site imagery, under a dark scrim + electric aurora, with a
+   floating glass stat bar. Intentionally dark in both themes; degrades to the
+   first static frame in SHOT / reduced-motion. */
 export default function Hero() {
   const bg = useParallax({ amount: 70, from: -35, start: 'top top', end: 'bottom top' })
+  const stageRef = useRef(null)
+
+  useLayoutEffect(() => {
+    if (MOTION_OFF || !stageRef.current) return
+    const ctx = gsap.context(() => {
+      const slides = gsap.utils.toArray(stageRef.current.querySelectorAll('[data-hero-slide]'))
+      const n = slides.length
+      if (n < 2) return
+      const HOLD = 5, FADE = 1.4, SEG = HOLD + FADE
+
+      // Slow Ken Burns while static, plain crossfade on the change: each slide
+      // zooms gently in the whole time it holds, then simply cross-fades to the
+      // next (no zoom during the swap). The next slide fades in at scale 1 and
+      // begins its own slow zoom once settled. The final hand-off (→ slide 0)
+      // lands on the loop boundary, so the repeat is seamless.
+      gsap.set(slides, { autoAlpha: 0, scale: 1.0, transformOrigin: 'center center' })
+      gsap.set(slides[0], { autoAlpha: 1, scale: 1.0 })
+
+      const tl = gsap.timeline({ repeat: -1 })
+      slides.forEach((slide, i) => {
+        const next = slides[(i + 1) % n]
+        const at = i * SEG + HOLD
+        // slow zoom during the static hold
+        tl.fromTo(slide, { scale: 1.0 }, { scale: 1.1, duration: HOLD, ease: 'sine.inOut', immediateRender: false }, i * SEG)
+        // change — plain crossfade, no zoom
+        tl.to(slide, { autoAlpha: 0, duration: FADE, ease: 'power1.inOut' }, at)
+        tl.fromTo(next, { autoAlpha: 0, scale: 1.0 }, { autoAlpha: 1, duration: FADE, ease: 'power1.inOut', immediateRender: false }, at)
+      })
+    }, stageRef)
+    return () => ctx.revert()
+  }, [])
+
   return (
     <section
       className="relative isolate flex min-h-[clamp(360px,43vh,450px)] items-stretch overflow-hidden bg-[#05060a] pb-[clamp(10px,1.2vw,18px)] pt-[clamp(9px,1.2vw,16px)] text-white max-[900px]:min-h-[62vh]"
       id="home"
     >
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <img
-          ref={bg}
-          className="absolute left-0 top-[-8%] h-[118%] w-full object-cover object-[center_50%] will-change-transform"
-          src="/assets/photo1.jpg"
-          alt="M/s Karan Enterprises crew executing RDSO-grade railway formation and track-laying"
-        />
+        <div ref={bg} className="absolute left-0 top-[-9%] h-[118%] w-full will-change-transform">
+          <div ref={stageRef} className="absolute inset-0">
+            {HERO_SLIDES.map((s, i) => (
+              <img
+                key={s.src}
+                data-hero-slide
+                className={`absolute inset-0 h-full w-full object-cover object-[center_50%] will-change-[transform,opacity] ${i === 0 ? 'opacity-100' : 'opacity-0'}`}
+                src={s.src}
+                alt={i === 0 ? s.alt : ''}
+                loading={i === 0 ? 'eager' : 'lazy'}
+                fetchPriority={i === 0 ? 'high' : undefined}
+              />
+            ))}
+          </div>
+        </div>
         <span
           className="absolute inset-0 [background:linear-gradient(90deg,rgba(5,6,10,0.92)_0%,rgba(5,6,10,0.72)_34%,rgba(5,6,10,0.30)_66%,rgba(5,6,10,0.10)_100%),linear-gradient(0deg,rgba(5,6,10,0.95)_4%,rgba(5,6,10,0.45)_38%,rgba(5,6,10,0.12)_70%)]"
           aria-hidden="true"

@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useLayoutEffect, useRef } from 'react'
 import { CLIENTS } from '../../lib/data'
-import { Reveal, SectionHead } from '../../ui/ui'
-import { WRAP, SECTION, DOT } from '../../lib/cx'
+import { SectionHead } from '../../ui/ui'
+import { gsap, ScrollTrigger, MOTION_OFF } from '../../lib/motion'
+import { WRAP, SECTION } from '../../lib/cx'
 
 // Extract the dominant (most common, non-white/black) colour from a logo so
 // each card can tint its background to the artwork — the way Spotify derives
@@ -49,7 +50,7 @@ function ClientCard({ client }) {
   const rgb = useDominantColor(client.logo)
   const base = rgb ? `${rgb[0]}, ${rgb[1]}, ${rgb[2]}` : '60, 60, 60'
   return (
-    <div className="group relative">
+    <div data-client-tile className="group relative will-change-transform">
       {/* soft colour glow that blooms behind the card on hover */}
       <span
         aria-hidden="true"
@@ -105,6 +106,37 @@ function ClientCard({ client }) {
 }
 
 export function Clients() {
+  const gridRef = useRef(null)
+
+  // Scroll-triggered row reveal — one trigger PER TILE. Tiles in the same row
+  // share a vertical position, so their triggers fire together (the row reveals
+  // as one), while the next row only animates once it actually scrolls into
+  // view (a single grid-wide trigger would play the lower rows off-screen). Each
+  // tile flips up in 3D from its bottom edge — rising, unblurring and scaling in
+  // — and settles fully into place. GSAP only touches the outer tile wrapper, so
+  // the per-card hover glow / shine / lift are untouched. Robust to the
+  // responsive column count since every tile triggers on its own position.
+  useLayoutEffect(() => {
+    if (MOTION_OFF || !gridRef.current) return
+    const ctx = gsap.context(() => {
+      const tiles = gsap.utils.toArray(gridRef.current.querySelectorAll('[data-client-tile]'))
+      tiles.forEach((tile) => {
+        gsap.fromTo(
+          tile,
+          { autoAlpha: 0, yPercent: 26, rotateX: -32, scale: 0.92, filter: 'blur(6px)', transformPerspective: 1000, transformOrigin: '50% 100%' },
+          {
+            autoAlpha: 1, yPercent: 0, rotateX: 0, scale: 1, filter: 'blur(0px)',
+            ease: 'power3.out',
+            duration: 0.85,
+            scrollTrigger: { trigger: tile, start: 'top 88%', once: true },
+          }
+        )
+      })
+      ScrollTrigger.refresh()
+    }, gridRef)
+    return () => ctx.revert()
+  }, [])
+
   return (
     <section className={`${SECTION} pt-[clamp(12px,1.6vw,24px)]`} id="clients">
       <div className={WRAP}>
@@ -114,15 +146,16 @@ export function Clients() {
 
         {/* Spotify-style adaptive card wall — each card extracts the dominant
             colour of its client logo and tints its background to match, framed
-            by a glass ring, colour glow, gloss edge and a hover shine sweep. */}
-        <Reveal
-          delay={0.06}
-          className="mt-[clamp(34px,4vw,52px)] grid grid-cols-4 gap-[clamp(12px,1.4vw,20px)] max-[900px]:grid-cols-2 max-[540px]:grid-cols-1"
+            by a glass ring, colour glow, gloss edge and a hover shine sweep. The
+            wall reveals via a scroll-scrubbed 3D grid wave (see effect above). */}
+        <div
+          ref={gridRef}
+          className="mt-[clamp(34px,4vw,52px)] grid grid-cols-4 gap-[clamp(12px,1.4vw,20px)] [perspective:1200px] max-[900px]:grid-cols-2 max-[540px]:grid-cols-1"
         >
           {CLIENTS.map((c) => (
             <ClientCard key={c.abbr} client={c} />
           ))}
-        </Reveal>
+        </div>
       </div>
     </section>
   )
