@@ -83,8 +83,7 @@ export function RevealText({ lines, as = 'h1', className = '', stagger = 0.09, d
           <motion.span
             className={RT_INNER}
             initial={{ y: '115%' }}
-            whileInView={{ y: '0%' }}
-            viewport={{ once: true, margin: '-70px' }}
+            animate={{ y: '0%' }}
             transition={{ duration: 0.8, delay: delay + i * stagger, ease: [0.22, 1, 0.36, 1] }}
           >
             {line}
