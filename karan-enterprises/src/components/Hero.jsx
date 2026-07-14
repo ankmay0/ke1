@@ -56,7 +56,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative isolate flex min-h-[clamp(360px,43vh,450px)] items-stretch overflow-hidden bg-[#05060a] pb-[clamp(10px,1.2vw,18px)] pt-[clamp(9px,1.2vw,16px)] text-white max-[900px]:min-h-[62vh]"
+      className="relative isolate flex min-h-[clamp(360px,43vh,450px)] items-stretch overflow-hidden bg-[#05060a] pb-[clamp(10px,1.2vw,18px)] pt-[clamp(9px,1.2vw,16px)] text-white max-[900px]:min-h-[76vh]"
       id="home"
     >
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -76,7 +76,7 @@ export default function Hero() {
           </div>
         </div>
         <span
-          className="absolute inset-0 [background:linear-gradient(90deg,rgba(5,6,10,0.92)_0%,rgba(5,6,10,0.72)_34%,rgba(5,6,10,0.30)_66%,rgba(5,6,10,0.10)_100%),linear-gradient(0deg,rgba(5,6,10,0.95)_4%,rgba(5,6,10,0.45)_38%,rgba(5,6,10,0.12)_70%)]"
+          className="absolute inset-0 [background:linear-gradient(90deg,rgba(5,6,10,0.92)_0%,rgba(5,6,10,0.72)_34%,rgba(5,6,10,0.30)_66%,rgba(5,6,10,0.10)_100%),linear-gradient(0deg,rgba(5,6,10,0.95)_4%,rgba(5,6,10,0.45)_38%,rgba(5,6,10,0.12)_70%)] max-[900px]:[background:linear-gradient(0deg,rgba(5,6,10,0.97)_0%,rgba(5,6,10,0.9)_44%,rgba(5,6,10,0.56)_64%,rgba(5,6,10,0.14)_84%,rgba(5,6,10,0.02)_100%)]"
           aria-hidden="true"
         />
       </div>
@@ -97,7 +97,7 @@ export default function Hero() {
           </span>
           <RevealText
             as="h1"
-            className="whitespace-nowrap font-display text-[clamp(29px,4.8vw,66px)] font-black uppercase leading-[0.94] tracking-[-0.04em] text-white [text-shadow:0_8px_50px_rgba(0,0,0,0.5)]"
+            className="whitespace-nowrap font-display text-[clamp(31px,7.4vw,66px)] font-black uppercase leading-[0.98] tracking-[-0.04em] text-white [text-shadow:0_8px_50px_rgba(0,0,0,0.5)]"
             lines={[
               'Railway & Road',
               'Infrastructure,',
