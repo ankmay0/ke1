@@ -48,7 +48,7 @@ export default function Nav() {
       >
         <div className={`${WRAP} flex items-center justify-between gap-6 transition-[height] duration-300 ${scrolled ? 'h-[68px]' : 'h-[82px]'}`}>
           <Brand scrolled={scrolled} />
-          <nav className="flex items-center gap-1 max-[760px]:hidden">
+          <nav className="flex items-center gap-1 max-[960px]:hidden">
             {NAV_LINKS.map((l) => (
               <Link
                 key={l.label}
@@ -67,9 +67,9 @@ export default function Nav() {
               {COMPANY.phone}
             </a>
             <ThemeToggle />
-            <Link className={`${BTN_PRIMARY} max-[760px]:hidden`} to="/#quote">Get a Quote {Icon.arrow}</Link>
+            <Link className={`${BTN_PRIMARY} max-[960px]:hidden`} to="/#quote">Get a Quote {Icon.arrow}</Link>
             <button
-              className="hidden flex-col gap-[5px] p-2 max-[760px]:flex"
+              className="hidden flex-col gap-[5px] p-2 max-[960px]:flex"
               aria-label="Menu"
               onClick={() => setOpen(true)}
             >

@@ -46,7 +46,7 @@ export const LEAD = 'mt-[18px] max-w-[58ch] text-[clamp(16px,1.4vw,18.5px)] lead
 
 /* behind-text yellow underline (used inside headings) */
 export const U =
-  "relative whitespace-nowrap after:content-[''] after:absolute after:inset-x-0 after:bottom-[0.06em] after:-z-[1] after:h-[0.18em] after:bg-yellow"
+  "relative whitespace-nowrap max-[600px]:whitespace-normal after:content-[''] after:absolute after:inset-x-0 after:bottom-[0.06em] after:-z-[1] after:h-[0.18em] after:bg-yellow"
 /* yellow full-stop accent in headings */
 export const DOT = 'not-italic text-yellow'
 

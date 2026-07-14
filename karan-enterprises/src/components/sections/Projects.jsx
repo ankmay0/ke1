@@ -28,12 +28,13 @@ function ProjectCard({ p, i }) {
       </div>
 
       {/* resting title — fades out as the drawer rises */}
-      <h3 className="absolute inset-x-0 bottom-0 z-[1] line-clamp-2 p-4 font-display text-[clamp(15px,1.3vw,19px)] font-bold leading-[1.16] text-white [text-shadow:0_2px_14px_rgba(0,0,0,0.7)] transition-opacity duration-300 group-hover:opacity-0">
+      <h3 className="absolute inset-x-0 bottom-0 z-[1] line-clamp-2 p-4 font-display text-[clamp(15px,1.3vw,19px)] font-bold leading-[1.16] text-white [text-shadow:0_2px_14px_rgba(0,0,0,0.7)] transition-opacity duration-300 group-hover:opacity-0 max-[920px]:opacity-0">
         {p.title}
       </h3>
 
-      {/* hover detail drawer */}
-      <div className="absolute inset-x-0 bottom-0 z-[3] translate-y-full bg-gradient-to-t from-[#05070b] via-[#05070b]/97 to-[#05070b]/70 p-4 pt-3 opacity-0 transition-[transform,opacity] duration-[380ms] ease-smooth group-hover:translate-y-0 group-hover:opacity-100">
+      {/* detail drawer — hover on desktop; always shown on touch/mobile so the
+          location, highlight and tags are reachable without hover */}
+      <div className="absolute inset-x-0 bottom-0 z-[3] translate-y-full bg-gradient-to-t from-[#05070b] via-[#05070b]/97 to-[#05070b]/70 p-4 pt-3 opacity-0 transition-[transform,opacity] duration-[380ms] ease-smooth group-hover:translate-y-0 group-hover:opacity-100 max-[920px]:translate-y-0 max-[920px]:opacity-100">
         <h3 className="line-clamp-1 font-display text-[15.5px] font-bold leading-[1.15] text-white">{p.title}</h3>
 
         <p className="mt-1.5 flex flex-wrap items-center gap-x-1.5 font-mono text-[10px] uppercase tracking-[0.1em]">

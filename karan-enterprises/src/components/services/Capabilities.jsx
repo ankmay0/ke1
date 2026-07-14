@@ -50,12 +50,13 @@ export function Capabilities() {
 
               {/* rest — number badge + title */}
               <span className="absolute left-0 top-0 z-[2] grid h-8 w-10 place-items-center bg-yellow font-cond text-[14px] font-semibold leading-none text-on-accent">{s.n}</span>
-              <h4 className="absolute inset-x-0 bottom-0 z-[1] line-clamp-2 p-4 font-display text-[clamp(15px,1.3vw,19px)] font-bold uppercase leading-[1.15] tracking-[-0.01em] text-white [text-shadow:0_2px_14px_rgba(0,0,0,0.7)] transition-opacity duration-300 group-hover:opacity-0">
+              {/* rest title — hidden on touch/tablet where the drawer is shown by default */}
+              <h4 className="absolute inset-x-0 bottom-0 z-[1] line-clamp-2 p-4 font-display text-[clamp(15px,1.3vw,19px)] font-bold uppercase leading-[1.15] tracking-[-0.01em] text-white [text-shadow:0_2px_14px_rgba(0,0,0,0.7)] transition-opacity duration-300 group-hover:opacity-0 max-[1024px]:opacity-0">
                 {s.short}
               </h4>
 
-              {/* hover info drawer */}
-              <div className="absolute inset-x-0 bottom-0 z-[3] translate-y-full bg-gradient-to-t from-[#05070b] via-[#05070b]/95 to-transparent p-4 pt-8 opacity-0 transition-[transform,opacity] duration-[380ms] ease-smooth group-hover:translate-y-0 group-hover:opacity-100">
+              {/* info drawer — reveals on hover (desktop); always shown on touch/tablet so the synopsis + tags are reachable without hover */}
+              <div className="absolute inset-x-0 bottom-0 z-[3] translate-y-full bg-gradient-to-t from-[#05070b] via-[#05070b]/95 to-transparent p-4 pt-8 opacity-0 transition-[transform,opacity] duration-[380ms] ease-smooth group-hover:translate-y-0 group-hover:opacity-100 max-[1024px]:translate-y-0 max-[1024px]:opacity-100">
                 <h4 className="line-clamp-1 font-display text-[15px] font-bold text-white">{s.short}</h4>
                 <p className="mt-2 line-clamp-2 text-[11.5px] leading-[1.45] text-white/75">{s.desc}</p>
                 <div className="mt-2 flex flex-wrap items-center gap-x-1.5 font-mono text-[9.5px] uppercase tracking-[0.06em] text-white/60">

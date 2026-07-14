@@ -6,7 +6,7 @@ import { COMPANY, SAFETY_STANDARDS, COMPLIANCE } from '../../lib/data'
 /* -------------------------------------------- 05 · SAFETY & QUALITY */
 export function SafetyQuality() {
   return (
-    <section className={SECTION} id="safety">
+    <section className={`${SECTION} overflow-x-clip`} id="safety">
       <span className={WM} aria-hidden="true">05</span>
       <div className={WRAP}>
         <div className="max-w-[760px]">
