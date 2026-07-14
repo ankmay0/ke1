@@ -8,9 +8,12 @@ import { WRAP, DOT } from '../../lib/cx'
    index. The H1 sits at the very top (often behind the preloader), so its
    clip-mask reveal is driven on MOUNT — not whileInView, which never reliably
    fires above the fold. Renders static in SHOT / reduced-motion. */
-const TITLE_LINES = [<span key="t" className="whitespace-nowrap">Services &amp; delivery<em className={DOT}>.</em></span>]
+const TITLE_LINES = [
+  <span key="t1">From Rail to Road:</span>,
+  <span key="t2">Engineering Every Journey<em className={DOT}>.</em></span>,
+]
 const TITLE_CLASS =
-  'font-display text-[clamp(30px,5.2vw,72px)] font-black uppercase leading-[0.88] tracking-[-0.045em] text-ink dark:text-text'
+  'font-display text-[clamp(24px,3.8vw,52px)] font-black uppercase leading-[0.9] tracking-[-0.04em] text-ink dark:text-text'
 
 function MastheadTitle() {
   if (MOTION_OFF) {
@@ -46,8 +49,9 @@ export function ServicesMasthead() {
           <MastheadTitle />
           <Reveal delay={0.12} className="max-w-[clamp(230px,25vw,330px)] border-l-2 border-yellow pl-5 max-[860px]:border-l-0 max-[860px]:pl-0">
             <p className="text-[clamp(14px,1.2vw,16.5px)] leading-[1.6] text-steel">
-              Eight engineering disciplines, executed under RDSO specifications and the Indian Railways
-              Construction Manual — built for safety, performance and durability.
+              With deep expertise in railway infrastructure and a strong footprint across roads, bridges,
+              and civil construction, Karan Enterprises delivers projects that connect communities and
+              build the nation's infrastructure.
             </p>
           </Reveal>
         </div>

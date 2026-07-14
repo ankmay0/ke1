@@ -28,7 +28,7 @@ const MarqueeGroup = ({ isDuplicate = false }) => (
           src={client.logo}
           alt={isDuplicate ? '' : client.full}
           loading="lazy"
-          className="h-[clamp(46px,4.8vw,74px)] w-auto max-w-[82%] object-contain opacity-50 grayscale transition-all duration-500 ease-out will-change-transform hover:scale-110 hover:opacity-100 hover:grayscale-0 hover:drop-shadow-sm"
+          className="h-[clamp(60px,6.2vw,96px)] w-auto max-w-[88%] object-contain opacity-90 transition-all duration-500 ease-out will-change-transform hover:scale-110 hover:opacity-100 hover:drop-shadow-sm"
         />
       </li>
     ))}
@@ -39,7 +39,7 @@ const MarqueeGroup = ({ isDuplicate = false }) => (
    groups create the infinite loop, with edge gradients fading the ends. */
 export function ClientMarquee() {
   return (
-    <div className="group relative flex overflow-hidden rounded-2xl border border-black/10 bg-white py-[clamp(20px,2.2vw,32px)] shadow-[0_40px_90px_-55px_rgba(0,0,0,0.55)]">
+    <div className="group relative flex overflow-hidden rounded-2xl border border-black/10 bg-white py-[clamp(8px,1vw,14px)] shadow-[0_40px_90px_-55px_rgba(0,0,0,0.55)]">
       <MarqueeGroup />
       <MarqueeGroup isDuplicate />
       <span aria-hidden="true" className="pointer-events-none absolute inset-y-0 left-0 z-[1] w-[clamp(44px,9vw,130px)] bg-gradient-to-r from-white to-transparent" />

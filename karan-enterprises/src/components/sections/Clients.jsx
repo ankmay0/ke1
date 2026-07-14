@@ -1,6 +1,108 @@
+import { useState, useEffect } from 'react'
 import { CLIENTS } from '../../lib/data'
 import { Reveal, SectionHead } from '../../ui/ui'
 import { WRAP, SECTION, DOT } from '../../lib/cx'
+
+// Extract the dominant (most common, non-white/black) colour from a logo so
+// each card can tint its background to the artwork — the way Spotify derives
+// the ambient colour of a "now playing" view from the album cover.
+function useDominantColor(src) {
+  const [rgb, setRgb] = useState(null)
+  useEffect(() => {
+    let cancelled = false
+    const img = new Image()
+    img.crossOrigin = 'anonymous'
+    img.onload = () => {
+      try {
+        const size = 32
+        const canvas = document.createElement('canvas')
+        canvas.width = size
+        canvas.height = size
+        const ctx = canvas.getContext('2d', { willReadFrequently: true })
+        ctx.drawImage(img, 0, 0, size, size)
+        const { data } = ctx.getImageData(0, 0, size, size)
+        const buckets = new Map()
+        for (let i = 0; i < data.length; i += 4) {
+          if (data[i + 3] < 128) continue // transparent
+          const r = data[i], g = data[i + 1], b = data[i + 2]
+          if (r > 235 && g > 235 && b > 235) continue // near-white
+          if (r < 22 && g < 22 && b < 22) continue // near-black
+          const key = `${r >> 4}-${g >> 4}-${b >> 4}`
+          const e = buckets.get(key) || { r: 0, g: 0, b: 0, n: 0 }
+          e.r += r; e.g += g; e.b += b; e.n++
+          buckets.set(key, e)
+        }
+        let best = null
+        for (const e of buckets.values()) if (!best || e.n > best.n) best = e
+        if (best && !cancelled) {
+          setRgb([Math.round(best.r / best.n), Math.round(best.g / best.n), Math.round(best.b / best.n)])
+        }
+      } catch { /* canvas may be tainted — fall back to the neutral tile */ }
+    }
+    img.src = src
+    return () => { cancelled = true }
+  }, [src])
+  return rgb
+}
+
+function ClientCard({ client }) {
+  const rgb = useDominantColor(client.logo)
+  const base = rgb ? `${rgb[0]}, ${rgb[1]}, ${rgb[2]}` : '60, 60, 60'
+  return (
+    <div className="group relative">
+      {/* soft colour glow that blooms behind the card on hover */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute -inset-1 rounded-[14px] opacity-0 blur-xl transition-opacity duration-500 ease-out group-hover:opacity-70"
+        style={{ backgroundImage: `radial-gradient(60% 60% at 50% 0%, rgba(${base}, 0.65), transparent 70%)` }}
+      />
+
+      <article
+        className="relative cursor-pointer overflow-hidden rounded-[12px] p-2.5 ring-1 ring-inset ring-white/10 backdrop-blur-sm transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1.5 group-hover:ring-white/20 group-hover:shadow-[0_20px_44px_-16px_rgba(0,0,0,0.75)]"
+        style={{
+          backgroundImage: `linear-gradient(165deg, rgb(${base}) -25%, rgba(${base}, 0.42) 42%, #131313 100%)`,
+        }}
+      >
+        {/* top inner highlight — the thin gloss edge premium cards carry */}
+        <span aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+
+        {/* on hover the extracted colour intensifies across the whole surface */}
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100"
+          style={{ backgroundImage: `linear-gradient(165deg, rgba(${base}, 0.55) -10%, transparent 55%)` }}
+        />
+
+        {/* diagonal shine sweep on hover */}
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute -inset-y-8 -left-1/2 w-1/2 -skew-x-[20deg] bg-gradient-to-r from-transparent via-white/15 to-transparent transition-[left] duration-700 ease-out group-hover:left-[130%]"
+        />
+
+        {/* album-art cover */}
+        <div className="relative flex aspect-[3/2] items-center justify-center overflow-hidden rounded-[7px] bg-white p-3 shadow-[0_6px_18px_-8px_rgba(0,0,0,0.65)] ring-1 ring-black/5">
+          <img
+            src={client.logo}
+            alt={client.full}
+            width="200"
+            height="140"
+            className="max-h-full w-auto max-w-[92%] object-contain object-center transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+          />
+          {/* subtle sheen across the cover */}
+          <span aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-transparent to-white/25" />
+        </div>
+
+        {/* identity */}
+        <div className="relative mt-2.5">
+          <h3 className="truncate font-display text-[17px] font-bold tracking-[-0.01em] text-white [text-shadow:0_1px_8px_rgba(0,0,0,0.5)]">
+            {client.abbr}
+          </h3>
+          <p className="mt-0.5 truncate text-[13px] leading-[1.35] text-white/65">{client.full}</p>
+        </div>
+      </article>
+    </div>
+  )
+}
 
 export function Clients() {
   return (
@@ -10,56 +112,16 @@ export function Clients() {
           Relied upon by government &amp; PSU bodies<em className={DOT}>.</em>
         </SectionHead>
 
-        {/* Cohesive white logo wall — the transparent-PNG client marks are
-            dark artwork, so (like the marquee) they live on one white surface
-            that reads identically in light and dark. A hairline blueprint grid
-            frames each mark; full colour at rest so they stay recognisable
-            everywhere (including mobile, where there is no hover). */}
+        {/* Spotify-style adaptive card wall — each card extracts the dominant
+            colour of its client logo and tints its background to match, framed
+            by a glass ring, colour glow, gloss edge and a hover shine sweep. */}
         <Reveal
           delay={0.06}
-          className="mt-[clamp(34px,4vw,52px)] overflow-hidden rounded-[var(--radius)] bg-white shadow-[0_40px_100px_-60px_rgba(0,0,0,0.6)] ring-1 ring-black/[0.06]"
+          className="mt-[clamp(34px,4vw,52px)] grid grid-cols-4 gap-[clamp(12px,1.4vw,20px)] max-[900px]:grid-cols-2 max-[540px]:grid-cols-1"
         >
-          <div className="grid grid-cols-4 border-l border-t border-black/[0.07] max-[900px]:grid-cols-2 max-[540px]:grid-cols-1">
-            {CLIENTS.map((c, i) => (
-              <article
-                key={c.abbr}
-                className="group relative flex flex-col border-b border-r border-black/[0.07] p-[clamp(24px,2.4vw,32px)] transition-colors duration-300 ease-out hover:bg-[#fffaea]"
-              >
-                {/* index numeral */}
-                <span
-                  aria-hidden="true"
-                  className="absolute right-[clamp(18px,2vw,26px)] top-[clamp(16px,1.8vw,22px)] font-cond text-[13px] font-semibold tracking-[0.12em] text-neutral-300 transition-colors duration-300 group-hover:text-neutral-900"
-                >
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-
-                {/* full-colour client mark, gently scaled on hover */}
-                <div className="flex h-[70px] items-center justify-center">
-                  <img
-                    src={c.logo}
-                    alt={c.full}
-                    width="200"
-                    height="70"
-                    className="max-h-[100px] w-auto max-w-[85%] object-contain object-center transition-transform duration-500 ease-out group-hover:scale-[1.05]"
-                  />
-                </div>
-
-                {/* identity */}
-                <div className="mt-[clamp(18px,2vw,26px)]">
-                  <h3 className="font-display text-[22px] font-bold leading-[1.05] tracking-[-0.015em] text-[#0c1118]">
-                    {c.abbr}
-                  </h3>
-                  <p className="mt-1.5 text-[12.5px] leading-[1.45] text-[#5b6472]">{c.full}</p>
-                </div>
-
-                {/* top accent bar draws in on hover */}
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-yellow transition-transform duration-500 ease-out group-hover:scale-x-100"
-                />
-              </article>
-            ))}
-          </div>
+          {CLIENTS.map((c) => (
+            <ClientCard key={c.abbr} client={c} />
+          ))}
         </Reveal>
       </div>
     </section>

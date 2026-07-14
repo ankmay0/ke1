@@ -92,9 +92,24 @@ export const TICKER = [
 ]
 
 export const ABOUT_CALLOUTS = [
-  { n: '01', text: '9 PSU, government & industrial clients' },
-  { n: '02', text: 'Railway & roadway infrastructure focus' },
-  { n: '03', text: 'Maccaferri-authorised geosynthetics applicator' },
+  {
+    n: '01',
+    text: '9 PSU, government & industrial clients',
+    detail:
+      'A trusted vendor to public-sector undertakings, government departments and private industry — repeat work orders reflect consistent quality and reliable delivery.',
+  },
+  {
+    n: '02',
+    text: 'Railway & roadway infrastructure focus',
+    detail:
+      'Core expertise in railway formation, earthwork, blanketing and roadway civil works, executed to RDSO specifications across greenfield and upgrade projects.',
+  },
+  {
+    n: '03',
+    text: 'Maccaferri-authorised geosynthetics applicator',
+    detail:
+      'Authorised to install Maccaferri geosynthetic solutions — gabions, geogrids and reinforced soil systems — for slope protection, retaining structures and ground stabilisation.',
+  },
 ]
 
 export const CAPABILITY_TAGS = [
@@ -406,11 +421,72 @@ export const CRITICAL_BANNER = [
   { img: '/assets/photo11.jpg', alt: 'Completed twin railway tracks with ballast — block-time delivery' },
 ]
 
+// Each flagship contract carries the same detail set panel-1 always had: two
+// headline metrics (numeric where we hold a verified figure — the 72-hr / 500-m
+// IPRCL Karo block — else a qualitative spec), a contract reference and two
+// site photographs. Replace the qualitative metrics for 02–04 with real
+// figures if/when the project data is supplied.
 export const CRITICAL_WORKS = [
-  { n: '01', title: '500-m bridge rehabilitation · 72-hour block', desc: 'Time-bound railway block works — ground improvement, embankment protection and formation strengthening — with rapid machinery and manpower deployment across 500-metre stretches.', tag: 'Block-time · Bridge rehab' },
-  { n: '02', title: 'Gabion wall construction', desc: 'Gabion walls near water structures for erosion control, slope stabilisation and embankment protection — engineered for high-flow zones and culvert approaches.', tag: 'Erosion · Slope · Embankment' },
-  { n: '03', title: 'Water-front reinforced soil walls', desc: 'Reinforced-soil and water-front protection structures for embankment stability, retaining systems and high-strength railway formations.', tag: 'Retaining · Reinforced soil' },
-  { n: '04', title: 'Bridge & ROB expertise', desc: 'Specialised experience in Rail Over Bridge (ROB) works, bridge protection, approach and retaining structures — delivered to client and IR-zonal specifications.', tag: 'ROB · Bridge protection' },
+  {
+    n: '01',
+    title: '500-m bridge rehabilitation · 72-hour block',
+    desc: 'Time-bound railway block works — ground improvement, embankment protection and formation strengthening — with rapid machinery and manpower deployment across 500-metre stretches.',
+    tag: 'Block-time · Bridge rehab',
+    ref: 'IPRCL · CCL Karo Railway Siding',
+    metrics: [
+      { value: 72, unit: 'hr', label: 'Block window per 500-m stretch' },
+      { value: 500, unit: 'm', label: 'Rebuilt formation · zero incidents' },
+    ],
+    images: [
+      { src: '/assets/proj-karo-siding.jpg', alt: 'CCL Karo railway siding — block-time formation works' },
+      { src: '/assets/photo11.jpg', alt: 'Completed twin railway tracks with ballast' },
+    ],
+  },
+  {
+    n: '02',
+    title: 'Gabion wall construction',
+    desc: 'Gabion walls near water structures for erosion control, slope stabilisation and embankment protection — engineered for high-flow zones and culvert approaches.',
+    tag: 'Erosion · Slope · Embankment',
+    ref: 'Tori–Shivpur · slope & rockfall protection',
+    metrics: [
+      { value: 'Erosion', unit: 'control', label: 'Slope & embankment protection' },
+      { value: 'High-flow', unit: 'zones', label: 'Culvert & water-structure approaches' },
+    ],
+    images: [
+      { src: '/assets/proj-tori-rockfall.jpg', alt: 'Rockfall and slope protection works, Tori–Shivpur' },
+      { src: '/assets/gal-09.jpg', alt: 'Geocell slope-protection installation' },
+    ],
+  },
+  {
+    n: '03',
+    title: 'Water-front reinforced soil walls',
+    desc: 'Reinforced-soil and water-front protection structures for embankment stability, retaining systems and high-strength railway formations.',
+    tag: 'Retaining · Reinforced soil',
+    ref: 'Ray–Tori · reinforced-soil formations',
+    metrics: [
+      { value: 'Reinforced', unit: 'soil', label: 'Retaining & embankment systems' },
+      { value: 'Water-front', unit: '', label: 'High-strength railway formations' },
+    ],
+    images: [
+      { src: '/assets/proj-raytori-slope.jpg', alt: 'Reinforced-soil slope protection, Ray–Tori railway section' },
+      { src: '/assets/gal-05.jpg', alt: 'Reinforced soil retaining structure on site' },
+    ],
+  },
+  {
+    n: '04',
+    title: 'Bridge & ROB expertise',
+    desc: 'Specialised experience in Rail Over Bridge (ROB) works, bridge protection, approach and retaining structures — delivered to client and IR-zonal specifications.',
+    tag: 'ROB · Bridge protection',
+    ref: 'Barh STPP · bridge & approach structures',
+    metrics: [
+      { value: 'ROB', unit: '', label: 'Rail Over Bridge works' },
+      { value: 'IR-zonal', unit: 'spec', label: 'Approach & retaining structures' },
+    ],
+    images: [
+      { src: '/assets/proj-barh-bridge.jpg', alt: 'Barh bridge and approach structures' },
+      { src: '/assets/photo3.jpg', alt: 'Rail Over Bridge with retaining structures and approach' },
+    ],
+  },
 ]
 
 // IV.01 — four planning phases (with gates) and five execution stages.

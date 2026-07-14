@@ -1,6 +1,6 @@
-import { STATS, TRUST, COMPLIANCE } from '../../lib/data'
+import { STATS, TRUST } from '../../lib/data'
 import { Reveal, SectionHead, CountUp } from '../../ui/ui'
-import { WRAP, SECTION_DARK, U, METRIC_STRIP, metricPill, METRIC_DOT } from '../../lib/cx'
+import { WRAP, SECTION_DARK, U } from '../../lib/cx'
 
 export function Stats() {
   return (
@@ -33,12 +33,6 @@ export function Stats() {
             </ul>
           </Reveal>
         </div>
-
-        <Reveal delay={0.1} className="mt-11">
-          <div className={METRIC_STRIP}>
-            {COMPLIANCE.map((c) => <span className={metricPill('border-line-dark')} key={c}><i className={METRIC_DOT} />{c}</span>)}
-          </div>
-        </Reveal>
        </div>
       </div>
     </section>
