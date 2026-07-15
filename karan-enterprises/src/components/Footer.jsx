@@ -26,14 +26,24 @@ export default function Footer() {
               A trusted railway and roadway infrastructure contractor delivering with precision,
               safety and proven execution since {COMPANY.since}.
             </p>
-            <a
-              className="mt-5 inline-flex items-center gap-2.5 rounded-full border border-white/12 bg-white/[0.04] px-4 py-2.5 font-mono text-[11px] uppercase tracking-[0.1em] text-white transition-colors hover:border-yellow hover:text-yellow"
-              href={COMPANY.linkedin}
-              target="_blank"
-              rel="noopener"
-            >
-              {Icon.linkedin} LinkedIn
-            </a>
+            <div className="mt-5 flex flex-wrap gap-2.5">
+              <a
+                className="inline-flex items-center gap-2.5 rounded-full border border-white/12 bg-white/[0.04] px-4 py-2.5 font-mono text-[11px] uppercase tracking-[0.1em] text-white transition-colors hover:border-yellow hover:text-yellow [&_svg]:h-3.5 [&_svg]:w-3.5"
+                href={COMPANY.linkedin}
+                target="_blank"
+                rel="noopener"
+              >
+                {Icon.linkedin} LinkedIn
+              </a>
+              <a
+                className="inline-flex items-center gap-2.5 rounded-full border border-white/12 bg-white/[0.04] px-4 py-2.5 font-mono text-[11px] uppercase tracking-[0.1em] text-white transition-colors hover:border-yellow hover:text-yellow [&_svg]:h-3.5 [&_svg]:w-3.5"
+                href={COMPANY.instagram}
+                target="_blank"
+                rel="noopener"
+              >
+                {Icon.instagram} Instagram
+              </a>
+            </div>
           </div>
 
           {[
@@ -78,7 +88,7 @@ export default function Footer() {
                   <div className="overflow-hidden rounded-xl border border-white/12 shadow-[0_22px_44px_-26px_rgba(0,0,0,0.75)]">
                     <iframe
                       title={`${COMPANY.name} — Ranchi, Jharkhand`}
-                      src="https://maps.google.com/maps?q=Ranchi%2C%20Jharkhand%2C%20India&z=11&output=embed"
+                      src={`https://maps.google.com/maps?q=${COMPANY.mapLat}%2C${COMPANY.mapLng}&z=16&output=embed`}
                       className="block h-[150px] w-full border-0 grayscale-[0.2] contrast-[1.05] transition-[filter] duration-500 ease-out hover:grayscale-0"
                       loading="lazy"
                       referrerPolicy="no-referrer-when-downgrade"
@@ -87,7 +97,7 @@ export default function Footer() {
                   </div>
                   <a
                     className="mt-2.5 inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.1em] text-white/70 transition-colors hover:text-yellow"
-                    href="https://www.google.com/maps/search/?api=1&query=Ranchi%2C+Jharkhand%2C+India"
+                    href={`https://www.google.com/maps/search/?api=1&query=${COMPANY.mapLat}%2C${COMPANY.mapLng}`}
                     target="_blank"
                     rel="noopener"
                   >

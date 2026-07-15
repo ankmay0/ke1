@@ -11,6 +11,10 @@ export const COMPANY = {
   emails: ['admin@karanenterprises.co', 'info@karanenterprises.co'],
   location: 'Ranchi, Jharkhand · India',
   linkedin: 'https://www.linkedin.com/company/118114147/',
+  instagram: 'https://www.instagram.com/karan_enterprisesofficial/',
+  // 23°23'35.9"N 85°20'05.0"E
+  mapLat: 23.393306,
+  mapLng: 85.334722,
   since: '2013',
   gstin: '20AANFK1113F1Z1',
   rdso: 'RDSO/2020/GE: IRS-0004',
