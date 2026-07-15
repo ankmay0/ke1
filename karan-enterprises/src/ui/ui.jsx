@@ -98,7 +98,7 @@ export function RevealText({ lines, as = 'h1', className = '', stagger = 0.09, d
 const MQ_TRACK = 'flex min-w-full shrink-0 items-center gap-[56px] animate-mq group-hover:[animation-play-state:paused] motion-reduce:animate-none'
 export function Marquee({ items, render, light = false }) {
   const base =
-    'group flex overflow-hidden border-y py-[18px] ' +
+    'group flex gap-[56px] overflow-hidden border-y py-[18px] ' +
     (light
       ? 'bg-surface text-ink border-line dark:bg-surface-2 dark:text-text'
       : 'bg-ink text-white border-line-dark dark:border-line dark:[background:linear-gradient(90deg,#0a0d14,#0e1320,#0a0d14)]')

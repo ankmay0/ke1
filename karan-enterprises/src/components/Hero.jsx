@@ -146,7 +146,7 @@ export default function Hero() {
           <div className="mt-auto max-w-[min(760px,100%)] pt-[clamp(8px,1.1vw,15px)]">
             <RevealText
               as="h1"
-              className="whitespace-nowrap font-display text-[clamp(31px,7.4vw,66px)] max-[900px]:text-[40px] font-black uppercase leading-[0.98] tracking-[-0.04em] text-white [text-shadow:0_8px_50px_rgba(0,0,0,0.5)]"
+              className="whitespace-nowrap font-display text-[clamp(22px,5.2vw,46px)] max-[900px]:text-[29px] font-black uppercase leading-[0.98] tracking-[-0.04em] text-white [text-shadow:0_8px_50px_rgba(0,0,0,0.5)]"
               lines={[
                 'Railway & Road',
                 'Infrastructure,',

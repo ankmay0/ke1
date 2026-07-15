@@ -1,100 +1,111 @@
+import { motion } from 'framer-motion'
 import { Reveal, CountUp } from '../../ui/ui'
-import { CornerTicks } from '../../ui/tech'
+import { MOTION_OFF } from '../../lib/motion'
 import { WRAP } from '../../lib/cx'
 import { COMPANY, PROJECTS } from '../../lib/data'
 
 const KPIS = [
   { to: PROJECTS.length, sup: '', label: 'Contracts on record' },
   { to: new Set(PROJECTS.map((p) => p.cat)).size, sup: '', label: 'Disciplines' },
-  { to: 3, sup: '', label: 'States' },
+  { to: 3, sup: '', label: 'States delivered' },
   { text: COMPANY.since, label: 'Operating since' },
 ]
 
-/* --------------------------------------------------------- 00 · HERO */
-export function ProjectsHero() {
-  const flagship = PROJECTS[0]
-  const [dNum, dUnit] = (flagship.duration || '').split(' ')
-  return (
-    <header className="relative isolate overflow-hidden bg-dark text-on-dark">
-      {/* grain + blueprint grid — same material language as the rest of the site */}
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-[1] bg-grain [background-size:150px_150px] opacity-40 [mix-blend-mode:overlay]"
-      />
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-[1] opacity-50 [background-size:46px_46px] [background-image:linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] [mask-image:radial-gradient(130%_100%_at_15%_-10%,#000_24%,transparent_66%)]"
-      />
+/* Typographic title with a mount-driven clip-mask reveal — mirrors
+   ServicesMasthead (the H1 sits above the fold, so it animates on MOUNT, not
+   whileInView). Yellow period accent. */
+const TITLE_LINES = [
+  <span key="t1">Selected&nbsp;works<span className="text-yellow">.</span></span>,
+]
+const TITLE_CLASS =
+  'font-display text-[clamp(24px,3.8vw,52px)] font-black uppercase leading-[0.9] tracking-[-0.04em] text-ink dark:text-text'
 
-      <div className={`${WRAP} pb-[clamp(30px,3.6vw,52px)] pt-[clamp(30px,4vw,60px)]`}>
-        {/* record header line */}
-        <Reveal className="flex flex-wrap items-center justify-between gap-3 border-b border-white/12 pb-4 font-mono text-[11px] uppercase tracking-[0.16em] text-on-dark-mute">
+function MastheadTitle() {
+  if (MOTION_OFF) {
+    return (
+      <h1 className={TITLE_CLASS}>
+        {TITLE_LINES.map((l, i) => <span className="block whitespace-nowrap" key={i}>{l}</span>)}
+      </h1>
+    )
+  }
+  return (
+    <h1 className={TITLE_CLASS}>
+      {TITLE_LINES.map((l, i) => (
+        <span className="block overflow-hidden pb-[0.06em] -mb-[0.06em]" key={i}>
+          <motion.span
+            className="block whitespace-nowrap will-change-transform"
+            initial={{ y: '115%' }}
+            animate={{ y: '0%' }}
+            transition={{ duration: 0.8, delay: 0.1 + i * 0.09, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {l}
+          </motion.span>
+        </span>
+      ))}
+    </h1>
+  )
+}
+
+/* --------------------------------------------------------- 00 · HERO
+   Projects index opener — compact light masthead. Heading follows the
+   ServicesMasthead pattern: clip-reveal title left, intro in a yellow-rule
+   column right — with a full-width KPI strip beneath. */
+export function ProjectsHero() {
+  return (
+    <header className="relative isolate overflow-hidden bg-white dark:bg-transparent pb-[clamp(16px,1.9vw,26px)] pt-[clamp(12px,1.6vw,22px)]">
+      <div className={WRAP}>
+        {/* record meta line */}
+        <Reveal className="flex flex-wrap items-center justify-between gap-3 border-b border-rule pb-[clamp(9px,1vw,14px)] font-mono text-[11px] uppercase tracking-[0.18em] text-steel dark:border-line">
           <span className="inline-flex items-center gap-2.5">
-            <a href="/" className="transition-colors hover:text-white">Home</a>
-            <span className="text-white/30">/</span>
-            <span className="font-semibold text-white">Projects</span>
+            <a href="/" className="transition-colors hover:text-ink dark:hover:text-text">Home</a>
+            <span className="text-steel/40">/</span>
+            <span className="font-semibold text-ink dark:text-text">Projects</span>
           </span>
-          <span className="max-[560px]:hidden">Contract ledger · {COMPANY.since}—2026 · Jharkhand · Bihar · Chhattisgarh</span>
+          <span className="inline-flex items-center gap-2.5 max-[560px]:hidden">
+            <span className="h-1.5 w-1.5 rounded-full bg-yellow" />
+            Contract ledger · {COMPANY.since}—2026 · Jharkhand · Bihar · Chhattisgarh
+          </span>
         </Reveal>
 
-        {/* asymmetric masthead — copy left, flagship feature right */}
-        <div className="mt-[clamp(28px,3.4vw,50px)] grid grid-cols-[1.05fr_0.95fr] items-start gap-x-[clamp(32px,5vw,72px)] gap-y-[clamp(28px,3vw,40px)] max-[860px]:grid-cols-1">
-          <div>
-            <Reveal className="font-mono text-[12px] uppercase tracking-[0.18em] text-yellow">
-              <span className="text-yellow-deep">/</span> The contract record
-            </Reveal>
-            <Reveal delay={0.06}>
-              <h1 className="mt-4 font-display text-[clamp(46px,7vw,104px)] font-black uppercase leading-[0.84] tracking-[-0.045em] text-white">
-                Selected<br />works
-              </h1>
-            </Reveal>
-            <Reveal delay={0.12}>
-              <p className="mt-6 max-w-[52ch] text-[clamp(15px,1.35vw,18px)] leading-[1.6] text-on-dark">
-                {PROJECTS.length} completed contracts for Indian Railways, IPRCL, NTPC, RVNL and
-                government departments — railway sidings, formation, slope protection, roadways and
-                civil works. Delivered, certified, signed off.
-              </p>
-            </Reveal>
-
-            {/* KPI ledger — stat row directly below the header text */}
-            <Reveal delay={0.18} className="mt-[clamp(26px,3vw,44px)] grid grid-cols-4 gap-x-[clamp(14px,1.6vw,24px)] gap-y-5 border-t border-white/12 pt-[clamp(18px,2vw,26px)] max-[560px]:grid-cols-2">
-              {KPIS.map((k) => (
-                <div key={k.label}>
-                  <b className="flex items-baseline font-cond text-[clamp(30px,3.4vw,46px)] font-semibold leading-[0.85] text-white">
-                    {k.text ? k.text : <><CountUp to={k.to} /><em className="ml-0.5 text-[0.4em] not-italic text-yellow-deep">{k.sup}</em></>}
-                  </b>
-                  <span className="mt-2 block font-mono text-[10px] uppercase leading-[1.4] tracking-[0.1em] text-on-dark-mute">{k.label}</span>
-                </div>
-              ))}
-            </Reveal>
-          </div>
-
-          {/* flagship feature — one strong image (in colour) fills the right */}
-          <Reveal delay={0.14} variant="scale">
-            <a href="#ledger" className="group relative block overflow-hidden border border-white/12 bg-white/[0.02]" aria-label={flagship.title}>
-              <div className="relative aspect-[16/11] overflow-hidden">
-                <img src={flagship.img} alt={flagship.title} className="h-full w-full object-cover contrast-[1.04] transition-transform duration-[900ms] ease-smooth group-hover:scale-[1.05]" />
-                <span className="absolute left-0 top-0 inline-flex items-center gap-2 bg-yellow px-3 py-2 font-mono text-[10.5px] font-bold uppercase tracking-[0.12em] text-on-accent">
-                  <i className="h-1.5 w-1.5 rounded-full bg-on-accent" />Flagship contract
-                </span>
-                <CornerTicks tone="border-white" />
-              </div>
-              <div className="grid grid-cols-[1fr_auto] items-end gap-4 p-[clamp(18px,1.6vw,26px)]">
-                <div>
-                  <span className="font-mono text-[10.5px] uppercase tracking-[0.1em] text-yellow-deep">{flagship.cat} · {flagship.location}</span>
-                  <h2 className="mt-2 font-display text-[clamp(18px,1.7vw,24px)] font-bold leading-[1.15] text-white">{flagship.title}</h2>
-                  <span className="mt-1.5 block font-mono text-[11px] leading-[1.4] text-on-dark-mute">{flagship.client}</span>
-                </div>
-                {dNum && (
-                  <div className="shrink-0 border-l border-white/12 pl-4 text-right">
-                    <b className="block font-cond text-[clamp(34px,3vw,46px)] font-semibold leading-[0.85] text-white">{dNum}</b>
-                    <span className="font-mono text-[10px] uppercase tracking-[0.08em] text-on-dark-mute">{dUnit}</span>
-                  </div>
-                )}
-              </div>
-            </a>
+        {/* masthead — clip-reveal title left, intro in a yellow-rule column right */}
+        <div className="mt-[clamp(14px,1.8vw,24px)] grid grid-cols-[1fr_auto] items-center gap-x-[clamp(24px,4vw,64px)] gap-y-5 max-[860px]:grid-cols-1">
+          <MastheadTitle />
+          <Reveal delay={0.12} className="max-w-[clamp(230px,25vw,330px)] border-l-2 border-yellow pl-5 max-[860px]:border-l-0 max-[860px]:pl-0">
+            <p className="text-[clamp(13.5px,1.15vw,16px)] leading-[1.55] text-steel">
+              {PROJECTS.length} completed contracts for Indian Railways, IPRCL, NTPC, RVNL and
+              government departments — railway sidings, formation, slope protection, roadways and
+              civil works. <span className="text-ink dark:text-text">Delivered, certified, signed off.</span>
+            </p>
           </Reveal>
         </div>
+
+        {/* KPI instrument panel — full-width divided stat strip */}
+        <Reveal
+          delay={0.2}
+          className="mt-[clamp(16px,2vw,28px)] grid grid-cols-4 overflow-hidden border-t border-rule dark:border-line max-[560px]:grid-cols-2"
+        >
+          {KPIS.map((k, i) => (
+            <div
+              key={k.label}
+              className={`group/kpi relative py-[clamp(10px,1.2vw,16px)] pr-[clamp(12px,1.5vw,24px)] transition-colors duration-300 hover:bg-black/[0.02] dark:hover:bg-white/[0.03] ${
+                i === 0 ? 'pl-0' : 'border-l border-rule pl-[clamp(12px,1.5vw,24px)] dark:border-line'
+              } ${i >= 2 ? 'max-[560px]:border-t max-[560px]:border-rule max-[560px]:dark:border-line' : ''} ${
+                i === 2 ? 'max-[560px]:border-l-0 max-[560px]:pl-0' : ''
+              }`}
+            >
+              {/* top accent that draws in on hover */}
+              <span
+                aria-hidden="true"
+                className="absolute left-0 top-[-1px] h-px w-0 bg-yellow transition-[width] duration-500 ease-smooth group-hover/kpi:w-full"
+              />
+              <span className="font-mono text-[10px] tracking-[0.1em] text-yellow-deep">/{String(i + 1).padStart(2, '0')}</span>
+              <b className="mt-1.5 flex items-baseline font-cond text-[clamp(24px,2.6vw,38px)] font-semibold leading-[0.85] text-ink dark:text-text">
+                {k.text ? k.text : <><CountUp to={k.to} /><em className="ml-0.5 text-[0.4em] not-italic text-yellow-deep">{k.sup}</em></>}
+              </b>
+              <span className="mt-1.5 block font-mono text-[10px] uppercase leading-[1.35] tracking-[0.1em] text-steel">{k.label}</span>
+            </div>
+          ))}
+        </Reveal>
       </div>
     </header>
   )

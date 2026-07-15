@@ -27,7 +27,7 @@ export default function ProjectsPage() {
       <Preloader />
       <Nav />
       <main>
-        <ProjectsHero />
+        {/* <ProjectsHero /> */}
         <Ledger />
         <Reach />
         <Gallery />

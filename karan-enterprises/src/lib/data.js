@@ -79,7 +79,7 @@ export const BLOG_POSTS = [
 ]
 
 export const HERO_STATS = [
-  { num: '12', sup: '+', label: 'Years of execution' },
+  { num: '13', sup: '+', label: 'Years of execution' },
   { num: '230', sup: '+', label: 'Strong workforce' },
   { num: '9', sup: '', label: 'PSU & govt clients' },
   { num: '100', sup: '%', label: 'RDSO-aligned works' },
@@ -106,14 +106,14 @@ export const ABOUT_CALLOUTS = [
   },
   {
     n: '03',
-    text: 'Maccaferri-authorised geosynthetics applicator',
+    text: 'Experienced in Maccaferri Geosynthetic Solutions',
     detail:
-      'Authorised to install Maccaferri geosynthetic solutions — gabions, geogrids and reinforced soil systems — for slope protection, retaining structures and ground stabilisation.',
+      'Experienced in the application and installation of geosynthetic solutions, including gabions, geogrids and reinforced soil systems, using Maccaferri materials for slope protection, retaining structures and ground stabilisation.',
   },
 ]
 
 export const CAPABILITY_TAGS = [
-  'RDSO Standards', '12+ Years Experience', '230+ Workforce', 'Modern Machinery',
+  'RDSO Standards', '13+ Years Experience', '230+ Workforce', 'Modern Machinery',
 ]
 
 // Mission & Vision — the purpose statements carried over from the company
@@ -216,7 +216,7 @@ export const GEO_CAPS = [
 // Imagery is authentic — sourced from the company's own site/portfolio media.
 export const PROJECTS = [
   {
-    cat: 'Railway', title: 'KARO Railway Siding Infrastructure',
+    cat: 'Railway', title: 'KARO Railway Siding Infrastructure Project – CCL',
     projectName: 'Execution of earthwork, formation, bridge, P-way linking & railway infrastructure works for KARO Railway Siding',
     client: 'Allied Infrastructures & Projects Pvt. Ltd. · IPRCL', location: 'CCL KARO Railway Siding, Jharkhand',
     duration: '24 months', scope: 'Earthwork, formation, bridges, P-way linking and ballast works for a coal-transport siding.',
@@ -226,7 +226,7 @@ export const PROJECTS = [
     tags: ['Earthwork', 'Bridges', 'P-way'], img: '/assets/proj-karo-siding.jpg',
   },
   {
-    cat: 'Geotechnical', title: 'Tori–Shivpur Rockfall & Debris-Flow Protection',
+    cat: 'Geotechnical', title: 'Railway Slope Protection & Geotechnical Infrastructure Project – East Central Railway',
     projectName: 'Rockfall & debris-flow protection works for the Tori–Shivpur section',
     client: 'Garware Technical Fibres Ltd. · East Central Railway', location: 'Tori–Shivpur Railway Section, Jharkhand',
     scope: 'Rockfall protection, erosion control, embankment strengthening and slope stabilisation in difficult terrain.',
@@ -236,7 +236,7 @@ export const PROJECTS = [
     tags: ['Rockfall', 'Slope', 'Erosion'], img: '/assets/proj-tori-rockfall.jpg',
   },
   {
-    cat: 'Railway', title: 'Tori–Shivpur Slope Stability & Bridge Protection',
+    cat: 'Railway', title: 'Railway Formation & Bridge Infrastructure Project – Tori–Shivpur Rail Line',
     projectName: 'Slope stability & bridge protection works between multiple bridge locations',
     client: 'East Central Railway', location: 'Tori–Shivpur Rail Corridor, Jharkhand',
     duration: '9 months', scope: 'Geocell installation, bridge stabilisation, gabion walls and embankment strengthening.',
@@ -246,7 +246,7 @@ export const PROJECTS = [
     tags: ['Geocell', 'Gabion', 'Bridge'], img: '/assets/proj-tori-slope.jpg',
   },
   {
-    cat: 'Railway', title: 'Barh STPP RoR Line Strengthening — Package II',
+    cat: 'Railway', title: 'Barh STPP RoR Line Strengthening Project – NTPC',
     projectName: 'Modification & strengthening of RoR line at Barh STPP — Package II',
     client: 'IPRCL · NTPC', location: 'Barh STPP, Bihar',
     duration: '6 months', scope: 'RCC retaining walls, ballast supply, P-way execution and embankment stabilisation.',
@@ -256,7 +256,7 @@ export const PROJECTS = [
     tags: ['RCC wall', 'P-way', 'Embankment'], img: '/assets/proj-barh-bridge.jpg',
   },
   {
-    cat: 'Roadway', title: 'IRQP Domchanch–Dhab Road Improvement',
+    cat: 'Roadway', title: 'IRQP Road Improvement Project – Koderma, Jharkhand',
     projectName: 'IRQP work on Domchanch–Dhab road from Km 0.00 to 16.40',
     client: 'Road Construction Dept., Govt. of Jharkhand', location: 'Koderma, Jharkhand · 0.00–16.40 km',
     scope: 'Road strengthening, curve improvement, RCC drain construction and pavement restoration.',
@@ -266,7 +266,7 @@ export const PROJECTS = [
     tags: ['Strengthening', 'RCC drains', '16.40 km'], img: '/assets/proj-irqp-koderma.jpg',
   },
   {
-    cat: 'Railway', title: 'KONAR Railway Siding Infrastructure',
+    cat: 'Railway', title: 'KONAR Railway Siding Infrastructure Project – CCL',
     projectName: 'Execution of earthwork, formation, bridges, P-way linking & railway infrastructure works for KONAR Railway Siding',
     client: 'Allied Infrastructures & Projects Pvt. Ltd. · IPRCL', location: 'CCL KONAR Railway Siding, Jharkhand',
     scope: 'Earthwork, bridges, ballast supply, P-way linking and service-building infrastructure.',
@@ -276,7 +276,7 @@ export const PROJECTS = [
     tags: ['Earthwork', 'Bridges', 'Ballast'], img: '/assets/proj-konar-siding.jpg',
   },
   {
-    cat: 'Civil', title: 'KARO Project Civil & Architectural Works',
+    cat: 'Civil', title: 'KARO Building Civil & Architectural Project – Parasa Substation',
     projectName: 'Civil & architectural works for KARO project building infrastructure',
     client: 'Asian Energy Services Ltd.', location: 'Parasa Substation, Jharkhand',
     scope: 'Control-room building, flooring, plumbing, electrical conduit and finishing works.',
@@ -286,7 +286,7 @@ export const PROJECTS = [
     tags: ['Building', 'Architectural', 'MEP'], img: '/assets/proj-karo-civil.jpg',
   },
   {
-    cat: 'Roadway', title: 'DMFT Rural Road — Chandi Balidih to Rangamati',
+    cat: 'Roadway', title: 'DMFT Road Construction Project – Bokaro, Jharkhand',
     projectName: 'Construction of road from Chandi Balidih blacktop road to Rangamati Mosabani Kali Mandir via Nehar Pul (DMFT scheme)',
     client: 'Rural Works Dept. (Gramya Karya Vibhag), Govt. of Jharkhand', location: 'Bokaro District, Jharkhand',
     duration: '12 months', scope: 'Earthwork and formation, granular sub-base, blacktop construction and drainage.',
@@ -296,7 +296,7 @@ export const PROJECTS = [
     tags: ['Blacktop', 'Sub-base', 'Drainage'], img: '/assets/proj-dmft-bokaro.jpg',
   },
   {
-    cat: 'Geotechnical', title: 'Ray–Tori Cutting Slope Protection',
+    cat: 'Geotechnical', title: 'Railway Slope Protection Project – Ray–Tori Section',
     projectName: 'Slope protection works in cutting areas between the Ray–Tori section',
     client: 'Rail Vikas Nigam Ltd. (RVNL)', location: 'Ray–Tori Railway Section, Jharkhand',
     duration: '90 days', scope: 'Synthetic erosion-control blankets, slope dressing, drainage and anchoring systems.',
@@ -305,16 +305,16 @@ export const PROJECTS = [
     overview: 'Long-term slope stability improved and railway infrastructure protected through geotechnical and erosion-control solutions in cutting areas.',
     tags: ['Erosion blanket', 'Anchoring', 'Drainage'], img: '/assets/proj-raytori-slope.jpg',
   },
-  {
-    cat: 'Supply', title: 'Geosynthetic Cloth & HDPE Sheet Supply',
-    projectName: 'Supply of geosynthetic cloth & HDPE sheet',
-    client: 'Godawari Power & Ispat Ltd.', location: 'Raipur, Chhattisgarh',
-    scope: 'Procurement, logistics and supply of industrial-grade geosynthetic and HDPE lining materials.',
-    activities: ['Procurement', 'Logistics', 'Supply of geosynthetic cloth & HDPE sheets'],
-    highlight: 'Large-scale industrial material supply supporting infrastructure applications.',
-    overview: 'Specialised geosynthetic and HDPE lining materials supplied in substantial quantities while maintaining strict quality standards.',
-    tags: ['Geosynthetic', 'HDPE', 'Supply'], img: '/assets/photo6.jpg',
-  },
+  // {
+  //   cat: 'Supply', title: 'Geosynthetic Cloth & HDPE Sheet Supply',
+  //   projectName: 'Supply of geosynthetic cloth & HDPE sheet',
+  //   client: 'Godawari Power & Ispat Ltd.', location: 'Raipur, Chhattisgarh',
+  //   scope: 'Procurement, logistics and supply of industrial-grade geosynthetic and HDPE lining materials.',
+  //   activities: ['Procurement', 'Logistics', 'Supply of geosynthetic cloth & HDPE sheets'],
+  //   highlight: 'Large-scale industrial material supply supporting infrastructure applications.',
+  //   overview: 'Specialised geosynthetic and HDPE lining materials supplied in substantial quantities while maintaining strict quality standards.',
+  //   tags: ['Geosynthetic', 'HDPE', 'Supply'], img: '/assets/photo6.jpg',
+  // },
 ]
 
 // Authentic field gallery — converted from the company's own site/portfolio
@@ -333,7 +333,7 @@ export const PROJECT_GALLERY = [
 export const STATS = [
   { num: '230', sup: '', label: 'Total workforce — 100 on-roll + 130 contractual' },
   { num: '100', sup: '', label: 'On-roll permanent employees' },
-  { num: '12', sup: '+', label: 'Years of industry expertise' },
+  { num: '13', sup: '+', label: 'Years of industry expertise' },
 ]
 
 export const TRUST = [
@@ -357,7 +357,7 @@ export const CLIENTS = [
 
 export const TESTIMONIALS = [
   {
-    quote: 'Their team coordinated block-time operations flawlessly across the Karo siding stretch — zero incidents, ahead of schedule.',
+    quote: 'Their team coordinated block-time operations flawlessly across the Tori Shivpur siding stretch — zero incidents, ahead of schedule.',
     name: 'Hansraj Meena',
     role: 'Deputy Chief Engineer · East Central Railway',
   },

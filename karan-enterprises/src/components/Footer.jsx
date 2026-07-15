@@ -43,7 +43,7 @@ export default function Footer() {
                 <a href="#services">Railway formation and track</a>,
                 <a href="#services">Roads, drains and culverts</a>,
                 <a href="#geotech">Slope and erosion protection</a>,
-                <a href="#services">Ash transportation</a>,
+                <a href="#services">Transportation Activities</a>,
               ],
             },
             {

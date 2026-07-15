@@ -43,10 +43,10 @@ function LedgerRow({ p, n, open, onToggle }) {
   return (
     <div ref={rowRef} data-ledger-row className="scroll-mt-[96px] [perspective:1400px]">
       <div
-        className={`group relative overflow-hidden rounded-[14px] border bg-paper transition-[transform,box-shadow,border-color] duration-[400ms] ease-smooth hover:-translate-y-1 dark:bg-glass dark:[backdrop-filter:blur(14px)_saturate(130%)] ${
+        className={`group relative overflow-hidden rounded-[14px] bg-paper transition-[transform,box-shadow] duration-[400ms] ease-smooth hover:-translate-y-1 dark:bg-glass dark:[backdrop-filter:blur(14px)_saturate(130%)] ${
           open
-            ? 'border-yellow/60 shadow-[0_30px_70px_-34px_rgba(0,0,0,0.5)] dark:border-[rgba(255,203,47,0.5)]'
-            : 'border-rule hover:border-yellow/45 hover:shadow-[0_26px_58px_-32px_rgba(0,0,0,0.42)] dark:border-glass-brd dark:hover:border-[rgba(255,203,47,0.4)]'
+            ? 'shadow-[0_30px_70px_-34px_rgba(0,0,0,0.5)]'
+            : 'hover:shadow-[0_26px_58px_-32px_rgba(0,0,0,0.42)]'
         }`}
       >
         {/* left accent bar — grows when hovered / open */}
@@ -214,7 +214,7 @@ export function Ledger() {
   }, [cat])
 
   return (
-    <section className={`${SECTION} bg-surface dark:bg-transparent`} id="ledger">
+    <section className={`${SECTION} pt-[clamp(20px,2.4vw,40px)] bg-surface dark:bg-transparent`} id="ledger">
       <div className={WRAP}>
         <SectionHead idx="01" kicker="The contract ledger">
           Every contract<em className={DOT}>,</em> on record

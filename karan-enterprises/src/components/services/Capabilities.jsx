@@ -1,5 +1,5 @@
 import { Reveal } from '../../ui/ui'
-import { WRAP, SEC_EYEBROW, IDX, KICKER, H_SEC, LEAD, DOT } from '../../lib/cx'
+import { WRAP, SEC_EYEBROW, IDX, KICKER, LEAD, DOT } from '../../lib/cx'
 import { SERVICES_FULL } from '../../lib/data'
 
 /* ----------------------------------------------- 01 · CAPABILITIES */
@@ -17,7 +17,7 @@ export function Capabilities() {
           <div className={`${SEC_EYEBROW} border-rule`}>
             <span className={IDX}>01</span><span className={KICKER}>Core competencies</span>
           </div>
-          <h2 className={H_SEC}>Eight core disciplines</h2>
+          <h2 className="mt-[clamp(16px,1.8vw,26px)] font-display text-[clamp(22px,2.9vw,38px)] font-black uppercase leading-[0.96] tracking-[-0.04em]">Eight core disciplines</h2>
           <p className={LEAD}>
             Each capability is delivered to specification — the same engineering discipline, safety
             culture and documentation our government and PSU clients rely on.
