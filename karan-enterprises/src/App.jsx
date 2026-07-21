@@ -4,15 +4,12 @@ import Hero from './components/Hero'
 import {
   Services, RailwayFormation, Projects, Stats, Clients, ClientMarquee,
 } from './components/sections'
-import Quote from './components/Quote'
-import Careers from './components/Careers'
 import Footer from './components/Footer'
 import Banner from './components/Banner'
 import Credentials from './components/Credentials'
 import { ScrollProgress } from './components/Chrome'
-import { Marquee, Icon } from './ui/ui'
-import { WRAP } from './lib/cx'
-import { TICKER, COMPANY } from './lib/data'
+import { Marquee } from './ui/ui'
+import { TICKER } from './lib/data'
 
 export default function App() {
   return (
@@ -50,22 +47,8 @@ export default function App() {
 
 
         <Stats />
-
-        <Quote />
-
-        <Careers />
       </main>
       <Footer />
-
-      <a
-        className="fixed bottom-[22px] right-[22px] z-[150] grid h-14 w-14 place-items-center rounded-full bg-whatsapp shadow-[0_14px_40px_-8px_rgba(37,211,102,0.7)] transition-transform duration-[250ms] ease-smooth hover:scale-[1.08] [&_svg]:h-[30px] [&_svg]:w-[30px]"
-        href={`https://wa.me/${COMPANY.phoneRaw}`}
-        target="_blank"
-        rel="noopener"
-        aria-label="Chat on WhatsApp"
-      >
-        {Icon.whatsapp}
-      </a>
     </>
   )
 }

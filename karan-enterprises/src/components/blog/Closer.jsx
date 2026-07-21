@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Magnetic } from '../Chrome'
 import { Icon } from '../../ui/ui'
 import { WRAP, BTN_PRIMARY, U, DOT } from '../../lib/cx'
@@ -17,7 +18,7 @@ export function Closer() {
           phased execution plan.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3.5">
-          <Magnetic><a className={BTN_PRIMARY} href="/#quote">Begin a project {Icon.arrow}</a></Magnetic>
+          <Magnetic><Link className={BTN_PRIMARY} to="/contact">Begin a project {Icon.arrow}</Link></Magnetic>
           <a className="font-mono text-[12px] uppercase tracking-[0.1em] text-steel underline decoration-yellow decoration-2 underline-offset-[6px] transition-colors hover:text-ink dark:hover:text-text" href={`tel:+${COMPANY.phoneRaw}`}>
             or call {COMPANY.phone}
           </a>

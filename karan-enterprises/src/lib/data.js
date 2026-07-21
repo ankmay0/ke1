@@ -29,7 +29,7 @@ export const NAV_LINKS = [
   { label: 'Services', href: '/services', n: '03' },
   { label: 'Projects', href: '/projects', n: '04' },
   { label: 'Blogs', href: '/blogs', n: '05' },
-  { label: 'Contact', href: '/#quote', n: '06' },
+  { label: 'Contact', href: '/contact', n: '06' },
 ]
 
 // Blog index metadata — the article prose lives inline in BlogsPage.jsx;
@@ -324,6 +324,11 @@ export const PROJECTS = [
 
 // Authentic field gallery — converted from the company's own site/portfolio
 // media (HEIC/Media source). Used by the Projects page gallery band.
+// Stable URL slug for a project title — used to deep-link a Home project card
+// to its expanded record in the Projects-page Ledger (`/projects?p=<slug>`).
+export const projectSlug = (title) =>
+  title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
+
 export const PROJECT_GALLERY = [
   { img: '/assets/proj-bridge-aerial.jpg', alt: 'Railway bridge construction over the river' },
   { img: '/assets/proj-barh-2.jpg', alt: 'Gabion and embankment strengthening — Barh STPP, Bihar' },

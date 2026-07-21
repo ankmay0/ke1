@@ -24,26 +24,34 @@ export default function Quote() {
   const [form, setForm] = useState({ name: '', org: '', type: PROJECT_TYPES[0], location: '', message: '' })
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }))
 
-  // build the message as plain text, then encode the whole thing exactly once
-  const plainMessage = () =>
-    `New project enquiry — M/s Karan Enterprises\n\n` +
-    `Name: ${form.name || '-'}\n` +
-    `Organisation: ${form.org || '-'}\n` +
-    `Project type: ${form.type}\n` +
-    `Location: ${form.location || '-'}\n` +
-    `Requirement: ${form.message || '-'}`
+  // Submit directly to the company inbox (no mail client / compose window).
+  // FormSubmit's keyless AJAX endpoint emails the entry to COMPANY.emails[0].
+  const [status, setStatus] = useState('idle') // idle | sending | sent | error
 
-  const toWhatsApp = (e) => {
+  const submit = async (e) => {
     e.preventDefault()
-    window.open(`https://wa.me/${COMPANY.phoneRaw}?text=${encodeURIComponent(plainMessage())}`, '_blank', 'noopener')
-  }
-
-  const toEmail = () => {
-    const subject = encodeURIComponent(`Project enquiry — ${form.type}`)
-    const body =
-      `Name: ${form.name}\nOrganisation: ${form.org}\nProject type: ${form.type}\n` +
-      `Location: ${form.location}\n\nRequirement:\n${form.message}`
-    window.location.href = `mailto:${COMPANY.emails[0]}?subject=${subject}&body=${encodeURIComponent(body)}`
+    if (status === 'sending' || status === 'sent') return
+    setStatus('sending')
+    try {
+      const res = await fetch(`https://formsubmit.co/ajax/${COMPANY.emails[0]}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          _subject: `Project enquiry — ${form.type}`,
+          _template: 'table',
+          _captcha: 'false',
+          Name: form.name,
+          Organisation: form.org || '—',
+          'Project type': form.type,
+          Location: form.location || '—',
+          Requirement: form.message || '—',
+        }),
+      })
+      const data = await res.json()
+      setStatus(data.success === 'true' || data.success === true ? 'sent' : 'error')
+    } catch {
+      setStatus('error')
+    }
   }
 
   return (
@@ -78,7 +86,7 @@ export default function Quote() {
         <Reveal delay={0.12}>
           <form
             className="rounded bg-paper p-[clamp(28px,3vw,40px)] text-ink shadow-[0_40px_80px_-40px_rgba(0,0,0,0.6)] dark:shadow-glow-soft"
-            onSubmit={toWhatsApp}
+            onSubmit={submit}
           >
             <div className="grid grid-cols-2 gap-4 max-[760px]:grid-cols-1">
               <div className="mb-4 flex flex-col gap-[7px]">
@@ -109,11 +117,22 @@ export default function Quote() {
               <textarea className={`${INPUT} min-h-[110px] resize-y`} id="q-msg" value={form.message} onChange={set('message')} placeholder="Briefly describe the scope, timeline and any specifications…" />
             </div>
 
-            <div className="mt-1.5 flex flex-wrap gap-3">
-              <button type="submit" className={`${BTN_PRIMARY} min-w-[160px] flex-1 justify-center`}>Discuss on WhatsApp {Icon.arrow}</button>
-              <button type="button" className={`${BTN_DARK} min-w-[160px] flex-1 justify-center`} onClick={toEmail}>Send by Email {Icon.arrow}</button>
+            <div className="mt-1.5">
+              <button
+                type="submit"
+                disabled={status === 'sending' || status === 'sent'}
+                className={`${BTN_PRIMARY} w-full justify-center disabled:cursor-not-allowed disabled:opacity-70`}
+              >
+                {status === 'sending' ? 'Sending…' : status === 'sent' ? 'Enquiry sent' : <>Send enquiry {Icon.arrow}</>}
+              </button>
             </div>
-            <p className="mt-4 text-center text-[12.5px] text-steel">We typically respond within one business day.</p>
+            {status === 'sent' ? (
+              <p className="mt-4 flex items-center justify-center gap-2 text-center text-[13px] font-semibold text-yellow-deep">{Icon.check} Thank you — your enquiry has been sent to our team.</p>
+            ) : status === 'error' ? (
+              <p className="mt-4 text-center text-[13px] text-red-500">Could not send. Please email us directly at {COMPANY.emails[0]}.</p>
+            ) : (
+              <p className="mt-4 text-center text-[12.5px] text-steel">We typically respond within one business day.</p>
+            )}
           </form>
         </Reveal>
       </div>

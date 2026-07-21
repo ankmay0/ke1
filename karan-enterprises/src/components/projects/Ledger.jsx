@@ -1,10 +1,11 @@
-import { useState, useLayoutEffect, useRef } from 'react'
+import { useState, useLayoutEffect, useEffect, useRef } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Reveal, SectionHead } from '../../ui/ui'
 import { CornerTicks } from '../../ui/tech'
 import { gsap, ScrollTrigger, MOTION_OFF } from '../../lib/motion'
 import { WRAP, SECTION, LEAD, DOT } from '../../lib/cx'
-import { PROJECTS } from '../../lib/data'
+import { PROJECTS, projectSlug } from '../../lib/data'
 
 const CATS = ['All', ...Array.from(new Set(PROJECTS.map((p) => p.cat)))]
 
@@ -41,7 +42,7 @@ function LedgerRow({ p, n, open, onToggle }) {
   }
 
   return (
-    <div ref={rowRef} data-ledger-row className="scroll-mt-[96px] [perspective:1400px]">
+    <div ref={rowRef} id={`ledger-${projectSlug(p.title)}`} data-ledger-row className="scroll-mt-[96px] [perspective:1400px]">
       <div
         className={`group relative overflow-hidden rounded-[14px] bg-paper transition-[transform,box-shadow] duration-[400ms] ease-smooth hover:-translate-y-1 dark:bg-glass dark:[backdrop-filter:blur(14px)_saturate(130%)] ${
           open
@@ -166,9 +167,26 @@ function LedgerRow({ p, n, open, onToggle }) {
 
 /* ---------------------------------------------- 01 · THE LEDGER INDEX */
 export function Ledger() {
+  const [searchParams] = useSearchParams()
+  // Deep link from a Home project card: /projects?p=<slug> opens that record.
+  const targetProject = PROJECTS.find((p) => projectSlug(p.title) === searchParams.get('p'))
+
   const [cat, setCat] = useState('All')
-  const [openTitle, setOpenTitle] = useState(PROJECTS[0].title)
+  const [openTitle, setOpenTitle] = useState((targetProject && targetProject.title) || PROJECTS[0].title)
   const list = cat === 'All' ? PROJECTS : PROJECTS.filter((p) => p.cat === cat)
+
+  // On a deep link, glide the opened record just under the sticky nav once the
+  // page (lazy chunk + first paint) has settled.
+  useEffect(() => {
+    if (!targetProject) return
+    const t = window.setTimeout(() => {
+      const el = document.getElementById(`ledger-${projectSlug(targetProject.title)}`)
+      if (!el) return
+      const NAV = 96
+      window.scrollTo({ top: window.scrollY + el.getBoundingClientRect().top - NAV, behavior: MOTION_OFF ? 'auto' : 'smooth' })
+    }, 450)
+    return () => window.clearTimeout(t)
+  }, [targetProject])
 
   const countFor = (c) => (c === 'All' ? PROJECTS.length : PROJECTS.filter((p) => p.cat === c).length)
 

@@ -12,6 +12,7 @@ const AboutPage = lazy(() => import('./pages/AboutPage.jsx'))
 const ServicesPage = lazy(() => import('./pages/ServicesPage.jsx'))
 const ProjectsPage = lazy(() => import('./pages/ProjectsPage.jsx'))
 const BlogsPage = lazy(() => import('./pages/BlogsPage.jsx'))
+const ContactPage = lazy(() => import('./pages/ContactPage.jsx'))
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -24,6 +25,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/blogs" element={<BlogsPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<App />} />
         </Routes>
       </Suspense>

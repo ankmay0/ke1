@@ -13,7 +13,8 @@ import 'swiper/css/effect-coverflow'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
-import { PROJECTS } from '../../lib/data'
+import { Link } from 'react-router-dom'
+import { PROJECTS, projectSlug } from '../../lib/data'
 import { Reveal, SectionHead, Icon } from '../../ui/ui'
 import { MOTION_OFF } from '../../lib/motion'
 import { WRAP, WM, LEAD } from '../../lib/cx'
@@ -25,7 +26,11 @@ import { WRAP, WM, LEAD } from '../../lib/cx'
 function ProjectCard({ p, i }) {
   const ref = String(i + 1).padStart(2, '0')
   return (
-    <article className="group relative h-full w-full overflow-hidden rounded-md bg-dark ring-1 ring-white/10 transition-[transform,box-shadow,ring-color] duration-[400ms] ease-smooth hover:z-20 hover:scale-[1.04] hover:shadow-[0_44px_80px_-26px_rgba(0,0,0,0.85)] hover:ring-white/25">
+    <Link
+      to={`/projects?p=${projectSlug(p.title)}`}
+      aria-label={`Open ${p.title} in the project ledger`}
+      className="group relative block h-full w-full overflow-hidden rounded-md bg-dark ring-1 ring-white/10 transition-[transform,box-shadow,ring-color] duration-[400ms] ease-smooth hover:z-20 hover:scale-[1.04] hover:shadow-[0_44px_80px_-26px_rgba(0,0,0,0.85)] hover:ring-white/25"
+    >
       {/* thumbnail */}
       <img
         src={p.img}
@@ -66,7 +71,7 @@ function ProjectCard({ p, i }) {
           ))}
         </div>
       </div>
-    </article>
+    </Link>
   )
 }
 
@@ -124,8 +129,8 @@ export function Projects() {
 
           {/* Netflix-style end tile — the row's call to action, as the final slide */}
           <SwiperSlide className="!aspect-[16/10] !h-auto !w-[clamp(300px,32vw,432px)]">
-            <a
-              href="#quote"
+            <Link
+              to="/contact"
               className="group relative flex h-full w-full flex-col justify-between overflow-hidden rounded-md border border-glass-brd bg-dark p-6 text-white ring-1 ring-white/10 transition-[transform,box-shadow,ring-color] duration-[400ms] ease-smooth hover:z-20 hover:scale-[1.04] hover:shadow-[0_44px_80px_-26px_rgba(0,0,0,0.85)] hover:ring-yellow/40"
             >
               <span aria-hidden="true" className="pointer-events-none absolute inset-0 -z-[1] bg-[radial-gradient(120%_90%_at_100%_0%,rgba(255,203,47,0.16),transparent_60%)] opacity-70 transition-opacity duration-500 group-hover:opacity-100" />
@@ -137,7 +142,7 @@ export function Projects() {
                 <span className="font-body text-[12.5px] font-semibold uppercase tracking-[0.08em] text-on-dark-mute">Have a similar project?</span>
                 <span className="font-display text-[clamp(26px,2.6vw,38px)] font-extrabold leading-[1.04] text-white">Let&apos;s talk</span>
               </span>
-            </a>
+            </Link>
           </SwiperSlide>
         </Swiper>
       </div>

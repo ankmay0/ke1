@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Magnetic } from '../Chrome'
 import { Icon } from '../../ui/ui'
 import { PANEL_DARK } from '../../ui/tech'
@@ -22,7 +23,7 @@ export function ServicesCTA() {
           </div>
 
           <div className="flex flex-col gap-3.5">
-            <Magnetic className="w-full"><a className={`${BTN_PRIMARY} w-full justify-between`} href="/#quote">Begin a project {Icon.arrow}</a></Magnetic>
+            <Magnetic className="w-full"><Link className={`${BTN_PRIMARY} w-full justify-between`} to="/contact">Begin a project {Icon.arrow}</Link></Magnetic>
             <a className="flex items-center justify-between gap-4 rounded-[12px] border border-white/[0.16] bg-white/[0.04] px-5 py-4 transition-[border-color,background] duration-300 ease-smooth hover:border-yellow hover:bg-white/[0.08]" href={`tel:+${COMPANY.phoneRaw}`}>
               <span className="flex items-center gap-3 text-white [&_svg]:h-[18px] [&_svg]:w-[18px] [&_svg]:text-yellow">{Icon.phone}
                 <span className="font-display text-[15px] font-bold">{COMPANY.phone}</span>

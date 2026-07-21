@@ -36,7 +36,7 @@ export default function Banner() {
             Indian Railway Construction Manual — delivered safely, on schedule, across India.
           </p>
           <Magnetic className="mt-8">
-            <a href="#quote" className={BTN_PRIMARY}>Start a conversation {Icon.arrow}</a>
+            <a href="/contact" className={BTN_PRIMARY}>Start a conversation {Icon.arrow}</a>
           </Magnetic>
         </Reveal>
       </div>

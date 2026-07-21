@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { SHOT, CountUp, Icon, RevealText } from '../ui/ui'
 import { useParallax, gsap, MOTION_OFF } from '../lib/motion'
 import { Magnetic } from './Chrome'
@@ -165,7 +166,7 @@ export default function Hero() {
             </p>
             <div className="mt-[clamp(11px,1.4vw,18px)] max-[900px]:mt-[18px] flex flex-wrap gap-[12px]">
               <Magnetic><a href="#services" className={`${BTN_PRIMARY} max-[900px]:px-8 max-[900px]:py-[18px] max-[900px]:text-[17px]`}>Explore capabilities {Icon.arrow}</a></Magnetic>
-              <Magnetic strength={0.25}><a href="#quote" className={`${BTN_GHOST_HERO} max-[900px]:px-8 max-[900px]:py-[18px] max-[900px]:text-[17px]`}>Get a quote {Icon.arrow}</a></Magnetic>
+              <Magnetic strength={0.25}><Link to="/contact" className={`${BTN_GHOST_HERO} max-[900px]:px-8 max-[900px]:py-[18px] max-[900px]:text-[17px]`}>Get a quote {Icon.arrow}</Link></Magnetic>
             </div>
           </div>
 

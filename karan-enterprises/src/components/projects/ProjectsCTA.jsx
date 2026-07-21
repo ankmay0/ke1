@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Reveal, Icon } from '../../ui/ui'
 import { WRAP, BTN_PRIMARY } from '../../lib/cx'
 
@@ -18,7 +19,7 @@ export function ProjectsCTA() {
                 Railway sidings, formation, slope protection, roadways or civil works — talk to the team that delivers, certifies and signs off on time.
               </p>
             </div>
-            <a className={`${BTN_PRIMARY} justify-self-start`} href="/#quote">Request a quote{Icon.arrow}</a>
+            <Link className={`${BTN_PRIMARY} justify-self-start`} to="/contact">Request a quote{Icon.arrow}</Link>
           </div>
         </Reveal>
       </div>

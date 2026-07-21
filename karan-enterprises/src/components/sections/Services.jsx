@@ -11,7 +11,7 @@ export function Services() {
             Solutions engineered to perform
           </SectionHead>
           <Reveal delay={0.1}>
-            <a className={BTN_DARK} href="#quote">Request a capability brief {Icon.arrow}</a>
+            <a className={BTN_DARK} href="/contact">Request a capability brief {Icon.arrow}</a>
           </Reveal>
         </div>
 

@@ -67,7 +67,7 @@ export default function Nav() {
               {COMPANY.phone}
             </a>
             <ThemeToggle />
-            <Link className={`${BTN_PRIMARY} max-[960px]:hidden`} to="/#quote">Get a Quote {Icon.arrow}</Link>
+            <Link className={`${BTN_PRIMARY} max-[960px]:hidden`} to="/contact">Get a Quote {Icon.arrow}</Link>
             <button
               className="hidden flex-col gap-[5px] p-2 max-[960px]:flex"
               aria-label="Menu"

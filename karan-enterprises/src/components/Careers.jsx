@@ -28,24 +28,34 @@ export default function Careers() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', role: ROLES[0], experience: '', message: '' })
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }))
 
-  const plainBody = () =>
-    `Job application — M/s Karan Enterprises\n\n` +
-    `Name: ${form.name || '-'}\n` +
-    `Email: ${form.email || '-'}\n` +
-    `Phone: ${form.phone || '-'}\n` +
-    `Role applied for: ${form.role}\n` +
-    `Experience: ${form.experience || '-'}\n\n` +
-    `About the candidate:\n${form.message || '-'}\n\n` +
-    `(Please attach your CV / resume to this email.)`
+  // Send the application straight to the careers inbox (no compose window).
+  const [status, setStatus] = useState('idle') // idle | sending | sent | error
 
-  const toEmail = (e) => {
+  const submit = async (e) => {
     e.preventDefault()
-    const subject = encodeURIComponent(`Job application — ${form.role}`)
-    window.location.href = `mailto:${CAREERS_EMAIL}?subject=${subject}&body=${encodeURIComponent(plainBody())}`
-  }
-
-  const toWhatsApp = () => {
-    window.open(`https://wa.me/${COMPANY.phoneRaw}?text=${encodeURIComponent(plainBody())}`, '_blank', 'noopener')
+    if (status === 'sending' || status === 'sent') return
+    setStatus('sending')
+    try {
+      const res = await fetch(`https://formsubmit.co/ajax/${CAREERS_EMAIL}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          _subject: `Job application — ${form.role}`,
+          _template: 'table',
+          _captcha: 'false',
+          Name: form.name,
+          Email: form.email,
+          Phone: form.phone || '—',
+          'Role applied for': form.role,
+          Experience: form.experience || '—',
+          'About the candidate': form.message || '—',
+        }),
+      })
+      const data = await res.json()
+      setStatus(data.success === 'true' || data.success === true ? 'sent' : 'error')
+    } catch {
+      setStatus('error')
+    }
   }
 
   return (
@@ -80,7 +90,7 @@ export default function Careers() {
         <Reveal delay={0.12}>
           <form
             className="rounded bg-paper p-[clamp(28px,3vw,40px)] text-ink shadow-[0_40px_80px_-40px_rgba(0,0,0,0.18)] dark:bg-glass dark:shadow-glow-soft dark:[backdrop-filter:blur(14px)_saturate(130%)]"
-            onSubmit={toEmail}
+            onSubmit={submit}
           >
             <div className="grid grid-cols-2 gap-4 max-[760px]:grid-cols-1">
               <div className="mb-4 flex flex-col gap-[7px]">
@@ -116,11 +126,22 @@ export default function Careers() {
               <textarea className={`${INPUT} min-h-[110px] resize-y`} id="c-msg" value={form.message} onChange={set('message')} placeholder="Tell us about your background, skills and current location…" />
             </div>
 
-            <div className="mt-1.5 flex flex-wrap gap-3">
-              <button type="submit" className={`${BTN_PRIMARY} min-w-[160px] flex-1 justify-center`}>Apply by Email {Icon.arrow}</button>
-              <button type="button" className={`${BTN_DARK} min-w-[160px] flex-1 justify-center`} onClick={toWhatsApp}>Apply on WhatsApp {Icon.arrow}</button>
+            <div className="mt-1.5">
+              <button
+                type="submit"
+                disabled={status === 'sending' || status === 'sent'}
+                className={`${BTN_PRIMARY} w-full justify-center disabled:cursor-not-allowed disabled:opacity-70`}
+              >
+                {status === 'sending' ? 'Sending…' : status === 'sent' ? 'Application sent' : <>Submit application {Icon.arrow}</>}
+              </button>
             </div>
-            <p className="mt-4 text-center text-[12.5px] text-steel">Your email client opens with the details filled in — please attach your CV before sending.</p>
+            {status === 'sent' ? (
+              <p className="mt-4 flex items-center justify-center gap-2 text-center text-[13px] font-semibold text-yellow-deep">{Icon.check} Thank you — we&apos;ve received your application.</p>
+            ) : status === 'error' ? (
+              <p className="mt-4 text-center text-[13px] text-red-500">Could not send. Please email your details to {CAREERS_EMAIL}.</p>
+            ) : (
+              <p className="mt-4 text-center text-[12.5px] text-steel">To include your CV, email it to {CAREERS_EMAIL} after submitting.</p>
+            )}
           </form>
         </Reveal>
       </div>

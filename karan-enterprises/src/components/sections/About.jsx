@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { ABOUT_CALLOUTS } from '../../lib/data'
 import { Reveal, Icon } from '../../ui/ui'
 import { useScrubScale } from '../../lib/motion'
@@ -66,7 +67,7 @@ export function About() {
             })}
           </ul>
 
-          <a className={`${BTN_PRIMARY} mt-[30px]`} href="#quote">Start a conversation {Icon.arrow}</a>
+          <Link className={`${BTN_PRIMARY} mt-[30px]`} to="/contact">Start a conversation {Icon.arrow}</Link>
         </Reveal>
 
         <Reveal delay={0.15} className="relative mt-0 max-[1024px]:mt-0">
