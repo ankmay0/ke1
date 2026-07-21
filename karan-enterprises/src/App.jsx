@@ -2,9 +2,10 @@ import Preloader from './components/Preloader'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import {
-  About, MissionVision, Services, RailwayFormation, Geotech, Projects, Stats, Clients, Testimonials, ClientMarquee,
+  Services, RailwayFormation, Projects, Stats, Clients, ClientMarquee,
 } from './components/sections'
 import Quote from './components/Quote'
+import Careers from './components/Careers'
 import Footer from './components/Footer'
 import Banner from './components/Banner'
 import Credentials from './components/Credentials'
@@ -34,10 +35,7 @@ export default function App() {
           )}
         />
 
-        <About />
-        {/* <MissionVision /> */}
         <Credentials />
-        <Geotech />
 
         <Clients />
 
@@ -48,12 +46,14 @@ export default function App() {
 
         {/* <Banner /> */}
 
-        <Stats />
         <ClientMarquee />
 
 
-        <Testimonials />
+        <Stats />
+
         <Quote />
+
+        <Careers />
       </main>
       <Footer />
 

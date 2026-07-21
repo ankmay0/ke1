@@ -5,7 +5,7 @@ import { ScrollProgress } from '../components/Chrome'
 import { Icon } from '../ui/ui'
 import { COMPANY } from '../lib/data'
 import {
-  ProjectsHero, Ledger, Reach, Gallery, CriticalInfra, ProjectsCTA,
+  ProjectsHero, Ledger, Reach, Gallery, SiteFilms, CriticalInfra, ProjectsCTA,
 } from '../components/projects'
 
 /* =====================================================================
@@ -31,6 +31,7 @@ export default function ProjectsPage() {
         <Ledger />
         <Reach />
         <Gallery />
+        <SiteFilms />
         <CriticalInfra />
         <ProjectsCTA />
       </main>

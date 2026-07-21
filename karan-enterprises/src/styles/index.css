@@ -172,3 +172,91 @@
     * { scroll-behavior: auto; }
   }
 }
+
+/* =====================================================================
+   Projects — Swiper coverflow carousel
+   Kept outside @layer so these overrides win over Swiper's own CSS.
+   ===================================================================== */
+.projects-swiper .swiper {
+  /* let the lifted/scaled active card and its shadow breathe vertically
+     while side slides still clip cleanly at the horizontal edges */
+  overflow: visible;
+  clip-path: inset(-40% 0 -14% 0);
+}
+/* smooth glide easing for the whole track — snappy start, soft settle */
+.projects-swiper .swiper-wrapper {
+  transition-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.projects-swiper .swiper-slide {
+  transition: opacity 0.55s ease, filter 0.55s ease;
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+/* dim + desaturate the off-centre slides so the active one leads the eye */
+.projects-swiper .swiper-slide:not(.swiper-slide-active) {
+  opacity: 0.62;
+  filter: saturate(0.72) brightness(0.82);
+}
+/* the centred slide auto-reveals its detail drawer (mirrors desktop hover) */
+.projects-swiper .swiper-slide-active .pj-drawer {
+  transform: translateY(0);
+  opacity: 1;
+}
+.projects-swiper .swiper-slide-active .pj-title {
+  opacity: 0;
+}
+
+/* navigation arrows — square, industrial, yellow on hover */
+.projects-swiper .swiper-button-prev,
+.projects-swiper .swiper-button-next {
+  width: 46px;
+  height: 46px;
+  border-radius: 9999px;
+  color: #fff;
+  background: rgba(10, 13, 18, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(6px);
+  transition: color 0.25s ease, background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+.projects-swiper .swiper-button-prev:hover,
+.projects-swiper .swiper-button-next:hover {
+  color: #0a0d12;
+  background: var(--yellow, #ffcd00);
+  border-color: var(--yellow, #ffcd00);
+  transform: scale(1.06);
+}
+.projects-swiper .swiper-button-prev::after,
+.projects-swiper .swiper-button-next::after {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+/* pagination bullets */
+.projects-swiper .swiper-pagination {
+  bottom: 0;
+}
+.projects-swiper .swiper-pagination-bullet {
+  background: currentColor;
+  color: var(--steel, #6b7280);
+  opacity: 0.4;
+}
+.projects-swiper .swiper-pagination-bullet-active {
+  color: var(--yellow, #ffcd00);
+  opacity: 1;
+}
+
+@media (max-width: 640px) {
+  .projects-swiper .swiper-button-prev,
+  .projects-swiper .swiper-button-next {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-swiper .swiper-slide,
+  .projects-swiper .pj-drawer,
+  .projects-swiper .pj-title {
+    transition: none;
+  }
+}

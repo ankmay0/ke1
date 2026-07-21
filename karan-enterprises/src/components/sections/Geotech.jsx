@@ -1,6 +1,47 @@
+import { useState, useEffect } from 'react'
 import { GEO_CAPS } from '../../lib/data'
-import { Reveal, GeoIcon } from '../../ui/ui'
+import { Reveal, GeoIcon, SHOT } from '../../ui/ui'
+import { MOTION_OFF } from '../../lib/motion'
 import { WRAP, SECTION, SEC_EYEBROW, IDX, KICKER, H_SEC, LEAD, DOT, CARD, ICON_CHIP } from '../../lib/cx'
+
+/* Capability visual — a single field photo, or a gentle auto-crossfade
+   through several (with dot indicators) when a capability has more than one.
+   Freezes on the first frame in screenshot / reduced-motion mode. */
+function CapMedia({ images, alt }) {
+  const [i, setI] = useState(0)
+  const multi = images.length > 1
+  useEffect(() => {
+    if (!multi || SHOT || MOTION_OFF) return
+    const id = setInterval(() => setI((v) => (v + 1) % images.length), 3800)
+    return () => clearInterval(id)
+  }, [multi, images.length])
+  return (
+    <>
+      {images.map((src, idx) => (
+        <img
+          key={src}
+          src={src}
+          alt={idx === 0 ? alt : ''}
+          loading="lazy"
+          className={`absolute inset-0 h-full w-full object-cover grayscale-[0.4] brightness-[0.95] transition-[opacity,transform,filter] duration-[800ms] ease-smooth group-hover:scale-[1.06] group-hover:grayscale-0 group-hover:brightness-100 ${idx === i ? 'opacity-100' : 'opacity-0'}`}
+        />
+      ))}
+      {multi && (
+        <div className="absolute bottom-3 left-1/2 z-[2] flex -translate-x-1/2 gap-1.5">
+          {images.map((_, idx) => (
+            <button
+              key={idx}
+              type="button"
+              aria-label={`Show photo ${idx + 1}`}
+              onClick={() => setI(idx)}
+              className={`h-1.5 rounded-full transition-all duration-300 ${idx === i ? 'w-4 bg-yellow' : 'w-1.5 bg-white/55 hover:bg-white/80'}`}
+            />
+          ))}
+        </div>
+      )}
+    </>
+  )
+}
 
 export function Geotech() {
   return (
@@ -33,12 +74,7 @@ export function Geotech() {
             >
               {/* relevant field image — desaturated at rest, full colour on hover */}
               <div className="relative aspect-[16/9] overflow-hidden">
-                <img
-                  className="h-full w-full object-cover grayscale-[0.4] brightness-[0.95] transition-[transform,filter] duration-[800ms] ease-smooth group-hover:scale-[1.06] group-hover:grayscale-0 group-hover:brightness-100"
-                  src={c.img}
-                  alt={c.title}
-                  loading="lazy"
-                />
+                <CapMedia images={c.images || [c.img]} alt={c.title} />
                 <span aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(10,13,19,0)_40%,rgba(10,13,19,0.62)_100%)]" />
                 <span className="absolute right-3 top-3 grid h-8 w-10 place-items-center bg-yellow font-cond text-[14px] font-semibold leading-none text-on-accent">{String(i + 1).padStart(2, '0')}</span>
                 <span className={`${ICON_CHIP} absolute bottom-3.5 left-4 h-[44px] w-[44px] shadow-[0_10px_24px_-10px_rgba(0,0,0,0.55)] group-hover:bg-yellow dark:group-hover:bg-yellow-deep [&_svg]:h-[23px] [&_svg]:w-[23px]`}>{GeoIcon[c.icon]}</span>

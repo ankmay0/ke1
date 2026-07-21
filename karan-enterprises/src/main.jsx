@@ -8,6 +8,7 @@ import './styles/index.css'
 
 // Home is eager (the landing route); secondary pages are code-split so their
 // bundles only load when their route is visited.
+const AboutPage = lazy(() => import('./pages/AboutPage.jsx'))
 const ServicesPage = lazy(() => import('./pages/ServicesPage.jsx'))
 const ProjectsPage = lazy(() => import('./pages/ProjectsPage.jsx'))
 const BlogsPage = lazy(() => import('./pages/BlogsPage.jsx'))
@@ -19,6 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Suspense fallback={null}>
         <Routes>
           <Route path="/" element={<App />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/blogs" element={<BlogsPage />} />

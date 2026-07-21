@@ -25,10 +25,11 @@ export const COMPANY = {
 // ScrollManager scrolls to the section.
 export const NAV_LINKS = [
   { label: 'Home', href: '/', n: '01' },
-  { label: 'Services', href: '/services', n: '02' },
-  { label: 'Projects', href: '/projects', n: '03' },
-  { label: 'Blogs', href: '/blogs', n: '04' },
-  { label: 'Contact', href: '/#quote', n: '05' },
+  { label: 'About Us', href: '/about', n: '02' },
+  { label: 'Services', href: '/services', n: '03' },
+  { label: 'Projects', href: '/projects', n: '04' },
+  { label: 'Blogs', href: '/blogs', n: '05' },
+  { label: 'Contact', href: '/#quote', n: '06' },
 ]
 
 // Blog index metadata — the article prose lives inline in BlogsPage.jsx;
@@ -204,12 +205,12 @@ export const PROCESS = [
 ]
 
 export const GEO_CAPS = [
-  { icon: 'gabion', title: 'Gabion Walls & Retaining Structures', desc: 'Durable gabion retaining walls and erosion-resistant structures built with advanced Maccaferri systems.', img: '/assets/photo11.jpg' },
-  { icon: 'erosion', title: 'Erosion Control Solutions', desc: 'Maccaferri polymeric and biodegradable mats for slope stabilisation, soil conservation and long-term protection.', img: '/assets/photo6.jpg' },
-  { icon: 'rsw', title: 'Reinforced Soil Walls (RSW)', desc: 'Design support and construction of high-performance reinforced-earth structures for railway and roadway works.', img: '/assets/photo3.jpg' },
-  { icon: 'culvert', title: 'Culvert Formation & Protection', desc: 'Culvert construction, protection works and allied civil infrastructure ensuring structural longevity.', img: '/assets/proj-barh-bridge.jpg' },
-  { icon: 'bridge', title: 'Bridge Abutment Protection', desc: 'Specialised protection for bridge abutments using engineered retaining, gabion and erosion-control systems.', img: '/assets/gal-05.jpg' },
-  { icon: 'geocell', title: 'Geocell Ground Improvement', desc: 'Geocell and geogrid reinforcement for formation strengthening on demanding terrain.', img: '/assets/photo4.jpg' },
+  { icon: 'gabion', title: 'Gabion Walls & Retaining Structures', desc: 'Durable gabion retaining walls and erosion-resistant structures built with advanced Maccaferri systems.', img: '/assets/cap-gabion.jpg' },
+  { icon: 'erosion', title: 'Erosion Control Solutions', desc: 'Maccaferri polymeric and biodegradable mats for slope stabilisation, soil conservation and long-term protection.', images: ['/assets/cap-erosion-1.jpg', '/assets/cap-erosion-2.jpg', '/assets/cap-erosion-3.jpg'] },
+  { icon: 'rsw', title: 'Reinforced Soil Walls (RSW)', desc: 'Design support and construction of high-performance reinforced-earth structures for railway and roadway works.', images: ['/assets/cap-rsw-1.jpg', '/assets/cap-rsw-2.jpg'] },
+  { icon: 'culvert', title: 'Culvert Formation & Protection', desc: 'Culvert construction, protection works and allied civil infrastructure ensuring structural longevity.', images: ['/assets/cap-culvert-1.jpg', '/assets/cap-culvert-2.jpg', '/assets/cap-culvert-3.jpg'] },
+  { icon: 'bridge', title: 'Bridge Abutment Protection', desc: 'Specialised protection for bridge abutments using engineered retaining, gabion and erosion-control systems.', img: '/assets/cap-bridge.jpg' },
+  { icon: 'geocell', title: 'Geocell Ground Improvement', desc: 'Geocell and geogrid reinforcement for formation strengthening on demanding terrain.', images: ['/assets/cap-geocell.jpg', '/assets/cap-geocell-2.jpg', '/assets/cap-geogrid.jpg'] },
 ]
 
 // Real contract record — sourced from the company Project Portfolio.
@@ -257,7 +258,7 @@ export const PROJECTS = [
     activities: ['RCC retaining-wall construction', 'Ballast supply', 'P-way execution', 'Embankment stabilisation', 'Erosion control'],
     highlight: 'Integrated railway infrastructure strengthening for NTPC Barh STPP.',
     overview: 'Heavy civil engineering, railway formation strengthening, geotechnical stabilisation and track infrastructure works delivered as a single strengthening package.',
-    tags: ['RCC wall', 'P-way', 'Embankment'], img: '/assets/proj-barh-bridge.jpg',
+    tags: ['RCC wall', 'P-way', 'Embankment'], img: '/assets/proj-barh-2.jpg',
   },
   {
     cat: 'Roadway', title: 'IRQP Road Improvement Project – Koderma, Jharkhand',
@@ -267,7 +268,7 @@ export const PROJECTS = [
     activities: ['Road strengthening', 'Curve improvement', 'RCC drain construction', 'Pavement restoration', 'Roadway enhancement'],
     highlight: 'Major roadway improvement for commuter safety and transport efficiency.',
     overview: 'Comprehensive road rehabilitation and strengthening — including drainage infrastructure and pavement enhancement — executed to departmental standards over a 16.40 km stretch.',
-    tags: ['Strengthening', 'RCC drains', '16.40 km'], img: '/assets/proj-irqp-koderma.jpg',
+    tags: ['Strengthening', 'RCC drains', '16.40 km'], img: '/assets/proj-koderma-road.jpg',
   },
   {
     cat: 'Railway', title: 'KONAR Railway Siding Infrastructure Project – CCL',
@@ -287,7 +288,7 @@ export const PROJECTS = [
     activities: ['Control-room building construction', 'Flooring', 'Plumbing', 'Electrical conduit works', 'Painting & finishing'],
     highlight: 'Industrial infrastructure development for the power & energy sector.',
     overview: 'Control-room buildings and associated infrastructure designed and finished to meet industrial and operational standards.',
-    tags: ['Building', 'Architectural', 'MEP'], img: '/assets/proj-karo-civil.jpg',
+    tags: ['Building', 'Architectural', 'MEP'], img: '/assets/proj-karobldg-3.jpg',
   },
   {
     cat: 'Roadway', title: 'DMFT Road Construction Project – Bokaro, Jharkhand',
@@ -297,7 +298,7 @@ export const PROJECTS = [
     activities: ['Earthwork & road formation', 'Subgrade preparation', 'Granular sub-base & base course', 'Blacktop road construction', 'Drainage & civil works'],
     highlight: 'Government infrastructure under the DMFT scheme for durable rural connectivity.',
     overview: 'A rural roadway development executed with strict adherence to government quality standards to improve transportation accessibility and regional connectivity.',
-    tags: ['Blacktop', 'Sub-base', 'Drainage'], img: '/assets/proj-dmft-bokaro.jpg',
+    tags: ['Blacktop', 'Sub-base', 'Drainage'], img: '/assets/proj-dmft-road.jpg',
   },
   {
     cat: 'Geotechnical', title: 'Railway Slope Protection Project – Ray–Tori Section',
@@ -307,7 +308,7 @@ export const PROJECTS = [
     activities: ['Synthetic erosion-control blanket installation', 'Slope dressing', 'Drainage systems', 'Anchoring support systems'],
     highlight: 'Specialised railway slope stabilisation using advanced erosion-control systems.',
     overview: 'Long-term slope stability improved and railway infrastructure protected through geotechnical and erosion-control solutions in cutting areas.',
-    tags: ['Erosion blanket', 'Anchoring', 'Drainage'], img: '/assets/proj-raytori-slope.jpg',
+    tags: ['Erosion blanket', 'Anchoring', 'Drainage'], img: '/assets/proj-raytori-real.jpg',
   },
   // {
   //   cat: 'Supply', title: 'Geosynthetic Cloth & HDPE Sheet Supply',
@@ -324,6 +325,19 @@ export const PROJECTS = [
 // Authentic field gallery — converted from the company's own site/portfolio
 // media (HEIC/Media source). Used by the Projects page gallery band.
 export const PROJECT_GALLERY = [
+  { img: '/assets/proj-bridge-aerial.jpg', alt: 'Railway bridge construction over the river' },
+  { img: '/assets/proj-barh-2.jpg', alt: 'Gabion and embankment strengthening — Barh STPP, Bihar' },
+  { img: '/assets/proj-karobldg-3.jpg', alt: 'Control-room building construction — Parasa Substation' },
+  { img: '/assets/proj-barh-1.jpg', alt: 'Gabion mesh slope protection along the RoR line' },
+  { img: '/assets/proj-barh-3.jpg', alt: 'Geotextile-reinforced formation works' },
+  { img: '/assets/proj-karobldg-1.jpg', alt: 'RCC slab shuttering during building works' },
+  { img: '/assets/proj-barh-4.jpg', alt: 'Geocell / geogrid installation in progress' },
+  { img: '/assets/proj-karobldg-4.jpg', alt: 'RCC column framing on the building site, Bokaro' },
+  { img: '/assets/proj-karobldg-2.jpg', alt: 'Slab formwork ahead of concreting' },
+  { img: '/assets/gal-road-paving.jpg', alt: 'Blacktop paving with paver and roller — roadway works' },
+  { img: '/assets/gal-erosion-netting.jpg', alt: 'Erosion-control netting on a railway slope — Ray–Tori' },
+  { img: '/assets/gal-raytori-rcc.jpg', alt: 'RCC retaining and drainage works, Ray–Tori section' },
+  { img: '/assets/gal-raytori-shutter.jpg', alt: 'Reinforced retaining wall under construction' },
   { img: '/assets/gal-01.jpg', alt: 'Railway formation and slope-protection fieldwork' },
   { img: '/assets/gal-03.jpg', alt: 'Geocell ground improvement on railway cutting' },
   { img: '/assets/gal-11.jpg', alt: 'Railway track-laying operations' },
@@ -332,6 +346,18 @@ export const PROJECT_GALLERY = [
   { img: '/assets/gal-09.jpg', alt: 'Geocell slope-protection installation, Jharkhand' },
   { img: '/assets/gal-02.jpg', alt: 'Bridge and embankment construction site' },
   { img: '/assets/gal-12.jpg', alt: 'Ash transportation and haulage operations' },
+]
+
+// Site films — self-hosted (compressed to 720p H.264 from the source clips).
+// Each renders as a native <video> with a poster; preload="none" so the file
+// only downloads when the visitor presses play.
+export const SITE_FILMS = [
+  { src: '/assets/videos/film-1.mp4', poster: '/assets/videos/poster-1.jpg', title: 'Railway siding earthwork & formation' },
+  { src: '/assets/videos/film-2.mp4', poster: '/assets/videos/poster-2.jpg', title: 'Railway siding infrastructure works' },
+  { src: '/assets/videos/film-3.mp4', poster: '/assets/videos/poster-3.jpg', title: 'Tori–Shivpur rehabilitation — block work (64–66)' },
+  { src: '/assets/videos/film-4.mp4', poster: '/assets/videos/poster-4.jpg', title: 'Tori–Shivpur rehabilitation — block work (92)' },
+  { src: '/assets/videos/film-5.mp4', poster: '/assets/videos/poster-5.jpg', title: 'On-site execution — geotechnical works' },
+  { src: '/assets/videos/film-6.mp4', poster: '/assets/videos/poster-6.jpg', title: 'On-site execution — slope protection' },
 ]
 
 export const STATS = [
@@ -392,14 +418,14 @@ export const COMPLIANCE = [
 // `em` is the accent fragment of the title; it is rendered with a yellow
 // brand underline.
 export const SERVICES_FULL = [
-  { n: '01', title: 'Railway', em: 'formation', short: 'Railway formation', desc: 'New broad-gauge railway formation — earthwork, drainage, compaction, ballast and final track-bed to RDSO grade.', tags: ['RDSO', 'Earthwork', 'Track bed'], img: '/assets/photo1.jpg' },
-  { n: '02', title: 'Track maintenance', em: '& ground improvement', short: 'Track maintenance', desc: 'Rehabilitation of existing tracks with Maccaferri geocell ground improvement and formation strengthening.', tags: ['Rehabilitation', 'Maccaferri geocell', 'Block-time'], img: '/assets/photo9.jpg' },
-  { n: '03', title: 'Maccaferri', em: 'reinforced soil wall', short: 'Reinforced soil walls', desc: 'Maccaferri reinforced-soil and gabion retaining structures for embankments and water-fronts.', tags: ['Maccaferri', 'Retaining', 'Embankment'], img: '/assets/photo3.jpg' },
-  { n: '04', title: 'Erosion', em: 'control mats', short: 'Erosion control', desc: 'Innovative Maccaferri polymeric and biodegradable mats for slope and surface erosion control.', tags: ['Maccaferri mats', 'Slope', 'Erosion'], img: '/assets/photo6.jpg' },
-  { n: '05', title: 'Geocell &', em: 'geogrid', short: 'Geocell & geogrid', desc: 'Maccaferri geocell and geogrid systems for soil stabilisation, load support and ground reinforcement.', tags: ['Maccaferri', 'Soil stabilisation', 'Reinforcement'], img: '/assets/photo4.jpg' },
-  { n: '06', title: 'Culvert', em: 'formation', short: 'Culvert formation', desc: 'Construction of culverts, approaches and aprons with allied drainage and protection works.', tags: ['Culvert', 'Drainage', 'Approaches'], img: '/assets/photo7.jpg' },
-  { n: '07', title: 'Bridge abutment', em: 'protection', short: 'Bridge protection', desc: 'Bridge abutment and approach protection — retaining, gabion and reinforced-soil systems.', tags: ['Bridge', 'Abutment', 'Protection'], img: '/assets/photo5.jpg' },
-  { n: '08', title: 'Civil &', em: 'roadway works', short: 'Civil & roadway', desc: 'Civil and architectural works, roads, RCC drains and pavement construction.', tags: ['Civil', 'Roads', 'RCC drains'], img: '/assets/photo10.jpg' },
+  { n: '01', title: 'Railway', em: 'formation', short: 'Railway formation', desc: 'New broad-gauge railway formation — earthwork, drainage, compaction, ballast and final track-bed to RDSO grade.', tags: ['RDSO', 'Earthwork', 'Track bed'], img: '/assets/proj-barh-2.jpg' },
+  { n: '02', title: 'Track maintenance', em: '& ground improvement', short: 'Track maintenance', desc: 'Rehabilitation of existing tracks with Maccaferri geocell ground improvement and formation strengthening.', tags: ['Rehabilitation', 'Maccaferri geocell', 'Block-time'], img: '/assets/cap-geocell-2.jpg' },
+  { n: '03', title: 'Maccaferri', em: 'reinforced soil wall', short: 'Reinforced soil walls', desc: 'Maccaferri reinforced-soil and gabion retaining structures for embankments and water-fronts.', tags: ['Maccaferri', 'Retaining', 'Embankment'], img: '/assets/cap-rsw-2.jpg' },
+  { n: '04', title: 'Erosion', em: 'control mats', short: 'Erosion control', desc: 'Innovative Maccaferri polymeric and biodegradable mats for slope and surface erosion control.', tags: ['Maccaferri mats', 'Slope', 'Erosion'], img: '/assets/cap-erosion-1.jpg' },
+  { n: '05', title: 'Geocell &', em: 'geogrid', short: 'Geocell & geogrid', desc: 'Maccaferri geocell and geogrid systems for soil stabilisation, load support and ground reinforcement.', tags: ['Maccaferri', 'Soil stabilisation', 'Reinforcement'], img: '/assets/cap-geogrid.jpg' },
+  { n: '06', title: 'Culvert', em: 'formation', short: 'Culvert formation', desc: 'Construction of culverts, approaches and aprons with allied drainage and protection works.', tags: ['Culvert', 'Drainage', 'Approaches'], img: '/assets/cap-culvert-1.jpg' },
+  { n: '07', title: 'Bridge abutment', em: 'protection', short: 'Bridge protection', desc: 'Bridge abutment and approach protection — retaining, gabion and reinforced-soil systems.', tags: ['Bridge', 'Abutment', 'Protection'], img: '/assets/cap-bridge.jpg' },
+  { n: '08', title: 'Civil &', em: 'roadway works', short: 'Civil & roadway', desc: 'Civil and architectural works, roads, RCC drains and pavement construction.', tags: ['Civil', 'Roads', 'RCC drains'], img: '/assets/gal-road-paving.jpg' },
 ]
 
 // III.02 — field strip + the six-stage formation/rehabilitation sequence.
@@ -421,7 +447,7 @@ export const RF_SEQUENCE = [
 
 // III.03 — critical railway infrastructure works.
 export const CRITICAL_BANNER = [
-  { img: '/assets/photo3.jpg', alt: 'Rail Over Bridge with retaining structures and approach — critical railway infrastructure' },
+  { img: '/assets/proj-bridge-aerial.jpg', alt: 'Rail Over Bridge with retaining structures and approach — critical railway infrastructure' },
   { img: '/assets/photo11.jpg', alt: 'Completed twin railway tracks with ballast — block-time delivery' },
 ]
 
@@ -507,6 +533,45 @@ export const EXEC_STAGES = [
   { n: '03', title: 'Construction execution', desc: 'Railway P-way and roadway works, civil structures and protection systems, continuous quality-controlled execution.', tag: 'P-way · Civil · Protection' },
   { n: '04', title: 'Quality & safety control', desc: 'Material testing and inspection, safety compliance monitoring, RDSO and client specification checks.', tag: 'Material testing · Safety · RDSO' },
   { n: '05', title: 'Project completion', desc: 'Final inspection and commissioning, documentation and project handover, post-completion support services.', tag: 'Commissioning · Handover · Support' },
+]
+
+// Corporate Social Responsibility — About Us page.
+export const CSR_GUEST = {
+  name: 'Mr. Anurag Kumar',
+  role: 'Former CGM of IPRCL',
+  honorific: 'Our Guest of Honour',
+  img: '/assets/csr-guest.jpg',
+}
+
+// CSR photo slider — "Moments from the field".
+export const CSR_GALLERY = [
+  { img: '/assets/csr-01.jpg', alt: 'Tree plantation drive — M/s Karan Enterprises' },
+  { img: '/assets/csr-02.jpg', alt: 'Our Guest of Honour planting a sapling on site' },
+  { img: '/assets/csr-03.jpg', alt: 'Guests and staff at the plantation drive' },
+  { img: '/assets/csr-04.jpg', alt: 'The team planting saplings across the site' },
+  { img: '/assets/csr-05.jpg', alt: 'Site staff during the tree plantation drive' },
+  { img: '/assets/csr-06.jpg', alt: 'The Karan Enterprises team at the CSR drive' },
+  { img: '/assets/csr-07.jpg', alt: 'Cleanliness drive at the project site' },
+  { img: '/assets/csr-08.jpg', alt: 'Staff joining the cleanliness drive' },
+  { img: '/assets/csr-09.jpg', alt: 'Sweeping and clean-up along the site' },
+  { img: '/assets/csr-10.jpg', alt: 'Environmental care across our worksites' },
+]
+
+export const CSR_INITIATIVES = [
+  {
+    icon: 'sprout',
+    title: 'Tree Plantation Drive',
+    desc: 'As part of our commitment to environmental sustainability, we organise tree plantation drives in and around our project locations. By increasing green cover, we aim to reduce our environmental footprint, promote biodiversity, and contribute to a healthier ecosystem for future generations.',
+    img: '/assets/csr-01.jpg',
+    tag: 'Environment · Biodiversity',
+  },
+  {
+    icon: 'recycle',
+    title: 'Cleanliness Drive',
+    desc: 'We regularly conduct cleanliness drives at project sites and nearby communities to promote hygiene, environmental awareness, and responsible waste management. Through these initiatives, we encourage employees, workers, and local residents to work together in maintaining clean and safe surroundings.',
+    img: '/assets/csr-07.jpg',
+    tag: 'Hygiene · Community',
+  },
 ]
 
 // IV.02 — safety & quality assurance standards.
